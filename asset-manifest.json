@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d56f1882.css",
-    "main.js": "/static/js/main.10369689.js",
+    "main.css": "/static/css/main.dd51e0c5.css",
+    "main.js": "/static/js/main.8f445d4e.js",
     "static/js/415.4d6acbeb.chunk.js": "/static/js/415.4d6acbeb.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/neural-network.jpg": "/static/media/neural-network.ae45638aa6380fb74595.jpg",
@@ -13,13 +13,13 @@
     "static/media/home.svg": "/static/media/home.58c99eb3ccf1ea2f97da97364162fe5a.svg",
     "static/media/pre.svg": "/static/media/pre.d4812f51c8c80976eaab.svg",
     "index.html": "/index.html",
-    "main.d56f1882.css.map": "/static/css/main.d56f1882.css.map",
-    "main.10369689.js.map": "/static/js/main.10369689.js.map",
+    "main.dd51e0c5.css.map": "/static/css/main.dd51e0c5.css.map",
+    "main.8f445d4e.js.map": "/static/js/main.8f445d4e.js.map",
     "415.4d6acbeb.chunk.js.map": "/static/js/415.4d6acbeb.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d56f1882.css",
-    "static/js/main.10369689.js"
+    "static/css/main.dd51e0c5.css",
+    "static/js/main.8f445d4e.js"
   ]
 }
