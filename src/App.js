@@ -1,64 +1,49 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import fullpage from 'fullpage.js';
+import React, { useState, useEffect } from "react";
+import Preloader from "./components/Pre";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import Projects from "./components/Projects/Projects";
+import Footer from "./components/Footer";
+import Resume from "./components/Resume/ResumeNew";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import "./style.css";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  useEffect(() => {
-    const fullpageInstance = new fullpage('#fullpage', {
-      licenseKey: 'YOUR_LICENSE_KEY', // Replace with your actual key
-      autoScrolling: true,
-      scrollHorizontally: true,
-    });
+  const [load, upadateLoad] = useState(true);
 
-    return () => {
-      fullpageInstance.destroy('all');
-    };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      upadateLoad(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div id="fullpage">
-      <div className="section">
-        <h1>Section 1</h1>
+    <Router>
+      <Preloader load={load} />
+      <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <Navbar />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/project" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="*" element={<Navigate to="/"/>} />
+        </Routes>
+        <Footer />
       </div>
-      <div className="section">
-        <h1>Section 2</h1>
-      </div>
-      <div className="section">
-        <h1>Section 3</h1>
-      </div>
-      <main className="p-6">
-        <section id="about" className="my-6">
-          <h2 className="text-2xl font-bold">About Me</h2>
-          <p className="mt-4">
-            Hello! I'm a software developer with a passion for creating web applications.
-          </p>
-          <ul className="mt-4">
-            <li className="mb-4">
-              <button className="flex items-center p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700">
-                <div className="button-content">
-                  <h3 className="text-lg font-bold">Dynamic Game Engine</h3>
-                  <div className="playstation-button"></div>
-                </div>
-              </button>
-            </li>
-            <li className="mb-4">
-              <button className="flex items-center p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700">
-                <img src="/path/to/image-compression.png" alt="Image and File Compression Utilities" className="w-16 h-16 object-cover rounded-full mr-4" />
-                <div>
-                  <h3 className="text-lg font-bold">Image and File Compression Utilities</h3>
-                </div>
-              </button>
-            </li>
-          </ul>
-        </section>
-        <section id="contact" className="my-6">
-          <h2 className="text-2xl font-bold">Contact</h2>
-          <p className="mt-4">
-            You can reach me at <a href="mailto:your.email@example.com" className="text-blue-500 hover:underline">your.email@example.com</a>.
-          </p>
-        </section>
-      </main>
-    </div>
+    </Router>
   );
 }
 

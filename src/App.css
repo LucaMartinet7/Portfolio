@@ -2,25 +2,11 @@
   text-align: center;
 }
 
-.playstation-button {
-  width: 100px; /* Adjust to fit the size of the button */
-  height: 100px; /* Adjust to fit the size of the button */
-  background-image: url('/public/logo192.png'); /* Correct path */
-  background-size: cover; /* Ensure the whole image is shown */
-  background-position: center; /* Center the image */
-}
-
-.button-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
 .App-logo {
-  height: 40vmin;
+  height: 50px;
   pointer-events: none;
+  width: auto;
+  object-fit: contain;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -30,7 +16,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
