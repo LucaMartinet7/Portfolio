@@ -46,7 +46,7 @@ function Projects() {
               isBlog={false}
               title="Neural Network"
               description="Neural Networks is an Epitech project for third year level, which consists to create neural network that can take a chess board as input, and outputs the status of the game using machine-learning-based solution."
-              ghLink="" //todo
+              ghLink="https://github.com/LucaMartinet7/Neural-Network"
             />
           </Col>
 
@@ -56,7 +56,7 @@ function Projects() {
               isBlog={false}
               title="Arcade"
               description="The Arcade is an Epitech school project. It consists of creating a platform that allows you to play games with different graphic libraries and switch them at runtime. The project uses .so files to load the games dynamically."
-              ghLink="" //todo
+              ghLink="https://github.com/LucaMartinet7/Arcade"
             />
           </Col>
         </Row>

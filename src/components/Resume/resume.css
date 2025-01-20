@@ -42,7 +42,7 @@
 .resume .resume-item {
   padding: 0 0 10px 25px;
   margin-top: -2px;
-  border-left: 2px solid #8a49a8;
+  border-left: 2px solid #204168;
   position: relative;
 }
 
@@ -79,5 +79,5 @@
   left: -9px;
   top: 0;
   background: #fff;
-  border: 2px solid #8a49a8;
+  border: 2px solid #204168;
 }
