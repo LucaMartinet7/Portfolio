@@ -26,9 +26,9 @@ function Home2() {
               </i>
               <br />
               <br />
-              I'm currently exploring &nbsp;
+              I'm currently exploring: &nbsp;
               <i>
-                <b className="purple">How game development works</b>
+                <b className="purple">how game development works</b>
               </i>
               <br />
               <br />
