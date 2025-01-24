@@ -12,29 +12,45 @@ function Timeline() {
         contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
         date="2024 - present"
         iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-        icon={<FaBriefcase />}
+        icon={<FaSchool />}
       >
-        <h3 className="vertical-timeline-element-title">3rd Year Computer Science student</h3>
+        <h3 className="vertical-timeline-element-title">University</h3>
         <h4 className="vertical-timeline-element-subtitle">Epitech</h4>
         <p>
-          Learning C, C++, Python, and more.
+          2nd and 3rd year of the Epitech curriculum.
         </p>
       </VerticalTimelineElement>
       <VerticalTimelineElement
         className="vertical-timeline-element--education"
-        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+        contentStyle={{ background: 'rgb(207, 0, 99)', color: '#fff' }}
+        contentArrowStyle={{ borderRight: '7px solid  rgb(207, 0, 99)' }}
         date="July 2023 — December 2023"
-        iconStyle={{ background: 'rgb(233, 30, 99)', color: '#fff' }}
-        icon={<FaSchool />}
+        iconStyle={{ background: 'rgb(207, 0, 99)', color: '#fff' }}
+        icon={<FaBriefcase />}
       >
-        <h3 className="vertical-timeline-element-title">Bachelor's Degree</h3>
-        <h4 className="vertical-timeline-element-subtitle">University Name</h4>
+        <h3 className="vertical-timeline-element-title">Internship</h3>
+        <h4 className="vertical-timeline-element-subtitle">University of Geneva</h4>
         <p>
-          Description of the degree and achievements.
+          - Facilitate the transfer from Confluence to SharePoint.<br />
+          - Initiate possible transfer from Plone 4.3 to SharePoint or Plone 6.<br />
+          - Observe how a help desk works and how to manage the services and the digital work environment.<br />
+          - Assist team meetings and give feedback on new application releases.
         </p>
       </VerticalTimelineElement>
-      {/* Add more timeline elements as needed */}
+      <VerticalTimelineElement
+        className="vertical-timeline-element--work"
+        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+        contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+        date="2022 - 2023"
+        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+        icon={<FaSchool />}
+      >
+        <h3 className="vertical-timeline-element-title">University</h3>
+        <h4 className="vertical-timeline-element-subtitle">Epitech</h4>
+        <p>
+          1st year of the Epitech curriculum.
+        </p>
+      </VerticalTimelineElement>
     </VerticalTimeline>
   );
 }
