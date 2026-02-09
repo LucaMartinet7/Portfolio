@@ -1,7 +1,6 @@
 import AboutCard from "./AboutCard";
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
-import GithubCalendar from "./GithubCalendar";
 
 export default function About() {
     return (
@@ -29,8 +28,6 @@ export default function About() {
                         <Toolstack />
                     </div>
                 </div>
-
-                <GithubCalendar />
             </div>
         </section>
     );

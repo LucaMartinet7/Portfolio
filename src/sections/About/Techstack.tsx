@@ -1,4 +1,4 @@
-import { SiC, SiFlutter, SiNextdotjs, SiPostgresql } from "react-icons/si";
+import { SiC, SiFlutter, SiNextdotjs, SiPostgresql, SiTypescript } from "react-icons/si";
 import { CgCPlusPlus } from "react-icons/cg";
 import {
     DiJavascript1,
@@ -8,12 +8,15 @@ import {
     DiGit,
     DiMysql,
     DiHaskell,
+    DiJava,
 } from "react-icons/di";
 
 const items = [
     { label: "C", icon: <SiC /> },
     { label: "C++", icon: <CgCPlusPlus /> },
     { label: "JavaScript", icon: <DiJavascript1 /> },
+    { label: "TypeScript", icon: <SiTypescript /> },
+    { label: "Java", icon: <DiJava /> },
     { label: "Node.js", icon: <DiNodejs /> },
     { label: "React", icon: <DiReact /> },
     { label: "Next.js", icon: <SiNextdotjs /> },

@@ -12,9 +12,33 @@ export default function App() {
     return (
         <main className="bg-neutral-950 text-white">
             <Home />
-            <Experience />
-            <Projects />
+
+            {/* Smooth transition section */}
+            <section className="px-6 py-16 md:py-24">
+                <div className="mx-auto max-w-6xl" />
+            </section>
+
             <About />
+
+            {/* Smooth transition section */}
+            <section className="px-6 py-16 md:py-24">
+                <div className="mx-auto max-w-6xl" />
+            </section>
+
+            <Experience />
+
+            {/* Smooth transition section */}
+            <section className="px-6 py-16 md:py-24">
+                <div className="mx-auto max-w-6xl" />
+            </section>
+
+            <Projects />
+
+            {/* Smooth transition section */}
+            <section className="px-6 py-16 md:py-24">
+                <div className="mx-auto max-w-6xl" />
+            </section>
+
             <Resume />
         </main>
     );

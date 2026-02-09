@@ -1,5 +1,6 @@
 import ProjectCard from "./ProjectCard";
 import { projects } from "./projects.data";
+import GithubCalendar from "../About/GithubCalendar";
 
 export default function Projects() {
     return (
@@ -18,6 +19,10 @@ export default function Projects() {
                     {projects.map((p) => (
                         <ProjectCard key={p.title} project={p} />
                     ))}
+                </div>
+
+                <div className="mt-16">
+                    <GithubCalendar />
                 </div>
             </div>
         </section>

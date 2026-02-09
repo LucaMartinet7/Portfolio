@@ -1,6 +1,6 @@
 import { VscVscode } from "react-icons/vsc";
 import { SiLinux, SiDocker } from "react-icons/si";
-import { FaTrello, FaWindows } from "react-icons/fa";
+import { FaTrello, FaWindows, FaApple } from "react-icons/fa";
 
 const items = [
     { label: "Linux", icon: <SiLinux /> },
@@ -8,6 +8,7 @@ const items = [
     { label: "Docker", icon: <SiDocker /> },
     { label: "Trello", icon: <FaTrello /> },
     { label: "Windows", icon: <FaWindows /> },
+    { label: "Mac", icon: <FaApple /> },
 ];
 
 export default function Toolstack() {
