@@ -1,4 +1,10 @@
-import { SiC, SiFlutter, SiNextdotjs, SiPostgresql, SiTypescript } from "react-icons/si";
+import {
+    SiC,
+    SiFlutter,
+    SiNextdotjs,
+    SiPostgresql,
+    SiTypescript,
+} from "react-icons/si";
 import { CgCPlusPlus } from "react-icons/cg";
 import {
     DiJavascript1,

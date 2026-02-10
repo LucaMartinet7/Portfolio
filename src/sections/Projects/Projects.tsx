@@ -1,17 +1,19 @@
 import ProjectCard from "./ProjectCard";
 import { projects } from "./projects.data";
 import GithubCalendar from "../About/GithubCalendar";
+import { SECTION_IDS } from "@/lib/anchors.ts";
 
 export default function Projects() {
     return (
-        <section id="projects" className="px-6 py-32">
+        <section id={SECTION_IDS.PROJECTS} className="px-6 py-16 md:py-32">
             <div className="mx-auto max-w-6xl">
                 <header className="max-w-2xl">
                     <h2 className="text-3xl font-semibold">
                         Selected <span className="text-white/60">Work</span>
                     </h2>
                     <p className="mt-3 text-white/60">
-                        A few projects I’ve built recently—systems work, networking, and web tooling.
+                        A few projects I’ve built recently—systems work,
+                        networking, and web tooling.
                     </p>
                 </header>
 

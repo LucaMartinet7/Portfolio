@@ -1,7 +1,7 @@
 export type Project = {
     title: string;
     description: string;
-    image?: string;      // optional if you don’t want images yet
+    image?: string; // optional if you don’t want images yet
     githubUrl: string;
     demoUrl?: string;
     tags?: string[];
