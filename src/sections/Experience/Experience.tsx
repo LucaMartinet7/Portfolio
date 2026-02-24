@@ -30,11 +30,11 @@ export default function Experience() {
     return (
         <section
             id={SECTION_IDS.EXPERIENCE}
-            className="grid grid-cols-12 gap-8"
+            className="grid grid-cols-12 gap-8 px-6 py-16 md:py-32"
         >
-            {/* Left: 1/3 width date column */}
-            <div className="col-span-4 hidden md:block">
-                <div className="sticky top-24">
+            {/* Left: 1/3 width date column - extends to left edge */}
+            <div className="col-span-4 hidden md:block overflow-hidden">
+                <div className="sticky top-24 -ml-6 w-[calc(100%+1.5rem)]">
                     <YearCounter
                         allYears={allYears}
                         activeIndex={activeIndex}

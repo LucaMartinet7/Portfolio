@@ -32,7 +32,7 @@ export default function YearCounter({
 
     return (
         <div
-            className="h-fit w-full text-right font-bold leading-[0.8] text-white/10 tracking-tight"
+            className="h-fit w-full text-center font-bold leading-[0.8] text-white/10 tracking-tight"
             style={{ fontSize: "clamp(4rem, 12vw, 12rem)" }}
         >
             <div
