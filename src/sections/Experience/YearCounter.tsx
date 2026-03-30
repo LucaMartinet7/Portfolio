@@ -32,8 +32,7 @@ export default function YearCounter({
 
     return (
         <div
-            className="h-fit w-full text-center font-bold leading-[0.8] text-white/10 tracking-tight"
-            style={{ fontSize: "clamp(4rem, 12vw, 12rem)" }}
+            className="h-fit w-full text-center font-bold leading-[0.8] text-white/10 tracking-tight text-[clamp(5rem,16vw,16rem)]"
         >
             <div
                 ref={viewportRef}
@@ -46,7 +45,7 @@ export default function YearCounter({
                 >
                     {allYears.map((year, idx) => (
                         <div
-                            key={year}
+                            key={idx}
                             ref={idx === 0 ? rowRef : undefined}
                             className="leading-[0.8] flex-shrink-0 whitespace-nowrap"
                         >

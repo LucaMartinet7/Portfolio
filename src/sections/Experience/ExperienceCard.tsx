@@ -1,5 +1,4 @@
-import { useRef, useEffect } from "react";
-import { useInView } from "motion/react";
+import { motion } from "motion/react";
 import type { ExperienceCardProps } from "./types";
 
 export default function ExperienceCard({
@@ -8,21 +7,15 @@ export default function ExperienceCard({
     styles,
     styleIndex,
 }: ExperienceCardProps & { onView?: (index: number) => void }) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.5 });
-
-    useEffect(() => {
-        if (isInView) {
-            // Trigger parent callback if provided
-            const event = new CustomEvent("experienceCardView", {
-                detail: { index },
-            });
-            window.dispatchEvent(event);
-        }
-    }, [isInView, index]);
-
     return (
-        <div ref={ref} key={index} className="relative">
+        <motion.div
+            data-experience-card
+            className="relative"
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+        >
             {/* Photo Grid Collage with Text */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[150px] md:auto-rows-[250px]">
                 {/* Text Content Tile with Dynamic Styling and Position */}
@@ -64,6 +57,6 @@ export default function ExperienceCard({
                     </div>
                 ))}
             </div>
-        </div>
+        </motion.div>
     );
 }

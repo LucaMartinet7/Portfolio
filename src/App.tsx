@@ -21,7 +21,7 @@ export default function App() {
         <main className="bg-neutral-950 text-white pt-20 md:pt-28">
             <TopNav />
             <Home />
-            <SmoothTransition />
+            <div className="py-4 md:py-6" />
             <About />
             <SmoothTransition />
             <Experience />

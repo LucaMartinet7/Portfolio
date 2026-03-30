@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { SECTION_IDS } from "@/lib/anchors.ts";
 
 export default function Hobbies() {
@@ -20,7 +21,7 @@ export default function Hobbies() {
         { title: "Activity", src: "/photos/hobbies/other/1.jpg" },
     ];
 
-    // Disable background scroll when carousel is open
+    // Disable background scroll when carousel is open + keyboard nav
     useEffect(() => {
         if (isCarouselOpen) {
             document.body.style.overflow = "hidden";
@@ -31,6 +32,17 @@ export default function Hobbies() {
             document.body.style.overflow = "unset";
         };
     }, [isCarouselOpen]);
+
+    useEffect(() => {
+        if (!isCarouselOpen) return;
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setIsCarouselOpen(false);
+            if (e.key === "ArrowRight") nextPhoto();
+            if (e.key === "ArrowLeft") prevPhoto();
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [isCarouselOpen, activePhotoIdx]);
 
     const nextPhoto = () => {
         setActivePhotoIdx((activePhotoIdx + 1) % photos.length);
@@ -167,12 +179,7 @@ export default function Hobbies() {
                             <iframe
                                 allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
                                 height="450"
-                                style={{
-                                    width: "100%",
-                                    maxWidth: "660px",
-                                    overflow: "hidden",
-                                    background: "transparent",
-                                }}
+                                className="w-full max-w-[660px] overflow-hidden bg-transparent"
                                 sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
                                 src="https://embed.music.apple.com/fr/playlist/pl.u-RRbV0o5sm4axqmN"
                                 onLoad={() => setPlaylistLoaded(true)}
@@ -190,9 +197,11 @@ export default function Hobbies() {
                                 <button
                                     key={idx}
                                     onClick={() => openCarousel(idx)}
-                                    className="bg-neutral-800 rounded-lg aspect-square flex items-center justify-center hover:bg-neutral-700 transition-colors cursor-pointer group touch-manipulation min-h-[120px]"
+                                    className="rounded-lg aspect-square relative overflow-hidden cursor-pointer group touch-manipulation min-h-[120px] bg-neutral-800 bg-cover bg-center"
+                                    style={{ backgroundImage: `url(${photo.src})` }}
                                 >
-                                    <span className="text-neutral-400 group-hover:text-neutral-200 transition-colors text-sm md:text-base">
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+                                    <span className="relative z-10 text-white text-sm md:text-base font-medium">
                                         {photo.title}
                                     </span>
                                 </button>
@@ -203,13 +212,18 @@ export default function Hobbies() {
             </div>
 
             {/* Carousel Modal */}
+            <AnimatePresence>
             {isCarouselOpen && (
-                <div
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
                     className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
                     onClick={() => setIsCarouselOpen(false)}
                 >
                     <div
-                        className="relative perspective"
+                        className="relative perspective h-auto"
                         onClick={(e) => e.stopPropagation()}
                         onTouchStart={handleTouchStart}
                         onTouchEnd={handleTouchEnd}
@@ -218,7 +232,6 @@ export default function Hobbies() {
                                 displayWidth + 40,
                                 window.innerWidth - 32
                             ),
-                            height: "auto",
                         }}
                     >
                         {/* Close Button */}
@@ -314,8 +327,9 @@ export default function Hobbies() {
                             {activePhotoIdx + 1} / {photos.length}
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
+            </AnimatePresence>
         </section>
     );
 }

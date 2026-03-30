@@ -2,27 +2,34 @@ import AboutCard from "./AboutCard";
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
 import { SECTION_IDS } from "@/lib/anchors.ts";
+import { motion } from "motion/react";
 
 export default function About() {
     return (
         <section id={SECTION_IDS.ABOUT} className="px-6 py-16 md:py-32">
             <div className="mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                    <div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
                         <h2 className="text-3xl font-semibold">
                             About <span className="text-white/60">me</span>
                         </h2>
-                        <p className="mt-3 text-white/60 max-w-xl">
-                            A quick intro, then the tools I’m comfortable
-                            shipping with.
-                        </p>
 
-                        <div className="mt-10">
+                        <div className="mt-8">
                             <AboutCard />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                    >
                         <h3 className="text-xl font-medium">
                             Professional skillset
                         </h3>
@@ -32,7 +39,7 @@ export default function About() {
                             Tools I use
                         </h3>
                         <Toolstack />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
