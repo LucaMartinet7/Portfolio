@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="LM favicon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)" />
+  <path d="M18 16h8v24h14v8H18z" fill="#f8fafc" />
+  <path d="M42 48V16h8l6 14 6-14h8v32h-8V31l-5 11h-2l-5-11v17z" fill="#f8fafc" transform="scale(0.64) translate(20 6)" />
+</svg>
