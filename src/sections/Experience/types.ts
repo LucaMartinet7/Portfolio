@@ -1,6 +1,7 @@
 export type ExperienceImage = {
     url: string;
     span: string;
+    type?: "video";
 };
 
 export type ExperienceEntry = {
@@ -12,6 +13,7 @@ export type ExperienceEntry = {
     description: string;
     images: ExperienceImage[];
     tileStyle: string;
+    textSpan?: string; // css grid span classes for the text tile, default "col-span-1 row-span-1"
 };
 
 export type ExperienceCardProps = {

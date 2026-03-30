@@ -1,5 +1,5 @@
 import { SECTION_IDS } from "@/lib/anchors.ts";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ExperienceCard from "./ExperienceCard";
 import YearCounter from "./YearCounter";
 import { allEntries } from "./data";
@@ -7,6 +7,7 @@ import { allEntries } from "./data";
 export default function Experience() {
     const [activeIndex, setActiveIndex] = useState(0);
     const uniqueYears = [...new Set(allEntries.map((e) => e.yearNumber))];
+    const prevClosest = useRef(-1);
 
     // Use rAF loop so it tracks Lenis's per-frame scroll animation.
     // Only runs while the section is intersecting the viewport.
@@ -29,7 +30,10 @@ export default function Experience() {
                     closest = i;
                 }
             });
-            setActiveIndex(closest);
+            if (closest !== prevClosest.current) {
+                prevClosest.current = closest;
+                setActiveIndex(closest);
+            }
             rafId = requestAnimationFrame(update);
         };
 

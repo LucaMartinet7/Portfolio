@@ -1,5 +1,21 @@
 import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 import type { ExperienceCardProps } from "./types";
+
+function LazyVideo({ src, className }: { src: string; className: string }) {
+    const ref = useRef<HTMLVideoElement>(null);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => { entry.isIntersecting ? el.play() : el.pause(); },
+            { rootMargin: "200px" }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+    return <video ref={ref} src={src} loop muted playsInline preload="none" className={className} />;
+}
 
 export default function ExperienceCard({
     exp,
@@ -38,36 +54,44 @@ export default function ExperienceCard({
                 <span className="text-neutral-500 dark:text-white/50 text-sm">{exp.country}</span>
             </div>
 
-            {/* Photo Grid Collage */}
+            {/* Card */}
             <motion.div
                 whileHover={{ scale: 1.005 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className={`grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[150px] md:auto-rows-[250px] rounded-2xl overflow-hidden ring-1 transition-all duration-500 ${isActive ? "ring-neutral-300 dark:ring-white/15 shadow-[0_0_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.08)]" : "ring-neutral-200 dark:ring-white/5"}`}
+                className={`grid grid-cols-3 gap-1 rounded-2xl overflow-hidden ring-1 transition-all duration-500 ${isActive ? "ring-neutral-300 dark:ring-white/15 shadow-[0_0_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.08)]" : "ring-neutral-200 dark:ring-white/5"}`}
             >
                 {/* Text Content Tile */}
                 <div
-                    className={`rounded-2xl overflow-hidden col-span-2 row-span-2 ${exp.tileStyle} border p-4 md:p-8 flex flex-col justify-center backdrop-blur-sm`}
+                    className={`${exp.textSpan ?? "col-span-1"} ${exp.tileStyle} border p-4 md:p-8 flex flex-col justify-center min-h-[180px] md:min-h-[240px] backdrop-blur-sm`}
                 >
-                    <h2 className="text-2xl md:text-5xl font-bold mb-2 md:mb-3 leading-tight">
+                    <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 leading-tight">
                         {exp.location}
                     </h2>
-                    <p className="text-sm md:text-lg text-neutral-600 dark:text-white/60 leading-relaxed">
+                    <p className="text-sm md:text-base text-neutral-600 dark:text-white/60 leading-relaxed">
                         {exp.description}
                     </p>
                 </div>
 
-                {/* Photo Images */}
+                {/* Photo tiles */}
                 {exp.images.map((img, imgIndex) => (
                     <div
                         key={imgIndex}
-                        className={`${img.span} rounded-2xl overflow-hidden group relative`}
+                        className={`${img.span} group relative overflow-hidden`}
                     >
-                        <div
-                            className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                            style={{ backgroundImage: `url(${img.url})` }}
-                        >
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                        </div>
+                        {img.type === "video" ? (
+                            <LazyVideo
+                                src={img.url}
+                                className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
+                            />
+                        ) : (
+                            <img
+                                src={img.url}
+                                alt=""
+                                loading="lazy"
+                                className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
+                            />
+                        )}
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300 pointer-events-none" />
                     </div>
                 ))}
             </motion.div>
