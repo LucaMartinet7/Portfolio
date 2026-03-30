@@ -79,7 +79,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
             transition={{ type: "spring", stiffness: 200, damping: 50 }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-12 py-6 lg:flex dark:bg-transparent",
-                visible && "bg-neutral-900/80 dark:bg-neutral-950/80",
+                visible && "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
                 className
             )}
         >
@@ -95,7 +95,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-4",
+                "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium lg:flex lg:space-x-4",
                 className
             )}
         >
@@ -103,7 +103,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                 <a
                     onMouseEnter={() => setHovered(idx)}
                     onClick={onItemClick}
-                    className="relative px-6 py-3 text-neutral-600 dark:text-neutral-300"
+                    className="relative px-6 py-3 text-[#385144] dark:text-[#C2D8C4]/70 hover:text-[#1f3329] dark:hover:text-[#C2D8C4] transition-colors duration-200"
                     key={`link-${idx}`}
                     href={item.link}
                 >
@@ -115,7 +115,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.92 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
+                                className="absolute inset-0 h-full w-full rounded-full bg-[#385144]/10 dark:bg-[#C2D8C4]/10"
                             />
                         )}
                     </AnimatePresence>
@@ -144,7 +144,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
             transition={{ type: "spring", stiffness: 200, damping: 50 }}
             className={cn(
                 "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-6 lg:hidden",
-                visible && "bg-neutral-900/80 dark:bg-neutral-950/80",
+                visible && "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
                 className
             )}
         >
@@ -182,7 +182,7 @@ export const MobileNavMenu = ({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className={cn(
-                        "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
+                        "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-[#F8F5F2] dark:bg-[#222222] border border-[#385144]/20 dark:border-[#C2D8C4]/10 px-4 py-8 shadow-lg",
                         className
                     )}
                 >
@@ -207,9 +207,9 @@ export const MobileNavToggle = ({
             aria-label={isOpen ? "Close menu" : "Open menu"}
         >
             {isOpen ? (
-                <IconX className="text-black dark:text-white w-6 h-6" />
+                <IconX className="text-[#385144] dark:text-[#C2D8C4] w-6 h-6" />
             ) : (
-                <IconMenu2 className="text-black dark:text-white w-6 h-6" />
+                <IconMenu2 className="text-[#385144] dark:text-[#C2D8C4] w-6 h-6" />
             )}
         </button>
     );

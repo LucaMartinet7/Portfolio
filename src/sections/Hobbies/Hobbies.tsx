@@ -21,7 +21,6 @@ export default function Hobbies() {
         { title: "Activity", src: "/photos/hobbies/other/1.jpg" },
     ];
 
-    // Disable background scroll when carousel is open + keyboard nav
     useEffect(() => {
         if (isCarouselOpen) {
             document.body.style.overflow = "hidden";
@@ -55,7 +54,6 @@ export default function Hobbies() {
     const openCarousel = (idx: number) => {
         setActivePhotoIdx(idx);
         setIsCarouselOpen(true);
-        // Load image to get dimensions
         const img = new Image();
         img.onload = () => {
             setImageDimensions({
@@ -79,17 +77,11 @@ export default function Hobbies() {
 
     const handleSwipe = (touchEndX: number, touchEndY: number) => {
         const swipeThreshold = 50;
-
         const diffX = touchStartX.current - touchEndX;
         const diffY = Math.abs(touchStartY.current - touchEndY);
-
-        // Only trigger swipe if horizontal movement is greater than vertical movement
         if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
-            if (diffX > 0) {
-                nextPhoto();
-            } else {
-                prevPhoto();
-            }
+            if (diffX > 0) nextPhoto();
+            else prevPhoto();
         }
     };
 
@@ -99,53 +91,19 @@ export default function Hobbies() {
         const isNext = distance === 1;
         const isPrev = distance === photos.length - 1;
 
-        if (isActive) {
-            return {
-                transform: "translateX(0px) scale(1)",
-                opacity: 1,
-                zIndex: 30,
-                pointerEvents: "auto" as React.CSSProperties["pointerEvents"],
-            };
-        } else if (isNext) {
-            return {
-                transform: "translateX(60px) scale(0.95)",
-                opacity: 0.6,
-                zIndex: 20,
-                pointerEvents: "auto" as React.CSSProperties["pointerEvents"],
-            };
-        } else if (isPrev) {
-            return {
-                transform: "translateX(-60px) scale(0.95)",
-                opacity: 0.6,
-                zIndex: 10,
-                pointerEvents: "auto" as React.CSSProperties["pointerEvents"],
-            };
-        } else {
-            return {
-                transform: "translateX(120px) scale(0.9)",
-                opacity: 0,
-                zIndex: 5,
-                pointerEvents: "none" as React.CSSProperties["pointerEvents"],
-            };
-        }
+        if (isActive) return { transform: "translateX(0px) scale(1)", opacity: 1, zIndex: 30, pointerEvents: "auto" as React.CSSProperties["pointerEvents"] };
+        if (isNext) return { transform: "translateX(60px) scale(0.95)", opacity: 0.6, zIndex: 20, pointerEvents: "auto" as React.CSSProperties["pointerEvents"] };
+        if (isPrev) return { transform: "translateX(-60px) scale(0.95)", opacity: 0.6, zIndex: 10, pointerEvents: "auto" as React.CSSProperties["pointerEvents"] };
+        return { transform: "translateX(120px) scale(0.9)", opacity: 0, zIndex: 5, pointerEvents: "none" as React.CSSProperties["pointerEvents"] };
     };
 
-    // Calculate responsive image size
     const maxWidth = 480;
     const maxHeight = 600;
     let displayWidth = imageDimensions.width;
     let displayHeight = imageDimensions.height;
-
     const aspectRatio = imageDimensions.width / imageDimensions.height;
-
-    if (displayWidth > maxWidth) {
-        displayWidth = maxWidth;
-        displayHeight = maxWidth / aspectRatio;
-    }
-    if (displayHeight > maxHeight) {
-        displayHeight = maxHeight;
-        displayWidth = maxHeight * aspectRatio;
-    }
+    if (displayWidth > maxWidth) { displayWidth = maxWidth; displayHeight = maxWidth / aspectRatio; }
+    if (displayHeight > maxHeight) { displayHeight = maxHeight; displayWidth = maxHeight * aspectRatio; }
 
     return (
         <section id={SECTION_IDS.HOBBIES} className="px-6 py-16 md:py-32">
@@ -154,7 +112,7 @@ export default function Hobbies() {
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
                         Hobbies & Interests
                     </h2>
-                    <p className="text-neutral-400 text-base md:text-lg">
+                    <p className="text-neutral-500 dark:text-neutral-400 text-base md:text-lg">
                         Things I enjoy outside of coding
                     </p>
                 </div>
@@ -165,12 +123,12 @@ export default function Hobbies() {
                         <h3 className="text-xl md:text-2xl font-bold mb-4">
                             Currently Listening To
                         </h3>
-                        <div className="rounded-lg overflow-hidden bg-neutral-900 relative">
+                        <div className="rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-900 relative">
                             {!playlistLoaded && (
-                                <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center z-10">
+                                <div className="absolute inset-0 bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center z-10">
                                     <div className="flex flex-col items-center gap-3">
                                         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-                                        <span className="text-neutral-400">
+                                        <span className="text-neutral-500 dark:text-neutral-400">
                                             Loading playlist...
                                         </span>
                                     </div>
@@ -197,7 +155,7 @@ export default function Hobbies() {
                                 <button
                                     key={idx}
                                     onClick={() => openCarousel(idx)}
-                                    className="rounded-lg aspect-square relative overflow-hidden cursor-pointer group touch-manipulation min-h-[120px] bg-neutral-800 bg-cover bg-center"
+                                    className="rounded-lg aspect-square relative overflow-hidden cursor-pointer group touch-manipulation min-h-[120px] bg-neutral-200 dark:bg-neutral-800 bg-cover bg-center"
                                     style={{ backgroundImage: `url(${photo.src})` }}
                                 >
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
@@ -227,55 +185,33 @@ export default function Hobbies() {
                         onClick={(e) => e.stopPropagation()}
                         onTouchStart={handleTouchStart}
                         onTouchEnd={handleTouchEnd}
-                        style={{
-                            width: Math.min(
-                                displayWidth + 40,
-                                window.innerWidth - 32
-                            ),
-                        }}
+                        style={{ width: Math.min(displayWidth + 40, window.innerWidth - 32) }}
                     >
-                        {/* Close Button */}
                         <button
                             onClick={() => setIsCarouselOpen(false)}
-                            className="absolute -top-2 right-2 md:-top-12 md:-right-12 z-40 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors touch-manipulation"
+                            className="absolute -top-2 right-2 md:-top-12 md:-right-12 z-40 bg-neutral-800/80 hover:bg-neutral-700 p-2 rounded-full transition-colors touch-manipulation"
                             aria-label="Close carousel"
                         >
                             <X size={24} className="text-white" />
                         </button>
 
-                        {/* Cards Stack - Horizontal */}
-                        <div
-                            className="relative flex items-center justify-center"
-                            style={{ height: displayHeight }}
-                        >
+                        <div className="relative flex items-center justify-center" style={{ height: displayHeight }}>
                             {photos.map((photo, idx) => {
                                 const style = getCardStyle(idx);
-                                const isInactive =
-                                    style.pointerEvents === "none";
+                                const isInactive = style.pointerEvents === "none";
                                 return (
                                     <div
                                         key={idx}
-                                        style={{
-                                            transform: style.transform,
-                                            opacity: style.opacity,
-                                            zIndex: style.zIndex,
-                                            width: displayWidth,
-                                            height: displayHeight,
-                                            pointerEvents: style.pointerEvents,
-                                        }}
-                                        className={`absolute rounded-lg bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center shadow-2xl transition-all duration-500 ease-out overflow-hidden ${isInactive ? "pointer-events-none" : ""}`}
+                                        style={{ transform: style.transform, opacity: style.opacity, zIndex: style.zIndex, width: displayWidth, height: displayHeight, pointerEvents: style.pointerEvents }}
+                                        className={`absolute rounded-lg bg-neutral-800 flex items-center justify-center shadow-2xl transition-all duration-500 ease-out overflow-hidden ${isInactive ? "pointer-events-none" : ""}`}
                                     >
                                         <img
                                             src={photo.src}
                                             alt={photo.title}
                                             className="w-full h-full object-cover"
-                                            onError={(e) => {
-                                                (
-                                                    e.target as HTMLImageElement
-                                                ).style.display = "none";
-                                            }}
+                                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                                         />
-                                        <span className="text-neutral-200 text-2xl font-semibold absolute">
+                                        <span className="text-white text-2xl font-semibold absolute">
                                             {photo.title}
                                         </span>
                                     </div>
@@ -283,46 +219,25 @@ export default function Hobbies() {
                             })}
                         </div>
 
-                        {/* Navigation Buttons */}
-                        <button
-                            onClick={prevPhoto}
-                            className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-14 z-40 bg-neutral-800 hover:bg-neutral-700 p-2 md:p-3 rounded-full transition-colors touch-manipulation"
-                            aria-label="Previous photo"
-                        >
-                            <ChevronLeft
-                                size={20}
-                                className="text-white md:w-6 md:h-6"
-                            />
+                        <button onClick={prevPhoto} className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-14 z-40 bg-neutral-800 hover:bg-neutral-700 p-2 md:p-3 rounded-full transition-colors touch-manipulation" aria-label="Previous photo">
+                            <ChevronLeft size={20} className="text-white md:w-6 md:h-6" />
                         </button>
 
-                        <button
-                            onClick={nextPhoto}
-                            className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-14 z-40 bg-neutral-800 hover:bg-neutral-700 p-2 md:p-3 rounded-full transition-colors touch-manipulation"
-                            aria-label="Next photo"
-                        >
-                            <ChevronRight
-                                size={20}
-                                className="text-white md:w-6 md:h-6"
-                            />
+                        <button onClick={nextPhoto} className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-14 z-40 bg-neutral-800 hover:bg-neutral-700 p-2 md:p-3 rounded-full transition-colors touch-manipulation" aria-label="Next photo">
+                            <ChevronRight size={20} className="text-white md:w-6 md:h-6" />
                         </button>
 
-                        {/* Indicator Dots */}
                         <div className="flex justify-center gap-2 absolute -bottom-8 md:-bottom-14 left-1/2 -translate-x-1/2">
                             {photos.map((_, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => setActivePhotoIdx(idx)}
-                                    className={`h-2 rounded-full transition-all duration-300 touch-manipulation ${
-                                        idx === activePhotoIdx
-                                            ? "bg-blue-500 w-8"
-                                            : "bg-neutral-600 w-2 hover:bg-neutral-500"
-                                    }`}
+                                    className={`h-2 rounded-full transition-all duration-300 touch-manipulation ${idx === activePhotoIdx ? "bg-blue-500 w-8" : "bg-neutral-500 hover:bg-neutral-400 w-2"}`}
                                     aria-label={`Go to photo ${idx + 1}`}
                                 />
                             ))}
                         </div>
 
-                        {/* Counter */}
                         <div className="text-center text-neutral-400 text-sm absolute -bottom-14 md:-bottom-20 left-1/2 -translate-x-1/2">
                             {activePhotoIdx + 1} / {photos.length}
                         </div>

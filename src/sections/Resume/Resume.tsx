@@ -11,13 +11,13 @@ export default function Resume() {
                     <a
                         href={cvPath}
                         download
-                        className="px-4 py-2 text-sm font-medium bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors touch-manipulation"
+                        className="px-4 py-2 text-sm font-medium bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 border border-neutral-300 dark:border-white/20 rounded-lg transition-colors touch-manipulation"
                     >
                         Download PDF
                     </a>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
+                <div className="rounded-2xl border border-neutral-200 dark:border-white/10 bg-neutral-100 dark:bg-white/[0.03] overflow-hidden">
                     <iframe
                         src={cvPath}
                         className="w-full h-[80vh] md:min-h-[135vh] border-none"

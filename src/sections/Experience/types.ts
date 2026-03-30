@@ -11,13 +11,13 @@ export type ExperienceEntry = {
     category: string;
     description: string;
     images: ExperienceImage[];
+    tileStyle: string;
 };
 
 export type ExperienceCardProps = {
     exp: ExperienceEntry;
     index: number;
-    styles: string[];
-    styleIndex: number;
+    isActive?: boolean;
 };
 
 export type ExperienceSectionProps = {

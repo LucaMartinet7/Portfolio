@@ -16,9 +16,9 @@ export default function Projects() {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                     <h2 className="text-3xl font-semibold">
-                        Selected <span className="text-white/60">Work</span>
+                        Selected <span className="text-[#385144] dark:text-[#C2D8C4]/60">Work</span>
                     </h2>
-                    <p className="mt-3 text-white/60">
+                    <p className="mt-3 text-neutral-600 dark:text-[#C2D8C4]/60">
                         A few projects I've built recently—systems work,
                         networking, and web tooling.
                     </p>

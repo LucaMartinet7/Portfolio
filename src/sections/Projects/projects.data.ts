@@ -1,10 +1,11 @@
 export type Project = {
     title: string;
     description: string;
-    image?: string; // optional if you don’t want images yet
+    image?: string;
     githubUrl: string;
     demoUrl?: string;
     tags?: string[];
+    accent: string; // tailwind bg color class for the accent
 };
 
 export const projects: Project[] = [
@@ -14,6 +15,7 @@ export const projects: Project[] = [
             "Multiplayer 2D shooter with modular server/client/engine architecture. Built with modern C++, ECS, and robust networking.",
         githubUrl: "https://github.com/lucamartinet7/R-Type",
         tags: ["C++", "Networking", "ECS"],
+        accent: "bg-blue-500",
     },
     {
         title: "AREA",
@@ -21,6 +23,7 @@ export const projects: Project[] = [
             "IFTTT/Zapier-style automation platform with backend, web frontend, and mobile frontend.",
         githubUrl: "https://github.com/LucaMartinet7/Area-Tek3",
         tags: ["Dart", "Python", "MySQL"],
+        accent: "bg-violet-500",
     },
     {
         title: "Neural Network",
@@ -28,6 +31,7 @@ export const projects: Project[] = [
             "Chessboard state analysis using a ML-based approach (project-focused implementation).",
         githubUrl: "https://github.com/LucaMartinet7/Neural-Network",
         tags: ["Python", "ML"],
+        accent: "bg-emerald-500",
     },
     {
         title: "Arcade",
@@ -35,5 +39,6 @@ export const projects: Project[] = [
             "Dynamic game platform with runtime-switchable graphics libraries and games loaded via shared objects.",
         githubUrl: "https://github.com/LucaMartinet7/Arcade",
         tags: ["C++", "Plugins"],
+        accent: "bg-orange-500",
     },
 ];

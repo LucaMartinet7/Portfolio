@@ -16,7 +16,7 @@ export default function About() {
                         transition={{ duration: 0.5, ease: "easeOut" }}
                     >
                         <h2 className="text-3xl font-semibold">
-                            About <span className="text-white/60">me</span>
+                            About <span className="text-[#385144] dark:text-[#C2D8C4]/60">me</span>
                         </h2>
 
                         <div className="mt-8">

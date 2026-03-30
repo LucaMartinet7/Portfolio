@@ -32,12 +32,16 @@ export default function YearCounter({
 
     return (
         <div
-            className="h-fit w-full text-center font-bold leading-[0.8] text-white/10 tracking-tight text-[clamp(5rem,16vw,16rem)]"
+            className="h-fit w-full text-center font-bold leading-[0.8] text-[#385144]/10 dark:text-[#C2D8C4]/10 tracking-tight text-[clamp(5rem,16vw,16rem)]"
         >
             <div
                 ref={viewportRef}
                 className="relative overflow-hidden"
-                style={{ height: rowHeight ? `${rowHeight}px` : "1.25em" }}
+                style={{
+                    height: rowHeight ? `${rowHeight}px` : "1.25em",
+                    maskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)",
+                }}
             >
                 <div
                     className="flex flex-col transition-transform duration-700 ease-in-out"

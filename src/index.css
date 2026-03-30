@@ -13,13 +13,14 @@
 }
 
 :root {
+    --bg: #F8F5F2;
+    --accent: #385144;
+
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color-scheme: light;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -63,6 +64,19 @@ body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
+    background-color: #F8F5F2;
+    color: #1a1a1a;
+}
+
+.dark body {
+    background-color: #222222;
+    color: #C2D8C4;
+}
+
+.dark {
+    color-scheme: dark;
+    --bg: #222222;
+    --accent: #C2D8C4;
 }
 
 @theme inline {
@@ -115,6 +129,11 @@ body {
     }
 }
 
+/* Force icon SVG fill to match text color in light mode */
+:not(.dark) .icon-tile svg *:not([fill="none"]) {
+    fill: #385144 !important;
+}
+
 /* Mobile touch optimization */
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
@@ -149,44 +168,17 @@ img {
     height: auto;
 }
 
-/* Custom Scrollbar Styling - Modern & Clean */
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-}
+/* Scrollbar */
+* { scrollbar-width: thin; scrollbar-color: rgba(56,81,68,0.3) transparent; }
+.dark * { scrollbar-color: rgba(194,216,196,0.2) transparent; }
 
-/* Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(56,81,68,0.3); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(56,81,68,0.5); }
+.dark ::-webkit-scrollbar-thumb { background: rgba(194,216,196,0.2); }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgba(194,216,196,0.35); }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-    transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgba(255, 255, 255, 0.35);
-}
-
-/* Optional: Hide scrollbar on mobile for cleaner look */
 @media (max-width: 768px) {
-    ::-webkit-scrollbar {
-        width: 3px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.1);
-    }
+    ::-webkit-scrollbar { width: 3px; }
 }

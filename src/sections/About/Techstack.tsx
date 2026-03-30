@@ -45,8 +45,8 @@ export default function Techstack() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.2, delay: idx * 0.02, ease: "easeOut" }}
-                    whileHover={{ scale: 1.12, color: "rgba(255,255,255,0.9)" }}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-2xl text-white/70 flex items-center justify-center cursor-default"
+                    whileHover={{ scale: 1.12 }}
+                    className="icon-tile rounded-xl border border-[#385144]/25 dark:border-[#C2D8C4]/10 bg-[#385144]/8 dark:bg-[#C2D8C4]/[0.03] p-4 text-2xl text-[#2a3d30] dark:text-[#C2D8C4]/60 hover:text-[#1a2b20] dark:hover:text-[#C2D8C4] flex items-center justify-center cursor-default transition-colors duration-150"
                     title={it.label}
                     aria-label={it.label}
                 >
