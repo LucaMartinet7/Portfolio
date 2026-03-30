@@ -45,7 +45,9 @@ export default function Starfield() {
             // drawing all stars, grouping similar alphas together isn't worth
             // the complexity — just avoid arc() per star by using fillRect for tiny ones
             for (const s of stars) {
-                const flicker = Math.sin(t * s.twinkleSpeed * 60 + s.twinkleOffset);
+                const flicker = Math.sin(
+                    t * s.twinkleSpeed * 60 + s.twinkleOffset
+                );
                 const alpha = Math.max(0.04, s.baseOpacity + flicker * 0.12);
                 ctx.globalAlpha = alpha;
                 ctx.beginPath();

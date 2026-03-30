@@ -14,9 +14,18 @@ export const allEntries: ExperienceEntry[] = [
         // [Text(2)][out(1)] / [out2(1)][room(2)]
         textSpan: "col-span-2",
         images: [
-            { url: "/photos/experience/cardiff/Cardiff_out.webp", span: "col-span-1" },
-            { url: "/photos/experience/cardiff/Cardiff_out2.webp", span: "col-span-1" },
-            { url: "/photos/experience/cardiff/Cardiff_room.webp", span: "col-span-2" },
+            {
+                url: "/photos/experience/cardiff/Cardiff_out.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/cardiff/Cardiff_out2.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/cardiff/Cardiff_room.webp",
+                span: "col-span-2",
+            },
         ],
     },
     {
@@ -32,9 +41,19 @@ export const allEntries: ExperienceEntry[] = [
         // [Text(2)][out(1)] / [video(1)][out2(2)]
         textSpan: "col-span-2",
         images: [
-            { url: "/photos/experience/geneva-cyber/Cyberpeace_out2.webp", span: "col-span-1" },
-            { url: "/photos/experience/geneva-cyber/cyberpeace_workspace.mp4", span: "col-span-1", type: "video" },
-            { url: "/photos/experience/geneva-cyber/CyberPeace_out.webp", span: "col-span-2" },
+            {
+                url: "/photos/experience/geneva-cyber/Cyberpeace_out2.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/geneva-cyber/cyberpeace_workspace.mp4",
+                span: "col-span-1",
+                type: "video",
+            },
+            {
+                url: "/photos/experience/geneva-cyber/CyberPeace_out.webp",
+                span: "col-span-2",
+            },
         ],
     },
     {
@@ -50,8 +69,14 @@ export const allEntries: ExperienceEntry[] = [
         // [Text(3)] / [Berlin(1)][Berlin_2(2)]
         textSpan: "col-span-3",
         images: [
-            { url: "/photos/experience/berlin/Berlin_2.webp", span: "col-span-1" },
-            { url: "/photos/experience/berlin/Berlin.webp", span: "col-span-1" },
+            {
+                url: "/photos/experience/berlin/Berlin_2.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/berlin/Berlin.webp",
+                span: "col-span-1",
+            },
         ],
     },
     {
@@ -67,10 +92,22 @@ export const allEntries: ExperienceEntry[] = [
         // [Text(2)][Bar(1)] / [Bar2(2)][Bar_seg(1)] / [Bar_tri(2)]
         textSpan: "col-span-2",
         images: [
-            { url: "/photos/experience/barcelona/Barcelona.webp", span: "col-span-1" },
-            { url: "/photos/experience/barcelona/Barcelona_segra.webp", span: "col-span-1" },
-            { url: "/photos/experience/barcelona/Barcelona2.webp", span: "col-span-1" },
-            { url: "/photos/experience/barcelona/Barcelona_tri.webp", span: "col-span-2" },
+            {
+                url: "/photos/experience/barcelona/Barcelona.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/barcelona/Barcelona_segra.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/barcelona/Barcelona2.webp",
+                span: "col-span-1",
+            },
+            {
+                url: "/photos/experience/barcelona/Barcelona_tri.webp",
+                span: "col-span-2",
+            },
         ],
     },
     {

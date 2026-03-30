@@ -63,7 +63,9 @@ export default function Experience() {
                 <div className="sticky top-24 -ml-6 w-[calc(100%+1.5rem)]">
                     <YearCounter
                         allYears={uniqueYears}
-                        activeIndex={uniqueYears.indexOf(allEntries[activeIndex].yearNumber)}
+                        activeIndex={uniqueYears.indexOf(
+                            allEntries[activeIndex].yearNumber
+                        )}
                     />
                 </div>
             </div>
@@ -74,7 +76,12 @@ export default function Experience() {
                 <div className="absolute left-0 top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-neutral-300 dark:via-white/15 to-transparent hidden md:block" />
                 <div className="flex flex-col gap-y-16 md:gap-y-24 md:pl-10">
                     {allEntries.map((exp, idx) => (
-                        <ExperienceCard key={idx} exp={exp} index={idx} isActive={idx === activeIndex} />
+                        <ExperienceCard
+                            key={idx}
+                            exp={exp}
+                            index={idx}
+                            isActive={idx === activeIndex}
+                        />
                     ))}
                 </div>
             </div>

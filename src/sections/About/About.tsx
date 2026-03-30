@@ -16,7 +16,10 @@ export default function About() {
                         transition={{ duration: 0.5, ease: "easeOut" }}
                     >
                         <h2 className="text-3xl font-semibold">
-                            About <span className="text-[#385144] dark:text-[#C2D8C4]/60">me</span>
+                            About{" "}
+                            <span className="text-[#385144] dark:text-[#C2D8C4]/60">
+                                me
+                            </span>
                         </h2>
 
                         <div className="mt-8">
@@ -28,7 +31,11 @@ export default function About() {
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                        transition={{
+                            duration: 0.5,
+                            delay: 0.1,
+                            ease: "easeOut",
+                        }}
                     >
                         <h3 className="text-xl font-medium">
                             Professional skillset

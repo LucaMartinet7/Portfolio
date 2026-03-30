@@ -8,13 +8,29 @@ function LazyVideo({ src, className }: { src: string; className: string }) {
         const el = ref.current;
         if (!el) return;
         const observer = new IntersectionObserver(
-            ([entry]) => { entry.isIntersecting ? el.play() : el.pause(); },
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    el.play();
+                } else {
+                    el.pause();
+                }
+            },
             { rootMargin: "200px" }
         );
         observer.observe(el);
         return () => observer.disconnect();
     }, []);
-    return <video ref={ref} src={src} loop muted playsInline preload="none" className={className} />;
+    return (
+        <video
+            ref={ref}
+            src={src}
+            loop
+            muted
+            playsInline
+            preload="none"
+            className={className}
+        />
+    );
 }
 
 export default function ExperienceCard({
@@ -50,8 +66,12 @@ export default function ExperienceCard({
                 >
                     {exp.category}
                 </span>
-                <span className="text-neutral-400 dark:text-white/30 text-sm">{exp.year}</span>
-                <span className="text-neutral-500 dark:text-white/50 text-sm">{exp.country}</span>
+                <span className="text-neutral-400 dark:text-white/30 text-sm">
+                    {exp.year}
+                </span>
+                <span className="text-neutral-500 dark:text-white/50 text-sm">
+                    {exp.country}
+                </span>
             </div>
 
             {/* Card */}

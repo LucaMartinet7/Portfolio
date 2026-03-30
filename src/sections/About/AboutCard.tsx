@@ -15,8 +15,8 @@ export default function AboutCard() {
             {/* Bio */}
             <p className="text-neutral-700 dark:text-[#C2D8C4]/70 leading-relaxed text-base">
                 I'm Luca, a software development student at Epitech. I enjoy
-                building reliable systems and learning by shipping real
-                projects — from low-level C to full-stack web apps.
+                building reliable systems and learning by shipping real projects
+                — from low-level C to full-stack web apps.
             </p>
 
             {/* Info chips */}
@@ -56,7 +56,9 @@ export default function AboutCard() {
                 <p className="text-neutral-700 dark:text-[#C2D8C4]/70 text-sm italic leading-relaxed">
                     "If you're not improving, you're falling behind."
                 </p>
-                <p className="mt-1.5 text-xs text-[#385144]/60 dark:text-[#C2D8C4]/30">— Chris Bumstead</p>
+                <p className="mt-1.5 text-xs text-[#385144]/60 dark:text-[#C2D8C4]/30">
+                    — Chris Bumstead
+                </p>
             </div>
         </div>
     );

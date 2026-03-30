@@ -44,7 +44,11 @@ export default function Techstack() {
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.2, delay: idx * 0.02, ease: "easeOut" }}
+                    transition={{
+                        duration: 0.2,
+                        delay: idx * 0.02,
+                        ease: "easeOut",
+                    }}
                     whileHover={{ scale: 1.12 }}
                     className="icon-tile rounded-xl border border-[#385144]/25 dark:border-[#C2D8C4]/10 bg-[#385144]/8 dark:bg-[#C2D8C4]/[0.03] p-4 text-2xl text-[#2a3d30] dark:text-[#C2D8C4]/60 hover:text-[#1a2b20] dark:hover:text-[#C2D8C4] flex items-center justify-center cursor-default transition-colors duration-150"
                     title={it.label}

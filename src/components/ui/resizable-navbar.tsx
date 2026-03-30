@@ -79,7 +79,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
             transition={{ type: "spring", stiffness: 200, damping: 50 }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-12 py-6 lg:flex dark:bg-transparent",
-                visible && "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
+                visible &&
+                    "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
                 className
             )}
         >
@@ -144,7 +145,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
             transition={{ type: "spring", stiffness: 200, damping: 50 }}
             className={cn(
                 "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-4 py-6 lg:hidden",
-                visible && "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
+                visible &&
+                    "bg-[#F8F5F2]/90 dark:bg-[#222222]/90 border border-[#385144]/20 dark:border-[#C2D8C4]/10",
                 className
             )}
         >

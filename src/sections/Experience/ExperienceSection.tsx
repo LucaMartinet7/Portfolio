@@ -6,7 +6,6 @@ export default function ExperienceSection({
     title,
     subtitle,
     entries,
-    styles,
     startIndex,
     activeIndex,
     allYears = [],
@@ -16,7 +15,6 @@ export default function ExperienceSection({
     title: string;
     subtitle: string;
     entries: ExperienceEntry[];
-    styles: string[];
     startIndex: number;
     activeIndex: number;
     allYears?: string[];
@@ -56,8 +54,6 @@ export default function ExperienceSection({
                             key={startIndex + idx}
                             exp={exp}
                             index={startIndex + idx}
-                            styleIndex={idx}
-                            styles={styles}
                         />
                     ))}
                 </div>
