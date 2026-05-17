@@ -15,10 +15,13 @@ export default function Hobbies() {
     const touchStartY = useRef(0);
 
     const photos = [
-        { title: "Skiing", src: "/photos/hobbies/skiing/1.jpg" },
-        { title: "Travel", src: "/photos/hobbies/travel/1.jpg" },
-        { title: "Adventure", src: "/photos/hobbies/travel/2.jpg" },
-        { title: "Activity", src: "/photos/hobbies/other/1.jpg" },
+        { title: "Skiing", src: "/photos/experience/barcelona/Barcelona.webp" },
+        { title: "Travel", src: "/photos/experience/cardiff/Cardiff_out.webp" },
+        { title: "Adventure", src: "/photos/experience/berlin/Berlin.webp" },
+        {
+            title: "Activity",
+            src: "/photos/experience/geneva-cyber/Cyberpeace_out2.webp",
+        },
     ];
 
     useEffect(() => {
@@ -60,6 +63,9 @@ export default function Hobbies() {
                 width: img.naturalWidth,
                 height: img.naturalHeight,
             });
+        };
+        img.onerror = () => {
+            setImageDimensions({ width: 400, height: 500 });
         };
         img.src = photos[idx].src;
     };

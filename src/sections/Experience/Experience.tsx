@@ -12,16 +12,16 @@ export default function Experience() {
     // Use rAF loop so it tracks Lenis's per-frame scroll animation.
     // Only runs while the section is intersecting the viewport.
     useEffect(() => {
-        let rafId: number;
+        let rafId: number | null = null;
         let active = false;
+        let cards: NodeListOf<Element> | null = null;
 
         const update = () => {
             if (!active) return;
-            const cards = document.querySelectorAll("[data-experience-card]");
             const viewportCenter = window.innerHeight / 2;
             let closest = 0;
             let closestDist = Infinity;
-            cards.forEach((card, i) => {
+            cards?.forEach((card, i) => {
                 const rect = card.getBoundingClientRect();
                 const cardCenter = rect.top + rect.height / 2;
                 const dist = Math.abs(cardCenter - viewportCenter);
@@ -41,14 +41,19 @@ export default function Experience() {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 active = entry.isIntersecting;
-                if (active) rafId = requestAnimationFrame(update);
+                if (active) {
+                    cards = document.querySelectorAll("[data-experience-card]");
+                    if (rafId === null) rafId = requestAnimationFrame(update);
+                } else {
+                    cards = null;
+                }
             },
             { rootMargin: "200px" }
         );
         if (section) observer.observe(section);
 
         return () => {
-            cancelAnimationFrame(rafId);
+            if (rafId !== null) cancelAnimationFrame(rafId);
             observer.disconnect();
         };
     }, []);
