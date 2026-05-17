@@ -37,7 +37,7 @@ export default function ExperienceCard({
     exp,
     index,
     isActive,
-}: ExperienceCardProps & { onView?: (index: number) => void }) {
+}: ExperienceCardProps) {
     return (
         <motion.div
             data-experience-card

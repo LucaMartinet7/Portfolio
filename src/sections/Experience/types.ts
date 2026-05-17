@@ -22,14 +22,3 @@ export type ExperienceCardProps = {
     isActive?: boolean;
 };
 
-export type ExperienceSectionProps = {
-    title: string;
-    subtitle: string;
-    entries: ExperienceEntry[];
-    styles: string[];
-    startIndex: number;
-    activeIndex: number;
-    setActiveIndex: (index: number) => void;
-    showYearCounter?: boolean;
-    allYears?: string[];
-};
