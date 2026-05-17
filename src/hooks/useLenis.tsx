@@ -8,9 +8,13 @@ export function useLenis() {
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
 
+        let rafId: number;
+        let destroyed = false;
+
         function raf(time: number) {
+            if (destroyed) return;
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            rafId = requestAnimationFrame(raf);
         }
 
         const handleAnchorClick = (event: MouseEvent) => {
@@ -34,9 +38,11 @@ export function useLenis() {
         };
 
         document.addEventListener("click", handleAnchorClick);
-        requestAnimationFrame(raf);
+        rafId = requestAnimationFrame(raf);
 
         return () => {
+            destroyed = true;
+            cancelAnimationFrame(rafId);
             document.removeEventListener("click", handleAnchorClick);
             lenis.destroy();
         };
