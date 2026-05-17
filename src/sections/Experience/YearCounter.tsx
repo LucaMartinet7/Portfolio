@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function YearCounter({
     allYears,
@@ -7,21 +7,29 @@ export default function YearCounter({
     allYears: string[];
     activeIndex: number;
 }) {
-    const viewportRef = useRef<HTMLDivElement | null>(null);
     const rowRef = useRef<HTMLDivElement | null>(null);
     const [rowHeight, setRowHeight] = useState(0);
 
-    // Measure each row’s height so we can translate by rowHeight * index
-    useLayoutEffect(() => {
+    useEffect(() => {
         const measure = () => {
             if (!rowRef.current) return;
-            setRowHeight(rowRef.current.getBoundingClientRect().height);
+            const h = rowRef.current.getBoundingClientRect().height;
+            if (h > 0) setRowHeight(h);
         };
+
         measure();
+        // Fallback: re-measure after first paint in case CSS wasn't fully applied
+        const timer = setTimeout(measure, 50);
+
         const ro = new ResizeObserver(measure);
         if (rowRef.current) ro.observe(rowRef.current);
-        if (viewportRef.current) ro.observe(viewportRef.current);
-        return () => ro.disconnect();
+        window.addEventListener("resize", measure);
+
+        return () => {
+            clearTimeout(timer);
+            ro.disconnect();
+            window.removeEventListener("resize", measure);
+        };
     }, []);
 
     const clampedIndex = Math.max(
@@ -33,10 +41,9 @@ export default function YearCounter({
     return (
         <div className="h-fit w-full text-center font-bold leading-[0.8] text-[#385144]/10 dark:text-[#C2D8C4]/10 tracking-tight text-[clamp(5rem,16vw,16rem)]">
             <div
-                ref={viewportRef}
                 className="relative overflow-hidden"
                 style={{
-                    height: rowHeight ? `${rowHeight}px` : "1.25em",
+                    height: rowHeight > 0 ? `${rowHeight}px` : "0.8em",
                     maskImage:
                         "linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%)",
                     WebkitMaskImage:
