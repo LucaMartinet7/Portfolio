@@ -76,6 +76,7 @@ export default function Home() {
                                 src="/photos/Hero/Hero.jpg"
                                 alt="Luca Martinet"
                                 className="w-full h-full object-cover"
+                                fetchPriority="high"
                             />
                         </motion.div>
 

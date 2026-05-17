@@ -3,6 +3,16 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { SECTION_IDS } from "@/lib/anchors.ts";
 
+const photos = [
+    { title: "Skiing", src: "/photos/experience/barcelona/Barcelona.webp" },
+    { title: "Travel", src: "/photos/experience/cardiff/Cardiff_out.webp" },
+    { title: "Adventure", src: "/photos/experience/berlin/Berlin.webp" },
+    {
+        title: "Activity",
+        src: "/photos/experience/geneva-cyber/Cyberpeace_out2.webp",
+    },
+];
+
 export default function Hobbies() {
     const [playlistLoaded, setPlaylistLoaded] = useState(false);
     const [isCarouselOpen, setIsCarouselOpen] = useState(false);
@@ -22,16 +32,6 @@ export default function Hobbies() {
         window.addEventListener("resize", handler);
         return () => window.removeEventListener("resize", handler);
     }, []);
-
-    const photos = [
-        { title: "Skiing", src: "/photos/experience/barcelona/Barcelona.webp" },
-        { title: "Travel", src: "/photos/experience/cardiff/Cardiff_out.webp" },
-        { title: "Adventure", src: "/photos/experience/berlin/Berlin.webp" },
-        {
-            title: "Activity",
-            src: "/photos/experience/geneva-cyber/Cyberpeace_out2.webp",
-        },
-    ];
 
     useEffect(() => {
         if (isCarouselOpen) {
@@ -184,6 +184,7 @@ export default function Hobbies() {
                             <iframe
                                 allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
                                 height="450"
+                                loading="lazy"
                                 className="w-full max-w-[660px] overflow-hidden bg-transparent"
                                 sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
                                 src="https://embed.music.apple.com/fr/playlist/pl.u-RRbV0o5sm4axqmN"

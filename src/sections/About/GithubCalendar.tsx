@@ -2,6 +2,11 @@ import { GitHubCalendar } from "react-github-calendar";
 import React, { useState, useCallback } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 
+const calendarTheme = {
+    light: ["#F8F5F2", "#c2d0c7", "#8aaa93", "#385144", "#1f3329"],
+    dark: ["#2e2e2e", "#2a3d2e", "#4a6b4e", "#7aaa7e", "#C2D8C4"],
+};
+
 interface TooltipState {
     content: string;
     x: number;
@@ -39,6 +44,27 @@ export default function GithubCalendar() {
 
     const handleMouseLeave = useCallback(() => setTooltip(null), []);
 
+    const renderBlock = useCallback(
+        (block: React.ReactElement, activity: { date: string; count: number }) =>
+            React.cloneElement(block as React.ReactElement<React.SVGProps<SVGRectElement>>, {
+                onMouseEnter: (e: React.MouseEvent) =>
+                    handleMouseEnter(activity, e),
+                onMouseMove: handleMouseMove,
+                onMouseLeave: handleMouseLeave,
+                style: {
+                    cursor: "pointer",
+                    outline:
+                        activity.count === 0
+                            ? theme === "light"
+                                ? "1px solid rgba(110,136,176,0.3)"
+                                : "1px solid rgba(194,216,196,0.2)"
+                            : "none",
+                    outlineOffset: "-1px",
+                },
+            }),
+        [theme, handleMouseEnter, handleMouseMove, handleMouseLeave]
+    );
+
     return (
         <div className="mt-16">
             <h3 className="text-xl font-medium">Days I code</h3>
@@ -46,40 +72,8 @@ export default function GithubCalendar() {
                 <GitHubCalendar
                     username="lucamartinet7"
                     colorScheme={theme}
-                    theme={{
-                        light: [
-                            "#F8F5F2",
-                            "#c2d0c7",
-                            "#8aaa93",
-                            "#385144",
-                            "#1f3329",
-                        ],
-                        dark: [
-                            "#2e2e2e",
-                            "#2a3d2e",
-                            "#4a6b4e",
-                            "#7aaa7e",
-                            "#C2D8C4",
-                        ],
-                    }}
-                    renderBlock={(block, activity) =>
-                        React.cloneElement(block, {
-                            onMouseEnter: (e: React.MouseEvent) =>
-                                handleMouseEnter(activity, e),
-                            onMouseMove: handleMouseMove,
-                            onMouseLeave: handleMouseLeave,
-                            style: {
-                                cursor: "pointer",
-                                outline:
-                                    activity.count === 0
-                                        ? theme === "light"
-                                            ? "1px solid rgba(110,136,176,0.3)"
-                                            : "1px solid rgba(194,216,196,0.2)"
-                                        : "none",
-                                outlineOffset: "-1px",
-                            },
-                        })
-                    }
+                    theme={calendarTheme}
+                    renderBlock={renderBlock}
                 />
             </div>
 
