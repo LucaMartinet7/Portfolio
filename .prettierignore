@@ -20,3 +20,6 @@ Thumbs.db
 *.log
 coverage
 
+# Inline scripts that intentionally break print-width
+index.html
+
