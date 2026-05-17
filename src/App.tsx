@@ -8,12 +8,6 @@ import Hobbies from "./sections/Hobbies";
 import TopNav from "./components/Navbar";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
-const SmoothTransition = () => (
-    <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl" />
-    </section>
-);
-
 function Inner() {
     useLenis();
     return (
@@ -22,13 +16,13 @@ function Inner() {
             <Home />
             <div className="py-4 md:py-6" />
             <About />
-            <SmoothTransition />
+            <div className="py-8 md:py-12" />
             <Experience />
-            <SmoothTransition />
+            <div className="py-8 md:py-12" />
             <Projects />
-            <SmoothTransition />
+            <div className="py-8 md:py-12" />
             <Hobbies />
-            <SmoothTransition />
+            <div className="py-8 md:py-12" />
             <Resume />
         </main>
     );
