@@ -45,6 +45,10 @@ export default function Experience() {
                     cards = document.querySelectorAll("[data-experience-card]");
                     if (rafId === null) rafId = requestAnimationFrame(update);
                 } else {
+                    if (rafId !== null) {
+                        cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
                     cards = null;
                 }
             },
