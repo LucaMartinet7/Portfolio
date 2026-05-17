@@ -18,7 +18,14 @@ function LazyVideo({ src, className }: { src: string; className: string }) {
             { rootMargin: "200px" }
         );
         observer.observe(el);
-        return () => observer.disconnect();
+        const onVisibility = () => {
+            if (document.hidden) el.pause();
+        };
+        document.addEventListener("visibilitychange", onVisibility);
+        return () => {
+            observer.disconnect();
+            document.removeEventListener("visibilitychange", onVisibility);
+        };
     }, []);
     return (
         <video
@@ -109,6 +116,7 @@ export default function ExperienceCard({
                                 alt={`${exp.location} — ${exp.country}`}
                                 loading="lazy"
                                 className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
+                                style={{ aspectRatio: "4/3" }}
                             />
                         )}
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300 pointer-events-none" />
