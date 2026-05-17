@@ -44,7 +44,7 @@ export default function ProjectCard({ project }: Props) {
                             damping: 20,
                         }}
                         className="mt-1 shrink-0 text-[#385144]/40 dark:text-[#C2D8C4]/30 hover:text-[#385144] dark:hover:text-[#C2D8C4] transition-colors duration-200"
-                        aria-label="GitHub"
+                        aria-label={`${project.title} on GitHub`}
                     >
                         <Github size={18} />
                     </motion.a>

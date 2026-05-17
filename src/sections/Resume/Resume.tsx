@@ -13,7 +13,7 @@ export default function Resume() {
                         download
                         className="px-4 py-2 text-sm font-medium bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 border border-neutral-300 dark:border-white/20 rounded-lg transition-colors touch-manipulation"
                     >
-                        Download PDF
+                        Download CV (PDF)
                     </a>
                 </div>
 
@@ -23,6 +23,16 @@ export default function Resume() {
                         className="w-full h-[80vh] md:min-h-[135vh] border-none"
                         title="CV - Luca Martinet"
                     />
+                    <div className="p-4 text-center text-sm text-neutral-500 dark:text-neutral-400 border-t border-neutral-200 dark:border-white/10">
+                        <a
+                            href={cvPath}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="underline hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+                        >
+                            Open PDF in new tab
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
