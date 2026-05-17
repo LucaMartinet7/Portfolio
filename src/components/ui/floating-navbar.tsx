@@ -39,7 +39,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        <div className="flex items-center gap-1 rounded-full border border-[#385144]/20 dark:border-[#C2D8C4]/15 bg-[#F8F5F2]/90 dark:bg-[#222222]/90 px-2 py-1.5 shadow-lg backdrop-blur-md">
+        <div className="flex items-center gap-1 rounded-full border border-[#385144]/20 dark:border-[#C2D8C4]/15 bg-[#F8F5F2]/90 dark:bg-[#222222]/90 px-4 py-1.5 shadow-lg backdrop-blur-md">
           {navItems.map((navItem, idx) => (
             <a
               key={`link-${idx}`}
