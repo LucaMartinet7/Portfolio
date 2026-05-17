@@ -106,7 +106,7 @@ export default function ExperienceCard({
                         ) : (
                             <img
                                 src={img.url}
-                                alt=""
+                                alt={`${exp.location} — ${exp.country}`}
                                 loading="lazy"
                                 className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                             />

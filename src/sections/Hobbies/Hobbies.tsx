@@ -14,6 +14,8 @@ export default function Hobbies() {
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    const lastFocusedRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const handler = () => setViewportWidth(window.innerWidth);
@@ -34,8 +36,10 @@ export default function Hobbies() {
     useEffect(() => {
         if (isCarouselOpen) {
             document.body.style.overflow = "hidden";
+            setTimeout(() => closeButtonRef.current?.focus(), 50);
         } else {
             document.body.style.overflow = "unset";
+            lastFocusedRef.current?.focus();
         }
         return () => {
             document.body.style.overflow = "unset";
@@ -61,7 +65,8 @@ export default function Hobbies() {
         return () => window.removeEventListener("keydown", handleKey);
     }, [isCarouselOpen, nextPhoto, prevPhoto]);
 
-    const openCarousel = (idx: number) => {
+    const openCarousel = (idx: number, trigger?: HTMLElement) => {
+        lastFocusedRef.current = trigger ?? (document.activeElement as HTMLElement);
         setActivePhotoIdx(idx);
         setIsCarouselOpen(true);
         const img = new Image();
@@ -196,7 +201,7 @@ export default function Hobbies() {
                             {photos.map((photo, idx) => (
                                 <button
                                     key={idx}
-                                    onClick={() => openCarousel(idx)}
+                                    onClick={(e) => openCarousel(idx, e.currentTarget)}
                                     className="rounded-lg aspect-square relative overflow-hidden cursor-pointer group touch-manipulation min-h-[120px] bg-neutral-200 dark:bg-neutral-800 bg-cover bg-center"
                                     style={{
                                         backgroundImage: `url(${photo.src})`,
@@ -237,6 +242,7 @@ export default function Hobbies() {
                             }}
                         >
                             <button
+                                ref={closeButtonRef}
                                 onClick={() => setIsCarouselOpen(false)}
                                 className="absolute -top-2 right-2 md:-top-12 md:-right-12 z-40 bg-neutral-800/80 hover:bg-neutral-700 p-2 rounded-full transition-colors touch-manipulation"
                                 aria-label="Close carousel"
