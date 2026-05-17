@@ -86,7 +86,13 @@ export default function GithubCalendar() {
             {tooltip && (
                 <div
                     className="fixed z-50 pointer-events-none px-2.5 py-1.5 rounded-lg bg-[#F8F5F2] dark:bg-[#2e2e2e] border border-[#385144]/25 dark:border-[#C2D8C4]/15 text-xs text-[#1f3329] dark:text-[#C2D8C4] shadow-lg whitespace-nowrap"
-                    style={{ left: tooltip.x + 12, top: tooltip.y - 36 }}
+                    style={{
+                        left: Math.min(
+                            window.innerWidth - 220,
+                            tooltip.x + 12
+                        ),
+                        top: Math.max(8, tooltip.y - 36),
+                    }}
                 >
                     {tooltip.content}
                 </div>

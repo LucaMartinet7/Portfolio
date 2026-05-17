@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Sun, Moon } from "lucide-react";
 import { motion } from "motion/react";
 import {
@@ -24,6 +24,28 @@ const navItems = [
 export default function TopNav() {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const { theme, toggle } = useTheme();
+    const mobileNavRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isNavOpen) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setIsNavOpen(false);
+        };
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (
+                mobileNavRef.current &&
+                !mobileNavRef.current.contains(e.target as Node)
+            ) {
+                setIsNavOpen(false);
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("mousedown", handleOutsideClick);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("mousedown", handleOutsideClick);
+        };
+    }, [isNavOpen]);
 
     return (
         <>
@@ -33,6 +55,7 @@ export default function TopNav() {
                 </NavBody>
 
                 <MobileNav>
+                    <div ref={mobileNavRef} className="w-full">
                     <MobileNavHeader>
                         <MobileNavToggle
                             isOpen={isNavOpen}
@@ -51,6 +74,7 @@ export default function TopNav() {
                             </a>
                         ))}
                     </MobileNavMenu>
+                    </div>
                 </MobileNav>
             </Navbar>
 
