@@ -11,8 +11,15 @@ export default function Hobbies() {
         width: 400,
         height: 500,
     });
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
+
+    useEffect(() => {
+        const handler = () => setViewportWidth(window.innerWidth);
+        window.addEventListener("resize", handler);
+        return () => window.removeEventListener("resize", handler);
+    }, []);
 
     const photos = [
         { title: "Skiing", src: "/photos/experience/barcelona/Barcelona.webp" },
@@ -225,7 +232,7 @@ export default function Hobbies() {
                             style={{
                                 width: Math.min(
                                     displayWidth + 40,
-                                    window.innerWidth - 32
+                                    viewportWidth - 32
                                 ),
                             }}
                         >
