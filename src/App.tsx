@@ -8,6 +8,7 @@ import Contact from "./sections/Contact";
 import TopNav from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { MotionConfig } from "motion/react";
 
 function Inner() {
     useLenis();
@@ -33,7 +34,11 @@ function Inner() {
 export default function App() {
     return (
         <ThemeProvider>
-            <Inner />
+            {/* `reducedMotion="user"` makes every motion component respect the
+                OS "reduce motion" setting (transforms are skipped). */}
+            <MotionConfig reducedMotion="user">
+                <Inner />
+            </MotionConfig>
         </ThemeProvider>
     );
 }
