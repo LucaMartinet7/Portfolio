@@ -49,8 +49,9 @@ export default function Resume() {
                     className="mt-10 overflow-hidden rounded-2xl border border-[#385144]/15 dark:border-[#C2D8C4]/10 bg-white dark:bg-[#262626] shadow-[0_8px_32px_-12px_rgba(56,81,68,0.18)]"
                 >
                     <iframe
-                        src={cvPath}
-                        className="h-[80vh] w-full border-none md:min-h-[135vh]"
+                        src={`${cvPath}#toolbar=0&navpanes=0&view=FitH`}
+                        className="block w-full border-none"
+                        style={{ aspectRatio: "595.5 / 842.25" }}
                         title="CV - Luca Martinet"
                     />
                     <div className="border-t border-[#385144]/10 dark:border-[#C2D8C4]/10 p-4 text-center">
