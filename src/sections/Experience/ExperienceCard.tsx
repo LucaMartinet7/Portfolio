@@ -59,36 +59,36 @@ export default function ExperienceCard({
         >
             {/* Timeline dot */}
             <span
-                className={`absolute -left-[41px] top-7 hidden h-3 w-3 rounded-full ring-4 ring-[#F8F5F2] dark:ring-[#1c1c1c] md:block ${
+                className={`absolute -left-[41px] top-7 hidden h-3 w-3 rounded-full ring-4 ring-surface dark:ring-[#1c1c1c] md:block ${
                     current
-                        ? "bg-[#385144] dark:bg-[#C2D8C4]"
-                        : "bg-[#385144]/30 dark:bg-[#C2D8C4]/30"
+                        ? "bg-brand dark:bg-mint"
+                        : "bg-brand/30 dark:bg-mint/30"
                 }`}
             />
 
             <div
                 className={`overflow-hidden rounded-2xl border p-5 transition-shadow duration-300 md:p-6 ${
                     current
-                        ? "border-[#385144]/25 dark:border-[#C2D8C4]/20 bg-white dark:bg-[#262626] shadow-[0_6px_28px_-6px_rgba(56,81,68,0.18)]"
-                        : "border-[#385144]/12 dark:border-[#C2D8C4]/10 bg-[#385144]/[0.03] dark:bg-[#C2D8C4]/[0.03]"
+                        ? "border-brand/25 dark:border-mint/20 bg-white dark:bg-[#262626] shadow-[0_6px_28px_-6px_rgba(56,81,68,0.18)]"
+                        : "border-brand/12 dark:border-mint/10 bg-brand/[0.03] dark:bg-mint/[0.03]"
                 }`}
             >
                 {/* Header: date + category badge */}
                 <div className="flex items-start justify-between gap-4">
                     <div>
-                        <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-400 dark:text-[#C2D8C4]/40">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-400 dark:text-mint/40">
                             {exp.year}
                         </p>
                         <h3
                             className={`mt-1 text-lg font-bold ${
                                 current
-                                    ? "text-[#111] dark:text-[#F8F5F2]"
-                                    : "text-neutral-700 dark:text-[#C2D8C4]/80"
+                                    ? "text-ink dark:text-surface"
+                                    : "text-neutral-700 dark:text-mint/80"
                             }`}
                         >
                             {exp.location}
                         </h3>
-                        <p className="mt-0.5 text-[13px] text-neutral-400 dark:text-[#C2D8C4]/40">
+                        <p className="mt-0.5 text-[13px] text-neutral-400 dark:text-mint/40">
                             {exp.country}
                         </p>
                     </div>
@@ -96,7 +96,7 @@ export default function ExperienceCard({
                         className={`shrink-0 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
                             isInternship
                                 ? "border-[#4a8ccc]/25 bg-[#4a8ccc]/10 text-[#4a8ccc]"
-                                : "border-[#385144]/25 bg-[#385144]/10 text-[#385144] dark:border-[#C2D8C4]/25 dark:bg-[#C2D8C4]/10 dark:text-[#C2D8C4]"
+                                : "border-brand/25 bg-brand/10 text-brand dark:border-mint/25 dark:bg-mint/10 dark:text-mint"
                         }`}
                     >
                         {exp.category}
@@ -104,7 +104,7 @@ export default function ExperienceCard({
                 </div>
 
                 {/* Description */}
-                <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-neutral-600 dark:text-[#C2D8C4]/60">
+                <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-neutral-600 dark:text-mint/60">
                     {exp.description}
                 </p>
 
@@ -133,7 +133,7 @@ export default function ExperienceCard({
                         ))}
 
                         {current && (
-                            <span className="inline-flex items-center gap-1.5 self-end rounded-full bg-[#385144]/10 dark:bg-[#C2D8C4]/10 px-2.5 py-1 text-[11px] font-semibold text-[#385144] dark:text-[#C2D8C4]">
+                            <span className="inline-flex items-center gap-1.5 self-end rounded-full bg-brand/10 dark:bg-mint/10 px-2.5 py-1 text-[11px] font-semibold text-brand dark:text-mint">
                                 <PulseDot />
                                 Now
                             </span>

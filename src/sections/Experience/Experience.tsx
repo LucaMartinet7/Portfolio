@@ -17,10 +17,10 @@ export default function Experience() {
             <div className="relative mx-auto max-w-6xl">
                 {/* Header */}
                 <Eyebrow>Experience</Eyebrow>
-                <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-5xl">
+                <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-ink dark:text-surface md:text-5xl">
                     My journey
                 </h2>
-                <p className="mt-3 text-base text-neutral-500 dark:text-[#C2D8C4]/50 md:text-lg">
+                <p className="mt-3 text-base text-neutral-500 dark:text-mint/50 md:text-lg">
                     Education and internships across Europe.
                 </p>
 
@@ -34,7 +34,7 @@ export default function Experience() {
                         {railYears.map((year, i) => (
                             <span
                                 key={year}
-                                className="text-3xl font-extrabold tracking-tight text-[#385144] dark:text-[#C2D8C4]"
+                                className="text-3xl font-extrabold tracking-tight text-brand dark:text-mint"
                                 style={{
                                     opacity:
                                         1 -
@@ -47,7 +47,7 @@ export default function Experience() {
                     </div>
 
                     {/* Cards */}
-                    <div className="flex flex-col gap-6 md:border-l-2 md:border-[#385144]/10 md:pl-10 md:dark:border-[#C2D8C4]/10">
+                    <div className="flex flex-col gap-6 md:border-l-2 md:border-brand/10 md:pl-10 md:dark:border-mint/10">
                         {allEntries.map((exp, idx) => (
                             <ExperienceCard
                                 key={idx}

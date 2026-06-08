@@ -27,15 +27,15 @@ export default function Footer() {
                     <div>
                         <p className="text-2xl font-extrabold tracking-tight">
                             <span className="text-white">Luca</span>{" "}
-                            <span className="text-[#c2d8c3]">Martinet</span>
+                            <span className="text-mint">Martinet</span>
                         </p>
                         <p className="mt-3 max-w-xs text-[13px] leading-relaxed">
                             Software developer &amp; student at Epitech.
                             Building from low-level C to full-stack web.
                         </p>
-                        <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#c2d8c3]/20 bg-[#c2d8c3]/[0.08] px-3 py-1.5">
+                        <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-mint/20 bg-mint/[0.08] px-3 py-1.5">
                             <PulseDot />
-                            <span className="text-xs font-medium text-[#c2d8c3]">
+                            <span className="text-xs font-medium text-mint">
                                 Open to opportunities
                             </span>
                         </span>
@@ -52,7 +52,7 @@ export default function Footer() {
                                     <li key={link.name}>
                                         <a
                                             href={link.href}
-                                            className="text-[13px] transition-colors hover:text-[#c2d8c3]"
+                                            className="text-[13px] transition-colors hover:text-mint"
                                         >
                                             {link.name}
                                         </a>
@@ -80,7 +80,7 @@ export default function Footer() {
                                                     ? "noreferrer"
                                                     : undefined
                                             }
-                                            className="text-[13px] transition-colors hover:text-[#c2d8c3]"
+                                            className="text-[13px] transition-colors hover:text-mint"
                                         >
                                             {link.name}
                                         </a>
@@ -93,7 +93,7 @@ export default function Footer() {
 
                 <div className="mt-10 flex flex-col gap-2 border-t border-white/[0.07] pt-6 text-xs text-[#5c5c5c] sm:flex-row sm:items-center sm:justify-between">
                     <p>© 2026 Luca Martinet. All rights reserved.</p>
-                    <p className="text-[#c2d8c3]/60">
+                    <p className="text-mint/60">
                         Built with React &amp; Tailwind
                     </p>
                 </div>

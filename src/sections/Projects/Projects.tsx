@@ -20,10 +20,10 @@ export default function Projects() {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                     <Eyebrow>Selected work</Eyebrow>
-                    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-5xl">
+                    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-ink dark:text-surface md:text-5xl">
                         Things I've built
                     </h2>
-                    <p className="mt-3 text-base text-neutral-500 dark:text-[#C2D8C4]/50 md:text-lg">
+                    <p className="mt-3 text-base text-neutral-500 dark:text-mint/50 md:text-lg">
                         Systems, networking, and web tooling — all on GitHub.
                     </p>
                 </motion.header>

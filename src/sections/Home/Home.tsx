@@ -29,27 +29,27 @@ export default function Home() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                     {/* Eyebrow */}
-                    <div className="inline-flex items-center gap-2 rounded-full border border-[#385144]/20 dark:border-[#C2D8C4]/20 bg-[#385144]/[0.08] dark:bg-[#C2D8C4]/[0.08] px-3.5 py-1.5">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 dark:border-mint/20 bg-brand/[0.08] dark:bg-mint/[0.08] px-3.5 py-1.5">
                         <PulseDot />
-                        <span className="text-xs font-semibold text-[#385144] dark:text-[#C2D8C4]">
+                        <span className="text-xs font-semibold text-brand dark:text-mint">
                             Open to opportunities
                         </span>
                     </div>
 
                     {/* Headline */}
-                    <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-[#111] dark:text-[#F8F5F2] sm:text-6xl lg:text-7xl">
+                    <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-ink dark:text-surface sm:text-6xl lg:text-7xl">
                         Building
                         <br />
                         things that
                         <br />
-                        <span className="text-[#385144] dark:text-[#C2D8C4]">
+                        <span className="text-brand dark:text-mint">
                             matter.
                         </span>
                     </h1>
-                    <div className="mt-5 h-[5px] w-56 rounded-full bg-[#385144]/20 dark:bg-[#C2D8C4]/20" />
+                    <div className="mt-5 h-[5px] w-56 rounded-full bg-brand/20 dark:bg-mint/20" />
 
                     {/* Subtitle */}
-                    <p className="mt-6 max-w-md text-base leading-7 text-neutral-600 dark:text-[#C2D8C4]/60 md:text-lg">
+                    <p className="mt-6 max-w-md text-base leading-7 text-neutral-600 dark:text-mint/60 md:text-lg">
                         Software developer &amp; student at Epitech.
                         <br />
                         Systems work, networking, clean interfaces.
@@ -72,7 +72,7 @@ export default function Home() {
                             whileHover={{ scale: 1.03, y: -1 }}
                             whileTap={{ scale: 0.97 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="inline-flex items-center rounded-full border-[1.5px] border-[#385144]/35 dark:border-[#C2D8C4]/25 px-7 py-3.5 text-sm font-semibold text-[#385144] dark:text-[#C2D8C4] transition-colors duration-200 hover:bg-[#385144]/10 dark:hover:bg-[#C2D8C4]/10 touch-manipulation"
+                            className="inline-flex items-center rounded-full border-[1.5px] border-brand/35 dark:border-mint/25 px-7 py-3.5 text-sm font-semibold text-brand dark:text-mint transition-colors duration-200 hover:bg-brand/10 dark:hover:bg-mint/10 touch-manipulation"
                         >
                             Get in touch
                         </motion.a>
@@ -80,7 +80,7 @@ export default function Home() {
 
                     {/* Find me on */}
                     <div className="mt-8 flex flex-wrap items-center gap-3">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 dark:text-[#C2D8C4]/30">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 dark:text-mint/30">
                             Find me on
                         </span>
                         <Chip
@@ -108,7 +108,7 @@ export default function Home() {
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
                 >
                     <div className="relative">
-                        <div className="h-64 w-64 overflow-hidden rounded-full border-4 border-[#385144]/15 dark:border-[#C2D8C4]/15 shadow-[0_32px_80px_-20px_rgba(56,81,68,0.4)] sm:h-72 sm:w-72">
+                        <div className="h-64 w-64 overflow-hidden rounded-full border-4 border-brand/15 dark:border-mint/15 shadow-[0_32px_80px_-20px_rgba(56,81,68,0.4)] sm:h-72 sm:w-72">
                             <img
                                 src="/photos/Hero/Hero.jpg"
                                 alt="Luca Martinet"
@@ -133,10 +133,10 @@ export default function Home() {
                                     }}
                                     className="w-[150px] rounded-xl bg-white dark:bg-[#2a2a2a] px-4 py-2.5 shadow-[0_3px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_3px_20px_rgba(0,0,0,0.4)]"
                                 >
-                                    <p className="text-base font-bold text-[#385144] dark:text-[#C2D8C4]">
+                                    <p className="text-base font-bold text-brand dark:text-mint">
                                         {stat.value}
                                     </p>
-                                    <p className="text-[11px] text-neutral-400 dark:text-[#C2D8C4]/40">
+                                    <p className="text-[11px] text-neutral-400 dark:text-mint/40">
                                         {stat.label}
                                     </p>
                                 </motion.div>

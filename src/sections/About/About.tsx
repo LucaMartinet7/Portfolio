@@ -31,21 +31,21 @@ export default function About() {
                 >
                     <Eyebrow>About</Eyebrow>
 
-                    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-5xl">
+                    <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-ink dark:text-surface md:text-5xl">
                         Who I am
                     </h2>
 
-                    <p className="mt-6 max-w-md text-base leading-7 text-neutral-600 dark:text-[#C2D8C4]/60 md:text-lg">
+                    <p className="mt-6 max-w-md text-base leading-7 text-neutral-600 dark:text-mint/60 md:text-lg">
                         I'm Luca, a software development student at Epitech. I
                         build reliable systems and ship real projects — from
                         low-level C to full-stack web applications.
                     </p>
 
-                    <blockquote className="mt-8 border-l-[3px] border-[#385144]/40 dark:border-[#C2D8C4]/25 pl-4">
-                        <p className="text-base italic leading-relaxed text-neutral-600 dark:text-[#C2D8C4]/70">
+                    <blockquote className="mt-8 border-l-[3px] border-brand/40 dark:border-mint/25 pl-4">
+                        <p className="text-base italic leading-relaxed text-neutral-600 dark:text-mint/70">
                             "If you're not improving, you're falling behind."
                         </p>
-                        <footer className="mt-1.5 text-sm text-[#385144]/60 dark:text-[#C2D8C4]/40">
+                        <footer className="mt-1.5 text-sm text-brand/60 dark:text-mint/40">
                             — Chris Bumstead
                         </footer>
                     </blockquote>
@@ -69,10 +69,10 @@ export default function About() {
                 >
                     <Eyebrow>GitHub activity</Eyebrow>
 
-                    <h3 className="mt-4 text-2xl font-bold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-3xl">
+                    <h3 className="mt-4 text-2xl font-bold tracking-tight text-ink dark:text-surface md:text-3xl">
                         Contribution graph
                     </h3>
-                    <p className="mt-2 text-sm text-neutral-500 dark:text-[#C2D8C4]/40">
+                    <p className="mt-2 text-sm text-neutral-500 dark:text-mint/40">
                         Activity across all public repositories
                     </p>
 

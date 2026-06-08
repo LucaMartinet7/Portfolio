@@ -23,7 +23,7 @@ export default function TopNav() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="fixed top-6 right-6 z-[5001] p-2 rounded-full border border-[#385144]/30 dark:border-[#C2D8C4]/20 bg-[#F8F5F2]/80 dark:bg-[#222222]/80 backdrop-blur-sm text-[#385144] dark:text-[#C2D8C4]/70 hover:text-[#1f3329] dark:hover:text-[#C2D8C4] transition-colors duration-200 shadow-sm"
+                className="fixed top-6 right-6 z-[5001] p-2 rounded-full border border-brand/30 dark:border-mint/20 bg-surface/80 dark:bg-surface-dark/80 backdrop-blur-sm text-brand dark:text-mint/70 hover:text-brand-dark dark:hover:text-mint transition-colors duration-200 shadow-sm"
                 aria-label="Toggle theme"
             >
                 {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
