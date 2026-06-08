@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import type { ExperienceCardProps } from "./types";
+import { PulseDot } from "@/components/ui/primitives";
 
 function LazyVideo({ src, className }: { src: string; className: string }) {
     const ref = useRef<HTMLVideoElement>(null);
@@ -133,10 +134,7 @@ export default function ExperienceCard({
 
                         {current && (
                             <span className="inline-flex items-center gap-1.5 self-end rounded-full bg-[#385144]/10 dark:bg-[#C2D8C4]/10 px-2.5 py-1 text-[11px] font-semibold text-[#385144] dark:text-[#C2D8C4]">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4ade80] opacity-60" />
-                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]" />
-                                </span>
+                                <PulseDot />
                                 Now
                             </span>
                         )}

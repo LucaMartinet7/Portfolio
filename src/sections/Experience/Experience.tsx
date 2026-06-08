@@ -1,6 +1,7 @@
 import { SECTION_IDS } from "@/lib/anchors.ts";
 import ExperienceCard from "./ExperienceCard";
 import { allEntries } from "./data";
+import { Section, Eyebrow, GlowBlob } from "@/components/ui/primitives";
 
 export default function Experience() {
     // Unique years across all entries, newest → oldest, to align with the
@@ -10,21 +11,12 @@ export default function Experience() {
         .reverse();
 
     return (
-        <section
-            id={SECTION_IDS.EXPERIENCE}
-            className="relative overflow-hidden px-6 py-16 md:py-32"
-        >
-            <div
-                aria-hidden
-                className="pointer-events-none absolute -left-40 top-1/3 h-[440px] w-[440px] rounded-full bg-[#385144]/[0.04] dark:bg-[#C2D8C4]/[0.04] blur-2xl"
-            />
+        <Section id={SECTION_IDS.EXPERIENCE}>
+            <GlowBlob className="-left-40 top-1/3 h-[440px] w-[440px]" />
 
             <div className="relative mx-auto max-w-6xl">
                 {/* Header */}
-                <p className="text-[11px] font-bold uppercase tracking-wider text-[#385144]/65 dark:text-[#C2D8C4]/50">
-                    Experience
-                </p>
-                <div className="mt-1.5 h-[2px] w-11 rounded-full bg-[#385144]/30 dark:bg-[#C2D8C4]/25" />
+                <Eyebrow>Experience</Eyebrow>
                 <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-5xl">
                     My journey
                 </h2>
@@ -67,6 +59,6 @@ export default function Experience() {
                     </div>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }
