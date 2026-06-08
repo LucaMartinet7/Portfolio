@@ -43,86 +43,106 @@ function LazyVideo({ src, className }: { src: string; className: string }) {
 export default function ExperienceCard({
     exp,
     index,
-    isActive,
+    current,
 }: ExperienceCardProps) {
+    const isInternship = exp.category === "Internship";
+
     return (
         <motion.div
             data-experience-card
-            className="relative"
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+            className="relative"
         >
             {/* Timeline dot */}
-            <div className="absolute -left-10 top-8 hidden md:flex items-center justify-center">
-                <motion.div
-                    animate={{
-                        scale: isActive ? 1.4 : 1,
-                        opacity: isActive ? 1 : 0.4,
-                    }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-white shadow-[0_0_8px_2px_rgba(0,0,0,0.15)] dark:shadow-[0_0_8px_2px_rgba(255,255,255,0.25)]"
-                />
-            </div>
+            <span
+                className={`absolute -left-[41px] top-7 hidden h-3 w-3 rounded-full ring-4 ring-[#F8F5F2] dark:ring-[#1c1c1c] md:block ${
+                    current
+                        ? "bg-[#385144] dark:bg-[#C2D8C4]"
+                        : "bg-[#385144]/30 dark:bg-[#C2D8C4]/30"
+                }`}
+            />
 
-            {/* Card header */}
-            <div className="flex items-center gap-3 mb-4">
-                <span
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${exp.tileStyle} uppercase tracking-widest`}
-                >
-                    {exp.category}
-                </span>
-                <span className="text-neutral-400 dark:text-white/30 text-sm">
-                    {exp.year}
-                </span>
-                <span className="text-neutral-500 dark:text-white/50 text-sm">
-                    {exp.country}
-                </span>
-            </div>
-
-            {/* Card */}
-            <motion.div
-                whileHover={{ scale: 1.005 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className={`grid grid-cols-3 gap-1 rounded-2xl overflow-hidden ring-1 transition-all duration-500 ${isActive ? "ring-neutral-300 dark:ring-white/15 shadow-[0_0_40px_-10px_rgba(0,0,0,0.08)] dark:shadow-[0_0_40px_-10px_rgba(255,255,255,0.08)]" : "ring-neutral-200 dark:ring-white/5"}`}
+            <div
+                className={`overflow-hidden rounded-2xl border p-5 transition-shadow duration-300 md:p-6 ${
+                    current
+                        ? "border-[#385144]/25 dark:border-[#C2D8C4]/20 bg-white dark:bg-[#262626] shadow-[0_6px_28px_-6px_rgba(56,81,68,0.18)]"
+                        : "border-[#385144]/12 dark:border-[#C2D8C4]/10 bg-[#385144]/[0.03] dark:bg-[#C2D8C4]/[0.03]"
+                }`}
             >
-                {/* Text Content Tile */}
-                <div
-                    className={`${exp.textSpan ?? "col-span-1"} ${exp.tileStyle} border p-4 md:p-8 flex flex-col justify-center min-h-[180px] md:min-h-[240px] backdrop-blur-sm`}
-                >
-                    <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 leading-tight">
-                        {exp.location}
-                    </h2>
-                    <p className="text-sm md:text-base text-neutral-600 dark:text-white/60 leading-relaxed">
-                        {exp.description}
-                    </p>
+                {/* Header: date + category badge */}
+                <div className="flex items-start justify-between gap-4">
+                    <div>
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-400 dark:text-[#C2D8C4]/40">
+                            {exp.year}
+                        </p>
+                        <h3
+                            className={`mt-1 text-lg font-bold ${
+                                current
+                                    ? "text-[#111] dark:text-[#F8F5F2]"
+                                    : "text-neutral-700 dark:text-[#C2D8C4]/80"
+                            }`}
+                        >
+                            {exp.location}
+                        </h3>
+                        <p className="mt-0.5 text-[13px] text-neutral-400 dark:text-[#C2D8C4]/40">
+                            {exp.country}
+                        </p>
+                    </div>
+                    <span
+                        className={`shrink-0 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
+                            isInternship
+                                ? "border-[#4a8ccc]/25 bg-[#4a8ccc]/10 text-[#4a8ccc]"
+                                : "border-[#385144]/25 bg-[#385144]/10 text-[#385144] dark:border-[#C2D8C4]/25 dark:bg-[#C2D8C4]/10 dark:text-[#C2D8C4]"
+                        }`}
+                    >
+                        {exp.category}
+                    </span>
                 </div>
 
-                {/* Photo tiles */}
-                {exp.images.map((img, imgIndex) => (
-                    <div
-                        key={imgIndex}
-                        className={`${img.span} group relative overflow-hidden`}
-                    >
-                        {img.type === "video" ? (
-                            <LazyVideo
-                                src={img.url}
-                                className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
-                            />
-                        ) : (
-                            <img
-                                src={img.url}
-                                alt={`${exp.location} — ${exp.country}`}
-                                loading="lazy"
-                                className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
-                                style={{ aspectRatio: "4/3" }}
-                            />
+                {/* Description */}
+                <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-neutral-600 dark:text-[#C2D8C4]/60">
+                    {exp.description}
+                </p>
+
+                {/* Photo strip */}
+                {exp.images.length > 0 && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {exp.images.map((img, i) => (
+                            <div
+                                key={i}
+                                className="group relative h-20 min-w-[120px] flex-1 overflow-hidden rounded-lg md:h-24"
+                            >
+                                {img.type === "video" ? (
+                                    <LazyVideo
+                                        src={img.url}
+                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <img
+                                        src={img.url}
+                                        alt={`${exp.location} — ${img.label}`}
+                                        loading="lazy"
+                                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                    />
+                                )}
+                            </div>
+                        ))}
+
+                        {current && (
+                            <span className="inline-flex items-center gap-1.5 self-end rounded-full bg-[#385144]/10 dark:bg-[#C2D8C4]/10 px-2.5 py-1 text-[11px] font-semibold text-[#385144] dark:text-[#C2D8C4]">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4ade80] opacity-60" />
+                                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]" />
+                                </span>
+                                Now
+                            </span>
                         )}
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300 pointer-events-none" />
                     </div>
-                ))}
-            </motion.div>
+                )}
+            </div>
         </motion.div>
     );
 }
