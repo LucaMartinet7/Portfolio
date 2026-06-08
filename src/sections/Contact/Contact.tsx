@@ -14,7 +14,7 @@ export default function Contact() {
     return (
         <Section
             id={SECTION_IDS.CONTACT}
-            className="border-t border-[#385144]/10 py-20 dark:border-[#C2D8C4]/10 md:py-28"
+            className="border-t border-brand/10 py-20 dark:border-mint/10 md:py-28"
         >
             <GlowBlob className="left-1/2 top-0 h-[440px] w-[600px] -translate-x-1/2 blur-3xl" />
 
@@ -25,10 +25,10 @@ export default function Contact() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
             >
-                <h2 className="text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-6xl">
+                <h2 className="text-4xl font-extrabold tracking-tight text-ink dark:text-surface md:text-6xl">
                     Let's work together.
                 </h2>
-                <p className="mt-4 text-base text-neutral-500 dark:text-[#C2D8C4]/50 md:text-lg">
+                <p className="mt-4 text-base text-neutral-500 dark:text-mint/50 md:text-lg">
                     Open to internships, collaborations, and interesting
                     problems.
                 </p>

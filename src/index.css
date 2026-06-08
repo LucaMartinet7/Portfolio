@@ -2,6 +2,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Brand palette — semantic tokens so the colours live in one place and are
+   usable as Tailwind utilities (text-brand, bg-surface, border-mint/20, …). */
+@theme {
+    --color-brand: #385144;
+    --color-brand-dark: #1f3329;
+    --color-mint: #c2d8c4;
+    --color-mint-hover: #aecbb1;
+    --color-surface: #f8f5f2;
+    --color-surface-dark: #222222;
+    --color-ink: #111111;
+}
+
 .lenis.lenis-smooth [data-lenis-prevent] {
     overscroll-behavior: contain;
 }

@@ -13,7 +13,7 @@ import { MotionConfig } from "motion/react";
 function Inner() {
     useLenis();
     return (
-        <main className="bg-[#F8F5F2] dark:bg-[#222222] text-neutral-900 dark:text-[#C2D8C4] pt-20 md:pt-28 transition-colors duration-300">
+        <main className="bg-surface dark:bg-surface-dark text-neutral-900 dark:text-mint pt-20 md:pt-28 transition-colors duration-300">
             <TopNav />
             <Home />
             <div className="py-4 md:py-6" />

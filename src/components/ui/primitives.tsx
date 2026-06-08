@@ -40,10 +40,10 @@ export function Eyebrow({
 }) {
     return (
         <div className={className}>
-            <p className="text-[11px] font-bold uppercase tracking-wider text-[#385144]/65 dark:text-[#C2D8C4]/50">
+            <p className="text-[11px] font-bold uppercase tracking-wider text-brand/65 dark:text-mint/50">
                 {children}
             </p>
-            <div className="mt-1.5 h-[2px] w-11 rounded-full bg-[#385144]/30 dark:bg-[#C2D8C4]/25" />
+            <div className="mt-1.5 h-[2px] w-11 rounded-full bg-brand/30 dark:bg-mint/25" />
         </div>
     );
 }
@@ -64,7 +64,7 @@ export function GlowBlob({ className }: { className?: string }) {
         <div
             aria-hidden
             className={cn(
-                "pointer-events-none absolute rounded-full bg-[#385144]/[0.04] blur-2xl dark:bg-[#C2D8C4]/[0.04]",
+                "pointer-events-none absolute rounded-full bg-brand/[0.04] blur-2xl dark:bg-mint/[0.04]",
                 className
             )}
         />
@@ -84,7 +84,7 @@ export function Chip({
     children: ReactNode;
 }) {
     const base =
-        "inline-flex items-center gap-1.5 rounded-full border border-[#385144]/20 px-3.5 py-1.5 text-sm font-medium text-[#385144] dark:border-[#C2D8C4]/15 dark:text-[#C2D8C4]/70 bg-[#385144]/[0.07] dark:bg-[#C2D8C4]/[0.05]";
+        "inline-flex items-center gap-1.5 rounded-full border border-brand/20 px-3.5 py-1.5 text-sm font-medium text-brand dark:border-mint/15 dark:text-mint/70 bg-brand/[0.07] dark:bg-mint/[0.05]";
 
     if (href) {
         return (
@@ -94,7 +94,7 @@ export function Chip({
                 rel="noreferrer"
                 className={cn(
                     base,
-                    "transition-colors hover:bg-[#385144]/15 hover:text-[#1f3329] dark:hover:bg-[#C2D8C4]/10 dark:hover:text-[#C2D8C4]",
+                    "transition-colors hover:bg-brand/15 hover:text-brand-dark dark:hover:bg-mint/10 dark:hover:text-mint",
                     className
                 )}
             >
@@ -109,4 +109,4 @@ export function Chip({
 
 /** Primary green pill button styling, shared by CTA links. */
 export const primaryButtonClass =
-    "inline-flex items-center gap-2 rounded-full bg-[#385144] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(56,81,68,0.5)] transition-colors duration-200 hover:bg-[#1f3329] dark:bg-[#C2D8C4] dark:text-[#222222] dark:hover:bg-[#aecbb1] touch-manipulation";
+    "inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(56,81,68,0.5)] transition-colors duration-200 hover:bg-brand-dark dark:bg-mint dark:text-surface-dark dark:hover:bg-mint-hover touch-manipulation";
