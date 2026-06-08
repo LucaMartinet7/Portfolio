@@ -74,9 +74,7 @@ export default function Home() {
                             <ArrowDown size={15} />
                         </motion.a>
                         <motion.a
-                            href="https://www.linkedin.com/in/luca-martinet/"
-                            target="_blank"
-                            rel="noreferrer"
+                            href={`#${SECTION_IDS.CONTACT}`}
                             whileHover={{ scale: 1.03, y: -1 }}
                             whileTap={{ scale: 0.97 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}

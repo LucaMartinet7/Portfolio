@@ -4,6 +4,7 @@ import { useLenis } from "./hooks/useLenis";
 import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import About from "./sections/About";
+import Contact from "./sections/Contact";
 import TopNav from "./components/Navbar";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -21,6 +22,8 @@ function Inner() {
             <Projects />
             <div className="py-8 md:py-12" />
             <Resume />
+            <div className="py-8 md:py-12" />
+            <Contact />
         </main>
     );
 }
