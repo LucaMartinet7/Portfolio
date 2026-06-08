@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -127,11 +125,6 @@ body {
     body {
         @apply bg-background text-foreground;
     }
-}
-
-/* Force icon SVG fill to match text color in light mode */
-:not(.dark) .icon-tile svg *:not([fill="none"]) {
-    fill: #385144 !important;
 }
 
 /* Mobile touch optimization */
