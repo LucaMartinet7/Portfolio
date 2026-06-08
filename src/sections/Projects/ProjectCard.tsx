@@ -1,6 +1,7 @@
 import { Github, ArrowUpRight, Star } from "lucide-react";
 import { motion } from "motion/react";
 import type { Project } from "./projects.data";
+import { Chip } from "@/components/ui/primitives";
 
 type Props = { project: Project; featured?: boolean };
 
@@ -9,11 +10,8 @@ function Tags({ tags }: { tags?: string[] }) {
     return (
         <ul className="mt-4 flex flex-wrap gap-2">
             {tags.map((t) => (
-                <li
-                    key={t}
-                    className="rounded-full border border-[#385144]/25 dark:border-[#C2D8C4]/15 bg-[#385144]/[0.07] dark:bg-[#C2D8C4]/[0.05] px-3 py-1 text-xs font-medium text-[#385144] dark:text-[#C2D8C4]/70"
-                >
-                    {t}
+                <li key={t}>
+                    <Chip className="px-3 py-1 text-xs">{t}</Chip>
                 </li>
             ))}
         </ul>

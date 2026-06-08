@@ -1,6 +1,7 @@
 import GithubCalendar from "./GithubCalendar";
 import { SECTION_IDS } from "@/lib/anchors.ts";
 import { motion } from "motion/react";
+import { Section, Eyebrow, Chip } from "@/components/ui/primitives";
 
 const techStack = [
     "C",
@@ -17,20 +18,9 @@ const techStack = [
     "MySQL",
 ];
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-    return (
-        <div>
-            <p className="text-[11px] font-bold uppercase tracking-wider text-[#385144]/65 dark:text-[#C2D8C4]/50">
-                {children}
-            </p>
-            <div className="mt-1.5 h-[2px] w-11 rounded-full bg-[#385144]/30 dark:bg-[#C2D8C4]/25" />
-        </div>
-    );
-}
-
 export default function About() {
     return (
-        <section id={SECTION_IDS.ABOUT} className="px-6 py-16 md:py-32">
+        <Section id={SECTION_IDS.ABOUT}>
             <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-16">
                 {/* Left: bio + tech stack */}
                 <motion.div
@@ -64,12 +54,7 @@ export default function About() {
                         <Eyebrow>Tech stack</Eyebrow>
                         <div className="mt-4 flex flex-wrap gap-2.5">
                             {techStack.map((tech) => (
-                                <span
-                                    key={tech}
-                                    className="rounded-full border border-[#385144]/20 dark:border-[#C2D8C4]/15 bg-[#385144]/[0.06] dark:bg-[#C2D8C4]/[0.05] px-3.5 py-1.5 text-sm font-medium text-[#385144] dark:text-[#C2D8C4]/70"
-                                >
-                                    {tech}
-                                </span>
+                                <Chip key={tech}>{tech}</Chip>
                             ))}
                         </div>
                     </div>
@@ -96,6 +81,6 @@ export default function About() {
                     </div>
                 </motion.div>
             </div>
-        </section>
+        </Section>
     );
 }

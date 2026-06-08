@@ -1,6 +1,13 @@
 import { SECTION_IDS } from "@/lib/anchors.ts";
 import { motion } from "motion/react";
 import { Github, Linkedin, ArrowDown } from "lucide-react";
+import {
+    Section,
+    PulseDot,
+    Chip,
+    GlowBlob,
+    primaryButtonClass,
+} from "@/components/ui/primitives";
 
 const stats = [
     { value: "C / C++", label: "Primary lang" },
@@ -10,19 +17,9 @@ const stats = [
 
 export default function Home() {
     return (
-        <section
-            id={SECTION_IDS.HOME}
-            className="relative overflow-hidden px-6 py-24 md:py-32"
-        >
-            {/* Decorative background circles */}
-            <div
-                aria-hidden
-                className="pointer-events-none absolute -right-32 -top-40 h-[520px] w-[520px] rounded-full bg-[#385144]/[0.04] dark:bg-[#C2D8C4]/[0.04] blur-2xl"
-            />
-            <div
-                aria-hidden
-                className="pointer-events-none absolute -left-40 top-1/2 h-[320px] w-[320px] rounded-full bg-[#385144]/[0.05] dark:bg-[#C2D8C4]/[0.04] blur-2xl"
-            />
+        <Section id={SECTION_IDS.HOME} className="py-24 md:py-32">
+            <GlowBlob className="-right-32 -top-40 h-[520px] w-[520px]" />
+            <GlowBlob className="-left-40 top-1/2 h-[320px] w-[320px]" />
 
             <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
                 {/* Left: text content */}
@@ -33,10 +30,7 @@ export default function Home() {
                 >
                     {/* Eyebrow */}
                     <div className="inline-flex items-center gap-2 rounded-full border border-[#385144]/20 dark:border-[#C2D8C4]/20 bg-[#385144]/[0.08] dark:bg-[#C2D8C4]/[0.08] px-3.5 py-1.5">
-                        <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4ade80] opacity-60" />
-                            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]" />
-                        </span>
+                        <PulseDot />
                         <span className="text-xs font-semibold text-[#385144] dark:text-[#C2D8C4]">
                             Open to opportunities
                         </span>
@@ -68,7 +62,7 @@ export default function Home() {
                             whileHover={{ scale: 1.03, y: -1 }}
                             whileTap={{ scale: 0.97 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                            className="inline-flex items-center gap-2 rounded-full bg-[#385144] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(56,81,68,0.5)] transition-colors duration-200 hover:bg-[#1f3329] dark:bg-[#C2D8C4] dark:text-[#222222] dark:hover:bg-[#aecbb1] touch-manipulation"
+                            className={primaryButtonClass}
                         >
                             View projects
                             <ArrowDown size={15} />
@@ -89,24 +83,20 @@ export default function Home() {
                         <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 dark:text-[#C2D8C4]/30">
                             Find me on
                         </span>
-                        <a
+                        <Chip
                             href="https://github.com/lucamartinet7"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-[#385144]/25 dark:border-[#C2D8C4]/20 bg-[#385144]/[0.07] dark:bg-[#C2D8C4]/[0.05] px-3 py-1.5 text-xs font-medium text-[#385144] dark:text-[#C2D8C4]/70 transition-colors hover:bg-[#385144]/15 dark:hover:bg-[#C2D8C4]/10 hover:text-[#1f3329] dark:hover:text-[#C2D8C4]"
+                            icon={<Github size={13} />}
+                            className="px-3 py-1.5 text-xs"
                         >
-                            <Github size={13} />
                             GitHub
-                        </a>
-                        <a
+                        </Chip>
+                        <Chip
                             href="https://www.linkedin.com/in/luca-martinet/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 rounded-full border border-[#385144]/25 dark:border-[#C2D8C4]/20 bg-[#385144]/[0.07] dark:bg-[#C2D8C4]/[0.05] px-3 py-1.5 text-xs font-medium text-[#385144] dark:text-[#C2D8C4]/70 transition-colors hover:bg-[#385144]/15 dark:hover:bg-[#C2D8C4]/10 hover:text-[#1f3329] dark:hover:text-[#C2D8C4]"
+                            icon={<Linkedin size={13} />}
+                            className="px-3 py-1.5 text-xs"
                         >
-                            <Linkedin size={13} />
                             LinkedIn
-                        </a>
+                        </Chip>
                     </div>
                 </motion.div>
 
@@ -155,6 +145,6 @@ export default function Home() {
                     </div>
                 </motion.div>
             </div>
-        </section>
+        </Section>
     );
 }

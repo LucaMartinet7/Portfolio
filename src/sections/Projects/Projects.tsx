@@ -2,20 +2,15 @@ import ProjectCard from "./ProjectCard";
 import { projects } from "./projects.data";
 import { SECTION_IDS } from "@/lib/anchors.ts";
 import { motion } from "motion/react";
+import { Section, Eyebrow, GlowBlob } from "@/components/ui/primitives";
 
 export default function Projects() {
     const featured = projects.find((p) => p.featured);
     const rest = projects.filter((p) => !p.featured);
 
     return (
-        <section
-            id={SECTION_IDS.PROJECTS}
-            className="relative overflow-hidden px-6 py-16 md:py-32"
-        >
-            <div
-                aria-hidden
-                className="pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-[#385144]/[0.04] dark:bg-[#C2D8C4]/[0.04] blur-2xl"
-            />
+        <Section id={SECTION_IDS.PROJECTS}>
+            <GlowBlob className="-right-32 top-0 h-[420px] w-[420px]" />
 
             <div className="relative mx-auto max-w-6xl">
                 <motion.header
@@ -24,10 +19,7 @@ export default function Projects() {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 >
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#385144]/65 dark:text-[#C2D8C4]/50">
-                        Selected work
-                    </p>
-                    <div className="mt-1.5 h-[2px] w-11 rounded-full bg-[#385144]/30 dark:bg-[#C2D8C4]/25" />
+                    <Eyebrow>Selected work</Eyebrow>
                     <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-[#111] dark:text-[#F8F5F2] md:text-5xl">
                         Things I've built
                     </h2>
@@ -66,6 +58,6 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }

@@ -1,4 +1,5 @@
 import { SECTION_IDS } from "@/lib/anchors.ts";
+import { PulseDot } from "@/components/ui/primitives";
 
 const navLinks = [
     { name: "About", href: `#${SECTION_IDS.ABOUT}` },
@@ -33,10 +34,7 @@ export default function Footer() {
                             Building from low-level C to full-stack web.
                         </p>
                         <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#c2d8c3]/20 bg-[#c2d8c3]/[0.08] px-3 py-1.5">
-                            <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4ade80] opacity-60" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]" />
-                            </span>
+                            <PulseDot />
                             <span className="text-xs font-medium text-[#c2d8c3]">
                                 Open to opportunities
                             </span>
