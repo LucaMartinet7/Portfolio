@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ExperienceCardProps } from "./types";
 import { PulseDot } from "@/components/ui/primitives";
+import Lightbox from "@/components/ui/Lightbox";
 
 function LazyVideo({ src, className }: { src: string; className: string }) {
     const ref = useRef<HTMLVideoElement>(null);
@@ -47,6 +48,7 @@ export default function ExperienceCard({
     current,
 }: ExperienceCardProps) {
     const isInternship = exp.category === "Internship";
+    const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 
     return (
         <motion.div
@@ -112,9 +114,12 @@ export default function ExperienceCard({
                 {exp.images.length > 0 && (
                     <div className="mt-4 flex flex-wrap gap-2">
                         {exp.images.map((img, i) => (
-                            <div
+                            <button
                                 key={i}
-                                className="group relative h-20 min-w-[120px] flex-1 overflow-hidden rounded-lg md:h-24"
+                                type="button"
+                                onClick={() => setPreviewIndex(i)}
+                                aria-label={`Expand ${exp.location} — ${img.label}`}
+                                className="group relative h-20 min-w-[120px] flex-1 cursor-zoom-in overflow-hidden rounded-lg md:h-24"
                             >
                                 {img.type === "video" ? (
                                     <LazyVideo
@@ -129,7 +134,7 @@ export default function ExperienceCard({
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                 )}
-                            </div>
+                            </button>
                         ))}
 
                         {current && (
@@ -141,6 +146,14 @@ export default function ExperienceCard({
                     </div>
                 )}
             </div>
+
+            {previewIndex !== null && (
+                <Lightbox
+                    items={exp.images}
+                    startIndex={previewIndex}
+                    onClose={() => setPreviewIndex(null)}
+                />
+            )}
         </motion.div>
     );
 }
