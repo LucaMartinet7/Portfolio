@@ -1,6 +1,5 @@
 export { default } from "./Experience";
 export { default as ExperienceCard } from "./ExperienceCard";
-export { default as YearCounter } from "./YearCounter";
 export { allEntries } from "./data";
 export type {
     ExperienceEntry,
