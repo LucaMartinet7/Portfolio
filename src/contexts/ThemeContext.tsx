@@ -25,7 +25,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         }
         try {
             localStorage.setItem("theme", theme);
-        } catch {}
+        } catch {
+            // localStorage unavailable (e.g. private mode) — ignore
+        }
     }, [theme]);
 
     const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
