@@ -6,6 +6,7 @@ import Projects from "./sections/Projects";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 import TopNav from "./components/Navbar";
+import Footer from "./components/Footer";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 function Inner() {
@@ -24,6 +25,7 @@ function Inner() {
             <Resume />
             <div className="py-8 md:py-12" />
             <Contact />
+            <Footer />
         </main>
     );
 }
