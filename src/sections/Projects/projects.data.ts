@@ -1,44 +1,48 @@
 export type Project = {
     title: string;
     description: string;
-    image?: string;
     githubUrl: string;
     demoUrl?: string;
     tags?: string[];
-    accent: string; // tailwind bg color class for the accent
+    featured?: boolean;
 };
 
 export const projects: Project[] = [
     {
         title: "BeeR-Type (R-Type)",
         description:
-            "Multiplayer 2D shooter with modular server/client/engine architecture. Built with modern C++, ECS, and robust networking.",
+            "Multiplayer 2D shooter with modular server / client / engine architecture. Built with modern C++, ECS pattern, and UDP networking.",
         githubUrl: "https://github.com/lucamartinet7/R-Type",
         tags: ["C++", "Networking", "ECS"],
-        accent: "bg-blue-500",
+        featured: true,
     },
     {
         title: "AREA",
         description:
-            "IFTTT/Zapier-style automation platform with backend, web frontend, and mobile frontend.",
+            "IFTTT-style automation with backend, web, and mobile frontends.",
         githubUrl: "https://github.com/LucaMartinet7/Area-Tek3",
-        tags: ["Dart", "Python", "MySQL"],
-        accent: "bg-violet-500",
+        tags: ["Python", "Dart", "MySQL"],
     },
     {
         title: "Neural Network",
         description:
-            "Chessboard state analysis using a ML-based approach (project-focused implementation).",
+            "Chessboard state analysis via a custom ML-based pipeline.",
         githubUrl: "https://github.com/LucaMartinet7/Neural-Network",
         tags: ["Python", "ML"],
-        accent: "bg-emerald-500",
     },
     {
         title: "Arcade",
         description:
-            "Dynamic game platform with runtime-switchable graphics libraries and games loaded via shared objects.",
+            "Game platform with runtime-switchable graphics libs via shared objects.",
         githubUrl: "https://github.com/LucaMartinet7/Arcade",
         tags: ["C++", "Plugins"],
-        accent: "bg-orange-500",
+    },
+    {
+        title: "Portfolio",
+        description:
+            "React 19, TypeScript, Tailwind v4, Framer Motion, Lenis smooth scroll.",
+        githubUrl: "https://github.com/LucaMartinet7/Portfolio",
+        demoUrl: "https://lucamartinet.dev",
+        tags: ["React", "TypeScript"],
     },
 ];
