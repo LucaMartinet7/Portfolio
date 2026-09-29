@@ -98,8 +98,9 @@ block):
 - **Icons**: Phosphor, bold weight only, inlined in
   `src/components/icons.tsx` (MIT). Used for controls and link arrows:
   menu, download, copy, close, previous/next, theme, external links.
-- **Rows** (`Rows` in `ui.tsx`): marker and label in a `16ch` column, value
-  beside it.
+- **Contact block**: the email address large on `surface-card` with a
+  `[copy]` button, GitHub and LinkedIn as plain links below. Every link to
+  a profile is labelled with the site's name ("GitHub", "LinkedIn").
 - **Command snippet**: tabs (`curl` / `wget`) over a `surface-card` block
   with a `[copy]` button. The commands are real.
 - **Terminal card**: pixel wordmark, a prompt row (`> `), a comment line

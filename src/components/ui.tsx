@@ -61,25 +61,3 @@ export function Section({
         </section>
     );
 }
-
-/** Label / value rows aligned on a fixed label column. */
-export function Rows({
-    rows,
-}: {
-    rows: { label: string; value: ReactNode }[];
-}) {
-    return (
-        <dl className="grid gap-y-2 sm:grid-cols-[16ch_1fr]">
-            {rows.map((row) => (
-                <div key={row.label} className="contents">
-                    <dt className="text-ink">
-                        <Marker /> {row.label}
-                    </dt>
-                    <dd className="mb-2 pl-[4ch] sm:mb-0 sm:pl-0">
-                        {row.value}
-                    </dd>
-                </div>
-            ))}
-        </dl>
-    );
-}

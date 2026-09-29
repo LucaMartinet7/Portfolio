@@ -61,13 +61,14 @@ export default function ActivityGraph() {
     if (days.length === 0) {
         return (
             <p>
+                My activity is on{" "}
                 <a
                     href={site.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={textLink}
                 >
-                    See my activity on GitHub
+                    GitHub
                 </a>
                 <Arrow />
             </p>
@@ -137,14 +138,14 @@ export default function ActivityGraph() {
             <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-sm leading-7 text-mute">
                 <span>
                     Fig 1. {numberFormat.format(total)} contributions in the
-                    last year.{" "}
+                    last year on{" "}
                     <a
                         href={site.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={textLink}
                     >
-                        View on GitHub
+                        GitHub
                     </a>
                     <Arrow />
                 </span>
