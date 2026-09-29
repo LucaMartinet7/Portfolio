@@ -7,7 +7,9 @@ import { useSyncExternalStore } from "react";
  */
 export type ThemePreference = "system" | "light" | "dark";
 
-const STORAGE_KEY = "theme";
+// Not "theme": the previous site stored "dark" there on every visit, which
+// would override "system" for returning visitors.
+const STORAGE_KEY = "theme-preference";
 const DARK_QUERY = "(prefers-color-scheme: dark)";
 const THEME_COLOR = { light: "#fdfcfc", dark: "#141212" };
 
