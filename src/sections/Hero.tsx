@@ -18,7 +18,7 @@ export default function Hero() {
             className="mx-auto max-w-275 px-4 pt-6 sm:px-6 md:pt-10"
         >
             {/* Mobile: portrait above the text. lg: text left, portrait right. */}
-            <div className="grid items-center gap-10 bg-term px-5 py-10 text-term-text sm:px-10 md:py-14 lg:grid-cols-[1fr_16rem] lg:gap-14 lg:px-14 dark:border dark:border-hairline">
+            <div className="grid items-center gap-10 bg-term px-5 py-10 text-term-text sm:px-10 md:py-14 lg:grid-cols-[1fr_16rem] lg:gap-14 lg:px-14 border border-hairline">
                 <img
                     src="/images/portrait.webp"
                     alt={hero.portraitAlt}
