@@ -39,10 +39,14 @@ export function Marker({ children = "+" }: { children?: string }) {
 export function Section({
     id,
     title,
+    hideTitle = false,
     children,
 }: {
     id: string;
     title: string;
+    /** Keep the label for screen readers only, when the content's own
+        headings already say what the section is. */
+    hideTitle?: boolean;
     children: ReactNode;
 }) {
     return (
@@ -53,11 +57,15 @@ export function Section({
         >
             <h2
                 id={`${id}-title`}
-                className="border-b border-hairline pb-3 font-bold"
+                className={
+                    hideTitle
+                        ? "sr-only"
+                        : "border-b border-hairline pb-3 font-bold"
+                }
             >
                 {title}
             </h2>
-            <div className="pt-6">{children}</div>
+            <div className={hideTitle ? undefined : "pt-6"}>{children}</div>
         </section>
     );
 }

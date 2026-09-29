@@ -75,7 +75,9 @@ block):
   `py-12` / `md:py-16` / `lg:py-24` (48 / 64 / 96px).
 - Label and date columns are `16ch` wide, so rows line up across sections.
 - Experience: rows with `divide-y divide-hairline`, split into two groups
-  (Internships, then Education) so no list runs past five rows.
+  (Internships, then Education) so no list runs past five rows. The group
+  labels take the place of the section label, which stays for screen
+  readers only; no intro line under it.
 - Projects: the featured project as a full-width block on `surface-card`
   (image beside the text from `lg`), the rest in a 2x2 grid of hairline-bordered blocks (one cell per project).
   Two sections never share a layout.

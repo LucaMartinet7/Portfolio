@@ -77,14 +77,15 @@ const groups = [
 
 export default function Experience() {
     return (
-        <Section id="experience" title="Experience">
-            <p className="text-mute">
-                Education and internships across Europe.
-            </p>
+        // The two group headings do the job of the section label, so
+        // "Experience" is kept for screen readers and the nav only.
+        <Section id="experience" title="Experience" hideTitle>
             {groups.map((group) => (
-                <div key={group.title} className="mt-10">
-                    <h3 className="font-bold">{group.title}</h3>
-                    <ol className="mt-2 divide-y divide-hairline">
+                <div key={group.title} className="not-first:mt-12">
+                    <h3 className="border-b border-hairline pb-3 font-bold">
+                        {group.title}
+                    </h3>
+                    <ol className="divide-y divide-hairline">
                         {group.entries.map((entry) => (
                             <Row
                                 key={`${entry.place}-${entry.period}`}
