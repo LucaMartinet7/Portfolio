@@ -35,29 +35,21 @@ export const hero = {
 };
 
 export const about = {
-    bio: "I’m Luca, a software development student at Epitech. I build reliable systems and ship real projects, from low-level C to full-stack web applications.",
-    quote: {
-        text: "If you’re not improving, you’re falling behind.",
-        author: "Chris Bumstead, Classic Physique Mr. Olympia",
-    },
-    facts: [
-        {
-            label: "studying",
-            value: "Software engineering, Epitech (5th year)",
-        },
-        { label: "focus", value: "Systems, networking, web" },
-        { label: "speaks", value: "French, English, Spanish (A2)" },
+    bio: [
+        "I’m Luca, a fifth-year software engineering student at Epitech, currently interning at Unplex.",
+        "I build reliable systems and ship real projects, from low-level C to full-stack web applications.",
     ],
     skills: [
         {
-            group: "languages",
+            group: "Languages",
             items: ["C", "C++", "Python", "Java", "TypeScript", "Bash"],
         },
-        { group: "web", items: ["React", "Tailwind CSS"] },
+        { group: "Web", items: ["React", "Tailwind CSS"] },
         {
-            group: "tools",
+            group: "Tools",
             items: ["Docker", "Git", "Linux", "MySQL", "PostgreSQL"],
         },
+        { group: "Speaks", items: ["French", "English", "Spanish (A2)"] },
     ],
 };
 
