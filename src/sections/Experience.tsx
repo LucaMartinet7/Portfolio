@@ -1,7 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import { experience, type Experience as Entry } from "@/content";
 import { Section } from "@/components/ui";
-import { Play } from "@/components/icons";
 import MediaViewer from "@/components/MediaViewer";
 
 function MediaStrip({ entry }: { entry: Entry }) {
@@ -17,13 +16,13 @@ function MediaStrip({ entry }: { entry: Entry }) {
 
     return (
         <>
-            <ul className="mt-5 flex flex-wrap gap-2">
+            <ul className="mt-4 flex flex-wrap gap-2">
                 {entry.media.map((item, index) => (
                     <li key={item.src}>
                         <a
                             href={item.src}
                             onClick={(event) => openViewer(event, index)}
-                            className="group relative block size-20 overflow-hidden rounded-lg border border-line sm:size-24"
+                            className="relative block size-20 overflow-hidden rounded-sm border border-hairline transition-colors hover:border-ink sm:size-24"
                         >
                             <img
                                 src={item.thumb}
@@ -32,13 +31,14 @@ function MediaStrip({ entry }: { entry: Entry }) {
                                 height={320}
                                 loading="lazy"
                                 decoding="async"
-                                className="size-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
+                                className="size-full object-cover"
                             />
                             {item.video && (
-                                <span className="absolute inset-0 grid place-items-center">
-                                    <span className="grid size-8 place-items-center rounded-full bg-surface/90 text-fg">
-                                        <Play size={14} />
-                                    </span>
+                                <span
+                                    aria-hidden="true"
+                                    className="absolute bottom-1 left-1 rounded-sm bg-term px-1 text-xs leading-5 text-term-text"
+                                >
+                                    [play]
                                 </span>
                             )}
                         </a>
@@ -61,31 +61,30 @@ function MediaStrip({ entry }: { entry: Entry }) {
 
 export default function Experience() {
     return (
-        <Section
-            id="experience"
-            title="Experience"
-            intro="Education and internships across Europe."
-        >
-            <ol className="divide-y divide-line">
+        <Section id="experience" title="Experience">
+            <p className="mb-6 text-mute">
+                Education and internships across Europe.
+            </p>
+            <ol className="divide-y divide-hairline border-b border-hairline">
                 {experience.map((entry, index) => (
                     <li
                         key={`${entry.place}-${entry.period}`}
-                        className="grid gap-x-8 gap-y-3 py-10 first:pt-0 last:pb-0 sm:grid-cols-[9rem_1fr]"
+                        className="grid gap-x-6 gap-y-1 py-6 sm:grid-cols-[16ch_1fr]"
                     >
-                        <div className="font-mono text-sm text-fg-subtle tabular-nums">
-                            <p>{entry.period}</p>
+                        <p className="text-mute tabular-nums">
+                            {entry.period}
                             {index === 0 && (
-                                <p className="mt-1 text-accent">Current</p>
+                                <span className="block text-green">
+                                    [current]
+                                </span>
                             )}
-                        </div>
+                        </p>
                         <div className="min-w-0">
-                            <h3 className="text-lg font-medium text-fg">
-                                {entry.place}
-                            </h3>
-                            <p className="text-sm text-fg-subtle">
+                            <h3 className="font-bold">{entry.place}</h3>
+                            <p className="text-mute">
                                 {entry.kind}, {entry.country}
                             </p>
-                            <p className="mt-3 max-w-[65ch] text-fg-muted">
+                            <p className="mt-3 max-w-[70ch]">
                                 {entry.description}
                             </p>
                             {entry.media.length > 0 && (

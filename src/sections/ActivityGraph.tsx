@@ -1,7 +1,6 @@
 import raw from "@/generated/contributions.json";
 import { site } from "@/content";
-import { ArrowUpRight } from "@/components/icons";
-import { textLink } from "@/components/ui";
+import { Arrow, textLink } from "@/components/ui";
 
 /**
  * GitHub contribution graph. The data is fetched once at build time
@@ -16,7 +15,7 @@ type Contributions = { total: number; days: Day[] };
 const data = raw as Contributions;
 
 const CELL = 11;
-const STEP = 14;
+const STEP = 13;
 const LEFT = 30;
 const TOP = 18;
 
@@ -61,7 +60,7 @@ export default function ActivityGraph() {
 
     if (days.length === 0) {
         return (
-            <p className="text-fg-muted">
+            <p>
                 <a
                     href={site.github}
                     target="_blank"
@@ -69,8 +68,8 @@ export default function ActivityGraph() {
                     className={textLink}
                 >
                     See my activity on GitHub
-                    <ArrowUpRight size={14} />
                 </a>
+                <Arrow />
             </p>
         );
     }
@@ -98,14 +97,15 @@ export default function ActivityGraph() {
                 viewBox={`0 0 ${width} ${height}`}
                 role="img"
                 aria-label={`GitHub contribution graph: ${numberFormat.format(total)} contributions in the last year`}
-                className="h-auto w-full font-mono text-[10px]"
+                shapeRendering="crispEdges"
+                className="h-auto w-full text-[10px]"
             >
                 {months.map((month) => (
                     <text
                         key={month.x}
                         x={month.x}
                         y={10}
-                        className="fill-fg-subtle"
+                        className="fill-mute"
                     >
                         {month.label}
                     </text>
@@ -115,7 +115,7 @@ export default function ActivityGraph() {
                         key={label}
                         x={0}
                         y={TOP + row * STEP + CELL - 2}
-                        className="fill-fg-subtle"
+                        className="fill-mute"
                     >
                         {label}
                     </text>
@@ -127,7 +127,6 @@ export default function ActivityGraph() {
                         y={TOP + ((offset + i) % 7) * STEP}
                         width={CELL}
                         height={CELL}
-                        rx={2}
                         className={heat[day.level]}
                     >
                         <title>{describe(day)}</title>
@@ -135,9 +134,10 @@ export default function ActivityGraph() {
                 ))}
             </svg>
 
-            <figcaption className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-sm text-fg-muted">
+            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-sm leading-7 text-mute">
                 <span>
-                    {numberFormat.format(total)} contributions in the last year.{" "}
+                    Fig 1. {numberFormat.format(total)} contributions in the
+                    last year.{" "}
                     <a
                         href={site.github}
                         target="_blank"
@@ -145,25 +145,17 @@ export default function ActivityGraph() {
                         className={textLink}
                     >
                         View on GitHub
-                        <ArrowUpRight size={14} />
                     </a>
+                    <Arrow />
                 </span>
-                <span
-                    aria-hidden="true"
-                    className="flex items-center gap-1 font-mono text-xs text-fg-subtle"
-                >
-                    Less
+                <span aria-hidden="true" className="flex items-center gap-1">
+                    less
                     {heat.map((fill) => (
                         <svg key={fill} width={CELL} height={CELL}>
-                            <rect
-                                width={CELL}
-                                height={CELL}
-                                rx={2}
-                                className={fill}
-                            />
+                            <rect width={CELL} height={CELL} className={fill} />
                         </svg>
                     ))}
-                    More
+                    more
                 </span>
             </figcaption>
         </figure>

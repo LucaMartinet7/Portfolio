@@ -1,6 +1,5 @@
 import { useEffect, useRef, type KeyboardEvent, type MouseEvent } from "react";
 import type { Media } from "@/content";
-import { CaretLeft, CaretRight, X } from "./icons";
 
 /**
  * Full-screen viewer built on the native <dialog> element, which provides the
@@ -47,8 +46,8 @@ export default function MediaViewer({
         typeof matchMedia === "function" &&
         matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const navButton =
-        "absolute top-1/2 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-lg bg-surface/90 text-fg transition-colors hover:bg-surface";
+    const control =
+        "inline-flex h-9 items-center rounded-sm bg-term-raised px-3 text-term-text transition-colors hover:bg-term-mute hover:text-term";
 
     return (
         <dialog
@@ -57,7 +56,7 @@ export default function MediaViewer({
             onClose={onClose}
             onKeyDown={onKeyDown}
             onClick={onClick}
-            className="m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-transparent p-0 text-fg backdrop:bg-[#0b0d0c]/95"
+            className="m-0 h-dvh max-h-none w-screen max-w-none overscroll-contain bg-transparent p-0 text-term-text backdrop:bg-term/95"
         >
             <div
                 data-dismiss
@@ -66,10 +65,9 @@ export default function MediaViewer({
                 <button
                     type="button"
                     onClick={close}
-                    aria-label="Close viewer"
-                    className="absolute top-4 right-4 inline-flex size-11 items-center justify-center rounded-lg bg-surface/90 text-fg transition-colors hover:bg-surface"
+                    className={`${control} absolute top-4 right-4`}
                 >
-                    <X size={20} />
+                    [x] close
                 </button>
 
                 {item.video ? (
@@ -81,7 +79,7 @@ export default function MediaViewer({
                         muted
                         loop
                         autoPlay={!reduceMotion}
-                        className="max-h-[80dvh] max-w-full rounded-lg"
+                        className="max-h-[78dvh] max-w-full"
                     >
                         <source
                             src={item.src}
@@ -97,40 +95,41 @@ export default function MediaViewer({
                         key={item.src}
                         src={item.src}
                         alt={`${item.label}, ${title}`}
-                        className="max-h-[80dvh] max-w-full rounded-lg object-contain"
+                        className="max-h-[78dvh] max-w-full object-contain"
                     />
                 )}
 
-                <p className="text-sm text-[#d9dfdb]" aria-live="polite">
-                    {item.label}
+                <div className="flex items-center gap-3">
                     {many && (
-                        <span className="text-[#9aa49d]">
-                            {" "}
-                            ({index + 1} of {items.length})
-                        </span>
-                    )}
-                </p>
-
-                {many && (
-                    <>
                         <button
                             type="button"
                             onClick={() => step(-1)}
                             aria-label="Previous"
-                            className={`${navButton} left-3 sm:left-6`}
+                            className={control}
                         >
-                            <CaretLeft size={20} />
+                            <span aria-hidden="true">{"<- prev"}</span>
                         </button>
+                    )}
+                    <p className="px-2 text-sm" aria-live="polite">
+                        {item.label}
+                        {many && (
+                            <span className="text-term-mute">
+                                {" "}
+                                ({index + 1} of {items.length})
+                            </span>
+                        )}
+                    </p>
+                    {many && (
                         <button
                             type="button"
                             onClick={() => step(1)}
                             aria-label="Next"
-                            className={`${navButton} right-3 sm:right-6`}
+                            className={control}
                         >
-                            <CaretRight size={20} />
+                            <span aria-hidden="true">{"next ->"}</span>
                         </button>
-                    </>
-                )}
+                    )}
+                </div>
             </div>
         </dialog>
     );

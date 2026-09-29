@@ -15,7 +15,7 @@ The same contact is published at
   itself plus a SHA-256 hash for the one inline theme script, no inline
   styles, no frames, no plugins, no form targets, and Trusted Types enforced
   so DOM XSS sinks such as `innerHTML` are blocked.
-- **No third-party requests.** Fonts and icons are self-hosted. The GitHub
+- **No third-party requests.** The font is self-hosted and there is no icon library. The GitHub
   activity graph is fetched once at build time and baked into the page, so
   visitors' browsers never contact another service.
 - **Clean media.** Photos are re-encoded with EXIF, GPS and camera metadata
