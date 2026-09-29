@@ -1,10 +1,16 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import App from "./App";
 import "./index.css";
-import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root")!;
+const app = (
     <StrictMode>
         <App />
     </StrictMode>
 );
+
+// Production pages are prerendered (scripts/prerender.js), so React only
+// attaches to the existing HTML. The dev server serves an empty shell.
+if (container.firstElementChild) hydrateRoot(container, app);
+else createRoot(container).render(app);
