@@ -83,7 +83,7 @@ export default function Resume() {
                         rel="noopener"
                         className={buttonSecondary}
                     >
-                        Open in browser
+                        Open in Browser
                     </a>
                 </div>
             </div>

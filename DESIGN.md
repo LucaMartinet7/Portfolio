@@ -9,14 +9,16 @@ This system is adapted from the
 in VoltAgent's awesome-design-md (MIT, see [Credits](#credits)). Changes from
 the source: the brand green replaces Apple Blue as the one colour, JetBrains
 Mono replaces the commercial Berkeley Mono, there is a dark theme, and photos
-are allowed because a portfolio is about a person.
+and a few icons are allowed because a portfolio is about a person and
+needs clear controls.
 
 ## Direction
 
 The page reads like a man page or a README: one monospaced face, a cream
 canvas, near-black ink, hairline rules between blocks and ASCII bracket
-markers instead of icons. There is exactly one dark surface, the terminal
-card at the top of the page. Everything else is flat.
+markers for list bullets. There is exactly one dark surface, the terminal
+card at the top of the page, which holds the name, the intro and the
+portrait. Everything else is flat.
 
 ## Colour
 
@@ -52,9 +54,10 @@ Terminal card (same in both themes, slightly darker in dark mode):
 - The only large "type" is the block-pixel wordmark (`Wordmark.tsx`), drawn
   as an SVG grid. The page's `h1` is the same name as real text for screen
   readers and search engines.
-- Arrows are the font's `->` ligature (hidden from screen readers). Keep
-  visible characters inside the font's Latin subset: `→` and `↗` are not in
-  it and would fall back to another font.
+- Headings and buttons use Title Case ("Download CV", "Get in Touch",
+  "GitHub Activity"); body copy uses sentence case.
+- Keep visible characters inside the font's Latin subset: `→` and `↗` are
+  not in it and would fall back to another font. Use the icons instead.
 
 ## Layout
 
@@ -65,8 +68,8 @@ Terminal card (same in both themes, slightly darker in dark mode):
 - Label and date columns are `16ch` wide, so rows line up across sections.
 - Experience: rows with `divide-y divide-hairline`, split into two groups
   (Internships, then Education) so no list runs past five rows.
-- Projects: the featured project as a full-width block on `surface-card`,
-  the rest in a 2x2 grid of hairline-bordered blocks (one cell per project).
+- Projects: the featured project as a full-width block on `surface-card`
+  (image beside the text from `lg`), the rest in a 2x2 grid of hairline-bordered blocks (one cell per project).
   Two sections never share a layout.
 - One label per intent: "Download CV" (nav and Resume), "Get in touch"
   (hero). Contact itself is the email row, with no extra button.
@@ -82,16 +85,20 @@ Terminal card (same in both themes, slightly darker in dark mode):
 
 - **Buttons**: primary is ink fill with canvas text; secondary is canvas with
   a `hairline-strong` border. Height 36px, `px-5`, `rounded-sm`.
-- **Markers**: `[+]` for list rows, `[*]` for the featured project,
-  `[current]`, `[copy]`, `[menu]`, `[x] close`, `[play]`. The brackets are
-  the icon set.
+- **Markers**: `[+]` bullets on list rows and `[*]` for the featured
+  project. They are bullets, not icons.
+- **Icons**: Phosphor, bold weight only, inlined in
+  `src/components/icons.tsx` (MIT). Used for controls and link arrows:
+  menu, download, copy, close, previous/next, theme, external links.
 - **Rows** (`Rows` in `ui.tsx`): marker and label in a `16ch` column, value
   beside it.
 - **Command snippet**: tabs (`curl` / `wget`) over a `surface-card` block
   with a `[copy]` button. The commands are real.
 - **Terminal card**: pixel wordmark, a prompt row (`> `), a comment line
-  (`# `) and a row of real links. Nothing in it is fake UI.
-- **Theme switch**: text buttons, `theme: system light dark`.
+  (`# `) and two real links on the left; the portrait on the right from
+  `lg` (above the text on mobile). Nothing in it is fake UI.
+- **Theme switch**: System / Light / Dark buttons, each an icon plus its
+  name.
 
 ## Interaction
 
@@ -111,7 +118,8 @@ Terminal card (same in both themes, slightly darker in dark mode):
 - Sections that fade in on scroll, cursor effects, buttons that fade on
   hover.
 - Serif accent words, Inter, Space Grotesk, Instrument Serif.
-- Icon libraries. Buzzword copy: say what was built, with what, and what it
+- Labels laid over photos (captions go below, like the Video label).
+- Buzzword copy: say what was built, with what, and what it
   did.
 
 ## Security constraints that affect the UI

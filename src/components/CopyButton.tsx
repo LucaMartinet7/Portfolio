@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Check, Copy, Warning } from "./icons";
 
 /** Copies text to the clipboard; the label confirms, then resets. */
 export default function CopyButton({
     text,
-    label = "copy",
+    label = "Copy",
 }: {
     text: string;
     label?: string;
@@ -31,16 +32,21 @@ export default function CopyButton({
         <button
             type="button"
             onClick={copy}
-            className="inline-flex h-8 shrink-0 items-center rounded-sm px-2 text-mute transition-colors hover:bg-surface-card hover:text-ink"
+            className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-sm px-2 text-mute transition-colors hover:bg-surface-card hover:text-ink"
         >
+            {state === "copied" ? (
+                <Check size={14} />
+            ) : state === "failed" ? (
+                <Warning size={14} />
+            ) : (
+                <Copy size={14} />
+            )}
             <span aria-live="polite">
-                [
                 {state === "copied"
-                    ? "copied"
+                    ? "Copied"
                     : state === "failed"
-                      ? "copy failed, select the text"
+                      ? "Copy failed, select the text"
                       : label}
-                ]
             </span>
         </button>
     );

@@ -2,6 +2,7 @@ import { useState, type MouseEvent } from "react";
 import { experience, type Experience as Entry } from "@/content";
 import { Section } from "@/components/ui";
 import MediaViewer from "@/components/MediaViewer";
+import { Play } from "@/components/icons";
 
 function MediaStrip({ entry }: { entry: Entry }) {
     const [open, setOpen] = useState<number | null>(null);
@@ -33,15 +34,17 @@ function MediaStrip({ entry }: { entry: Entry }) {
                                 decoding="async"
                                 className="size-full object-cover"
                             />
-                            {item.video && (
-                                <span
-                                    aria-hidden="true"
-                                    className="absolute bottom-1 left-1 rounded-sm bg-term px-1 text-xs leading-5 text-term-text"
-                                >
-                                    [play]
-                                </span>
-                            )}
                         </a>
+                        {/* Caption below the image, not on it. */}
+                        {item.video && (
+                            <p
+                                aria-hidden="true"
+                                className="mt-1 flex items-center gap-1 text-xs text-mute"
+                            >
+                                <Play size={12} />
+                                Video
+                            </p>
+                        )}
                     </li>
                 ))}
             </ul>

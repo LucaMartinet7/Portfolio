@@ -2,6 +2,7 @@ import type { MouseEvent } from "react";
 import { sections, site } from "@/content";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { buttonPrimary } from "./ui";
+import { DownloadSimple, List } from "./icons";
 
 // The CV has its own button, so the nav lists the other sections.
 const navSections = sections.filter((section) => section.id !== "resume");
@@ -49,6 +50,7 @@ export default function Header() {
                         download
                         className={`${buttonPrimary} h-8 px-3 sm:px-4`}
                     >
+                        <DownloadSimple size={16} />
                         <span className="sm:hidden">CV</span>
                         <span className="hidden sm:inline">Download CV</span>
                     </a>
@@ -58,9 +60,10 @@ export default function Header() {
                     <button
                         type="button"
                         popoverTarget="mobile-menu"
-                        className="-mr-2 inline-flex h-11 items-center px-2 text-ink md:hidden"
+                        className="-mr-2 inline-flex size-11 items-center justify-center rounded-sm text-ink transition-colors hover:bg-surface-card md:hidden"
                     >
-                        [menu]
+                        <List size={22} />
+                        <span className="sr-only">Menu</span>
                     </button>
                 </div>
             </div>
