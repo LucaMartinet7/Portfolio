@@ -23,5 +23,6 @@ src/generated
 .DS_Store
 Thumbs.db
 
-# Claude Code local settings
-.claude
+# Claude Code: keep local settings private, share project skills
+.claude/*
+!.claude/skills/
