@@ -70,6 +70,8 @@ export type Media = {
 };
 
 export type Experience = {
+    /** Which list the entry appears in. */
+    category: "internship" | "education";
     period: string;
     place: string;
     country: string;
@@ -98,16 +100,18 @@ const landscape: [number, number] = [1600, 1200];
 /** Newest first. */
 export const experience: Experience[] = [
     {
-        period: "2026 - now",
+        category: "internship",
+        period: "Sep 2026 - Mar 2027",
         place: "Unplex",
-        country: "Switzerland",
-        kind: "Internship",
+        country: "Zurich, Switzerland",
+        kind: "Full Stack Software Engineering Intern",
         description:
-            "Internship at Unplex, a Zurich-based company, alongside my final year at Epitech.",
+            "Six-month part-time internship alongside my final year at Epitech. Developing and maintaining web applications across the whole stack, working with senior engineers on features and code quality.",
         media: [],
         current: true,
     },
     {
+        category: "education",
         period: "2026 - 2027",
         place: "Epitech",
         country: "Geneva, Switzerland",
@@ -118,6 +122,7 @@ export const experience: Experience[] = [
         current: true,
     },
     {
+        category: "education",
         period: "2025 - 2026",
         place: "Cardiff Metropolitan University",
         country: "Wales",
@@ -131,6 +136,7 @@ export const experience: Experience[] = [
         ],
     },
     {
+        category: "internship",
         period: "Summer 2025",
         place: "CyberPeace Institute",
         country: "Switzerland",
@@ -154,6 +160,7 @@ export const experience: Experience[] = [
         ],
     },
     {
+        category: "education",
         period: "2024 - 2025",
         place: "Epitech Berlin",
         country: "Germany",
@@ -166,6 +173,7 @@ export const experience: Experience[] = [
         ],
     },
     {
+        category: "education",
         period: "2023 - 2024",
         place: "Epitech Barcelona",
         country: "Spain",
@@ -180,6 +188,7 @@ export const experience: Experience[] = [
         ],
     },
     {
+        category: "internship",
         period: "Summer 2023",
         place: "University of Geneva",
         country: "Switzerland",
@@ -189,6 +198,7 @@ export const experience: Experience[] = [
         media: [],
     },
     {
+        category: "education",
         period: "2022 - 2023",
         place: "Epitech Paris",
         country: "France",
