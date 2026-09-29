@@ -1,50 +1,49 @@
 import { about } from "@/content";
-import { Rows, Section } from "@/components/ui";
+import { Section } from "@/components/ui";
 import ActivityGraph from "./ActivityGraph";
 
-/** One column, like every other section: bio, then details, then activity. */
+/**
+ * A short bio, the skills as grouped tags, then the activity graph as the
+ * section's visual. Mobile: two groups per row. lg: all four side by side.
+ */
 export default function About() {
     return (
         <Section id="about" title="About">
-            <div className="max-w-[70ch]">
-                <p className="text-ink">{about.bio}</p>
-                <figure className="mt-6 text-mute">
-                    <blockquote>
-                        <p>
-                            <span aria-hidden="true">{"> "}</span>“
-                            {about.quote.text}”
-                        </p>
-                    </blockquote>
-                    <figcaption className="mt-1 pl-[2ch]">
-                        <span aria-hidden="true">- </span>
-                        {about.quote.author}
-                    </figcaption>
-                </figure>
+            <div className="max-w-[65ch] space-y-3">
+                {about.bio.map((line) => (
+                    <p key={line} className="text-ink">
+                        {line}
+                    </p>
+                ))}
             </div>
 
-            <div className="mt-12 grid gap-10">
-                <div>
-                    <h3 className="mb-4 font-bold">Details</h3>
-                    <Rows
-                        rows={about.facts.map((fact) => ({
-                            label: fact.label,
-                            value: fact.value,
-                        }))}
-                    />
-                </div>
-                <div>
-                    <h3 className="mb-4 font-bold">Skills</h3>
-                    <Rows
-                        rows={about.skills.map((skill) => ({
-                            label: skill.group,
-                            value: (
-                                <span translate="no">
-                                    {skill.items.join(", ")}
-                                </span>
-                            ),
-                        }))}
-                    />
-                </div>
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+                {about.skills.map((skill) => (
+                    <div key={skill.group}>
+                        <h3 className="text-sm font-bold leading-7">
+                            {skill.group}
+                        </h3>
+                        <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm leading-7">
+                            {skill.items.map((item) => (
+                                <li key={item} translate="no">
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-green"
+                                    >
+                                        [
+                                    </span>
+                                    {item}
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-green"
+                                    >
+                                        ]
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
             </div>
 
             <div className="mt-12">
