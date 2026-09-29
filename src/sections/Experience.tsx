@@ -1,0 +1,121 @@
+import { useState, type MouseEvent } from "react";
+import { experience, type Experience as Entry } from "@/content";
+import { Section } from "@/components/ui";
+import MediaViewer from "@/components/MediaViewer";
+import { Play } from "@/components/icons";
+
+function MediaStrip({ entry }: { entry: Entry }) {
+    const [open, setOpen] = useState<number | null>(null);
+
+    // Each thumbnail is a real link to the full file, so it still works
+    // without JavaScript; with JavaScript it opens the viewer instead.
+    const openViewer = (event: MouseEvent, index: number) => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+        event.preventDefault();
+        setOpen(index);
+    };
+
+    return (
+        <>
+            <ul className="mt-4 flex flex-wrap gap-2">
+                {entry.media.map((item, index) => (
+                    <li key={item.src}>
+                        <a
+                            href={item.src}
+                            onClick={(event) => openViewer(event, index)}
+                            className="relative block size-20 overflow-hidden rounded-sm border border-hairline transition-colors hover:border-ink sm:size-24"
+                        >
+                            <img
+                                src={item.thumb}
+                                alt={`${item.label}${item.video ? " (video)" : ""}, ${entry.place}`}
+                                width={320}
+                                height={320}
+                                loading="lazy"
+                                decoding="async"
+                                className="size-full object-cover"
+                            />
+                        </a>
+                        {/* Caption below the image, not on it. */}
+                        {item.video && (
+                            <p
+                                aria-hidden="true"
+                                className="mt-1 flex items-center gap-1 text-xs text-mute"
+                            >
+                                <Play size={12} />
+                                Video
+                            </p>
+                        )}
+                    </li>
+                ))}
+            </ul>
+
+            {open !== null && (
+                <MediaViewer
+                    items={entry.media}
+                    index={open}
+                    title={entry.place}
+                    onIndexChange={setOpen}
+                    onClose={() => setOpen(null)}
+                />
+            )}
+        </>
+    );
+}
+
+// Internships first: they are what recruiters look for. Each group keeps
+// the newest-first order from content.ts.
+const groups = [
+    {
+        title: "Internships",
+        entries: experience.filter((entry) => entry.category === "internship"),
+    },
+    {
+        title: "Education",
+        entries: experience.filter((entry) => entry.category === "education"),
+    },
+];
+
+export default function Experience() {
+    return (
+        // The two group headings do the job of the section label, so
+        // "Experience" is kept for screen readers and the nav only.
+        <Section id="experience" title="Experience" hideTitle>
+            {groups.map((group) => (
+                <div key={group.title} className="not-first:mt-12">
+                    <h3 className="border-b border-hairline pb-3 font-bold">
+                        {group.title}
+                    </h3>
+                    <ol className="divide-y divide-hairline">
+                        {group.entries.map((entry) => (
+                            <Row
+                                key={`${entry.place}-${entry.period}`}
+                                entry={entry}
+                            />
+                        ))}
+                    </ol>
+                </div>
+            ))}
+        </Section>
+    );
+}
+
+function Row({ entry }: { entry: Entry }) {
+    return (
+        <li className="grid gap-x-6 gap-y-1 py-6 sm:grid-cols-[16ch_1fr]">
+            <p className="text-mute tabular-nums">
+                {entry.period}
+                {entry.current && (
+                    <span className="block text-green">[current]</span>
+                )}
+            </p>
+            <div className="min-w-0">
+                <h4 className="font-bold text-ink">{entry.place}</h4>
+                <p className="text-mute">
+                    {entry.kind}, {entry.country}
+                </p>
+                <p className="mt-3 max-w-[70ch]">{entry.description}</p>
+                {entry.media.length > 0 && <MediaStrip entry={entry} />}
+            </div>
+        </li>
+    );
+}
