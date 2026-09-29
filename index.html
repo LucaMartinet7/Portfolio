@@ -1,34 +1,78 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <script>try{const t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){document.documentElement.classList.add('dark')}</script>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" as="image" href="/photos/Hero/Hero.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <meta name="theme-color" content="#0a0a0a" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <title>Luca Martinet - Portfolio</title>
-    <meta name="description" content="Luca Martinet — Software Developer and Student. Portfolio showcasing experience, projects, and open-source work." />
-    <meta name="author" content="Luca Martinet" />
-    <link rel="canonical" href="https://lucamartinet.dev" />
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lucamartinet.dev" />
-    <meta property="og:title" content="Luca Martinet - Portfolio" />
-    <meta property="og:description" content="Software Developer and Student. Portfolio showcasing experience, projects, and open-source work." />
-    <meta property="og:image" content="https://lucamartinet.dev/photos/Hero/Hero.jpg" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Luca Martinet - Portfolio" />
-    <meta name="twitter:description" content="Software Developer and Student. Portfolio showcasing experience, projects, and open-source work." />
-    <meta name="twitter:image" content="https://lucamartinet.dev/photos/Hero/Hero.jpg" />
-  </head>
-  <body>
-    <noscript>Please enable JavaScript to view this portfolio.</noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <!--csp-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#f6f7f6" />
+        <!-- Applies the saved or system theme before first paint. Keep in sync
+         with src/lib/theme.ts. Allowed by a hash in the CSP (added at build). -->
+        <script>
+            (function () {
+                var dark = false;
+                try {
+                    var saved = localStorage.getItem("theme");
+                    dark =
+                        saved === "dark" ||
+                        (saved !== "light" &&
+                            matchMedia("(prefers-color-scheme: dark)").matches);
+                } catch (e) {}
+                document.documentElement.classList.toggle("dark", dark);
+                document
+                    .querySelector('meta[name="theme-color"]')
+                    .setAttribute("content", dark ? "#0f1211" : "#f6f7f6");
+            })();
+        </script>
+
+        <title>Luca Martinet, software developer</title>
+        <meta
+            name="description"
+            content="Luca Martinet is a software developer and Epitech student working on systems, networking and full-stack web. Projects, experience and CV."
+        />
+        <meta name="author" content="Luca Martinet" />
+        <link rel="canonical" href="https://lucamartinet.dev/" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Luca Martinet" />
+        <meta property="og:url" content="https://lucamartinet.dev/" />
+        <meta property="og:title" content="Luca Martinet, software developer" />
+        <meta
+            property="og:description"
+            content="Systems, networking and full-stack web. Projects, experience and CV."
+        />
+        <meta
+            property="og:image"
+            content="https://lucamartinet.dev/images/og.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Luca Martinet, software engineer. Systems, networking and full-stack web."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Luca Martinet",
+                "url": "https://lucamartinet.dev/",
+                "image": "https://lucamartinet.dev/images/portrait.webp",
+                "jobTitle": "Software developer",
+                "sameAs": [
+                    "https://github.com/LucaMartinet7",
+                    "https://www.linkedin.com/in/luca-martinet/"
+                ]
+            }
+        </script>
+    </head>
+    <body>
+        <div id="root"><!--app--></div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
 </html>

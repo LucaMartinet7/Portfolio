@@ -1,25 +1,7 @@
-# Dependencies
+dist
+.ssr
 node_modules
 package-lock.json
-
-# Build outputs
-dist
-
-# Cache
-.cache
-
-# IDE
-.idea
-.vscode
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Misc
-*.log
-coverage
-
-# Inline scripts that intentionally break print-width
-index.html
-
+public
+src/generated
+.claude
