@@ -16,8 +16,9 @@ needs clear controls.
 
 The page reads like a man page or a README: one monospaced face, a cream
 canvas, near-black ink, hairline rules between blocks and ASCII bracket
-markers for list bullets. There is exactly one dark surface, the terminal
-card at the top of the page, which holds the name, the intro and the
+markers for list bullets. There is exactly one raised surface, the
+terminal card at the top of the page (light in light mode, dark in dark
+mode), which holds the name, the intro and the
 portrait. Everything else is flat.
 
 ## Colour
@@ -35,9 +36,16 @@ portrait. Everything else is flat.
 | `hairline-strong` | `#646262`            | `#8a8686`               | Button borders, tab rule, underlines |
 | `green`           | `#385144`            | `#c2d8c4`               | `[+]` markers, `[current]` only      |
 
-Terminal card (same in both themes, slightly darker in dark mode):
-`term #201d1d`, `term-raised #302c2c`, `term-text #fdfcfc`,
-`term-mute #a19f9f`, `term-green #c2d8c4` (wordmark and prompt).
+Terminal card (follows the theme, so a light page never contains a dark
+block):
+
+| Token         | Light     | Dark      |
+| ------------- | --------- | --------- |
+| `term`        | `#f3f1f1` | `#0b0a0a` |
+| `term-raised` | `#e7e3e3` | `#211e1e` |
+| `term-text`   | `#201d1d` | `#fdfcfc` |
+| `term-mute`   | `#5a5757` | `#a19f9f` |
+| `term-green`  | `#385144` | `#c2d8c4` |
 
 - Green is the only colour. It marks things; it never fills buttons or
   backgrounds (except the wordmark on the terminal card).

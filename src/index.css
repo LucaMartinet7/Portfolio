@@ -20,12 +20,13 @@
     --on-ink: #fdfcfc;
     --green: #385144;
 
-    /* The hero terminal card stays dark in both themes. */
-    --term: #201d1d;
-    --term-raised: #302c2c;
-    --term-text: #fdfcfc;
-    --term-mute: #a19f9f;
-    --term-green: #c2d8c4;
+    /* Hero terminal card: a light terminal in light mode (no dark block on
+       a light page), a dark one in dark mode. */
+    --term: #f3f1f1;
+    --term-raised: #e7e3e3;
+    --term-text: #201d1d;
+    --term-mute: #5a5757;
+    --term-green: #385144;
 
     --heat-0: #ebe8e8;
     --heat-1: #c2d8c4;
@@ -50,6 +51,9 @@
 
     --term: #0b0a0a;
     --term-raised: #211e1e;
+    --term-text: #fdfcfc;
+    --term-mute: #a19f9f;
+    --term-green: #c2d8c4;
 
     --heat-0: #242121;
     --heat-1: #2f4a38;
