@@ -71,7 +71,6 @@ const groups = [
         entries: experience.filter((entry) => entry.kind !== "Internship"),
     },
 ];
-const current = experience[0];
 
 export default function Experience() {
     return (
@@ -101,7 +100,7 @@ function Row({ entry }: { entry: Entry }) {
         <li className="grid gap-x-6 gap-y-1 py-6 sm:grid-cols-[16ch_1fr]">
             <p className="text-mute tabular-nums">
                 {entry.period}
-                {entry === current && (
+                {entry.current && (
                     <span className="block text-green">[current]</span>
                 )}
             </p>

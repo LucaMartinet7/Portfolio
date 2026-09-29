@@ -30,7 +30,7 @@ export type SectionId = (typeof sections)[number]["id"];
 
 export const hero = {
     lead: "Software developer and student at Epitech. Systems work, networking and clean interfaces.",
-    status: "open to internships, collaborations and interesting problems",
+    status: "currently interning at Unplex, in my final year at Epitech",
     portraitAlt: "Portrait of Luca Martinet on a seaside train platform",
 };
 
@@ -41,7 +41,10 @@ export const about = {
         author: "Chris Bumstead, Classic Physique Mr. Olympia",
     },
     facts: [
-        { label: "studying", value: "Software engineering, Epitech" },
+        {
+            label: "studying",
+            value: "Software engineering, Epitech (5th year)",
+        },
         { label: "focus", value: "Systems, networking, web" },
         { label: "speaks", value: "French, English, Spanish (A2)" },
     ],
@@ -78,6 +81,8 @@ export type Experience = {
     kind: string;
     description: string;
     media: Media[];
+    /** Marked [current] on the page. */
+    current?: boolean;
 };
 
 const photo = (dir: string, name: string, label: string): Media => ({
@@ -86,8 +91,28 @@ const photo = (dir: string, name: string, label: string): Media => ({
     label,
 });
 
-/** Newest first. The first entry is marked as current. */
+/** Newest first. */
 export const experience: Experience[] = [
+    {
+        period: "2026 - now",
+        place: "Unplex",
+        country: "Switzerland",
+        kind: "Internship",
+        description:
+            "Internship at Unplex, a Zurich-based company, alongside my final year at Epitech.",
+        media: [],
+        current: true,
+    },
+    {
+        period: "2026 - 2027",
+        place: "Epitech",
+        country: "Geneva, Switzerland",
+        kind: "Master’s year 2 (5th year)",
+        description:
+            "Final year of the Master of software engineering, completed alongside the Unplex internship.",
+        media: [],
+        current: true,
+    },
     {
         period: "2025 - 2026",
         place: "Cardiff Metropolitan University",
