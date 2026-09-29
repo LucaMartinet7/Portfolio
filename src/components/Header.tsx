@@ -70,7 +70,7 @@ export default function Header() {
                 popover="auto"
                 aria-label="Menu"
                 onClick={closeMenu}
-                className="inset-x-0 top-14 bottom-auto m-0 h-auto w-auto border-b border-hairline bg-canvas px-2 py-2 text-ink md:hidden"
+                className="inset-x-0 top-14 bottom-auto m-0 h-auto w-auto overscroll-contain border-b border-hairline bg-canvas px-2 py-2 text-ink md:hidden"
             >
                 <ul className="grid">{links}</ul>
             </nav>

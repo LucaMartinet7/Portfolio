@@ -1,71 +1,89 @@
-import { projects, site } from "@/content";
+import { projects, site, type Project } from "@/content";
 import { Arrow, Marker, Section, textLink } from "@/components/ui";
 
 /**
- * Projects as list rows. Each row is one link (the title), stretched over the
- * whole row with a pseudo-element, so the row is clickable without nesting
- * interactive elements. A live-site link, when present, sits above it.
+ * Featured project as a full-width block, the rest as a 2x2 grid of
+ * hairline-bordered blocks. Each block is one link (the title), stretched
+ * over the block with a pseudo-element, so the whole block is clickable
+ * without nesting interactive elements.
  */
+function ProjectBlock({
+    project,
+    featured = false,
+}: {
+    project: Project;
+    featured?: boolean;
+}) {
+    return (
+        <article
+            className={`group relative flex h-full flex-col border p-5 transition-colors hover:border-ink sm:p-6 ${
+                featured
+                    ? "border-hairline-strong bg-surface-card"
+                    : "border-hairline"
+            }`}
+        >
+            <div className="flex items-baseline justify-between gap-4">
+                <h3 className="font-bold">
+                    <Marker>{featured ? "*" : "+"}</Marker>{" "}
+                    <a
+                        href={project.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
+                    >
+                        {project.title}
+                        <span className="sr-only"> (source on GitHub)</span>
+                    </a>
+                </h3>
+                <span
+                    aria-hidden="true"
+                    className="shrink-0 text-sm text-mute transition-colors group-hover:text-ink"
+                >
+                    source{" ->"}
+                </span>
+            </div>
+            <p className={`mt-3 ${featured ? "max-w-[70ch]" : ""}`}>
+                {project.description}
+            </p>
+            <ul
+                aria-label="Technologies"
+                className="mt-auto flex flex-wrap gap-x-3 pt-4 text-sm leading-7 text-mute"
+            >
+                {project.tags.map((tag) => (
+                    <li key={tag} translate="no">
+                        [{tag}]
+                    </li>
+                ))}
+            </ul>
+            {project.live && (
+                <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${textLink} relative mt-2 self-start text-sm`}
+                >
+                    Live site
+                    <Arrow />
+                </a>
+            )}
+        </article>
+    );
+}
+
 export default function Projects() {
+    const [featured, ...rest] = projects;
+
     return (
         <Section id="projects" title="Projects">
             <p className="mb-6 text-mute">
                 Systems, networking and web tooling.
             </p>
-            <ul className="divide-y divide-hairline border-b border-hairline">
-                {projects.map((project, index) => (
-                    <li key={project.title} className="group relative py-5">
-                        <div className="flex items-baseline justify-between gap-4">
-                            <h3 className="font-bold">
-                                <Marker>{index === 0 ? "*" : "+"}</Marker>{" "}
-                                <a
-                                    href={project.source}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
-                                >
-                                    {project.title}
-                                    <span className="sr-only">
-                                        {" "}
-                                        (source on GitHub)
-                                    </span>
-                                </a>
-                            </h3>
-                            <span
-                                aria-hidden="true"
-                                className="shrink-0 text-sm text-mute transition-colors group-hover:text-ink"
-                            >
-                                source{" ->"}
-                            </span>
-                        </div>
-                        {/* Indented as one block so the 4ch indent is measured
-                            in the body font, not in each child's size. */}
-                        <div className="pl-[4ch]">
-                            <p className="mt-2 max-w-[70ch]">
-                                {project.description}
-                            </p>
-                            <ul
-                                aria-label="Technologies"
-                                className="mt-2 flex flex-wrap gap-x-3 text-sm leading-7 text-mute"
-                            >
-                                {project.tags.map((tag) => (
-                                    <li key={tag} translate="no">
-                                        [{tag}]
-                                    </li>
-                                ))}
-                            </ul>
-                            {project.live && (
-                                <a
-                                    href={project.live}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`${textLink} relative mt-2 inline-block text-sm`}
-                                >
-                                    Live site
-                                    <Arrow />
-                                </a>
-                            )}
-                        </div>
+            {featured && <ProjectBlock project={featured} featured />}
+            {/* Mobile: one column. sm and up: 2x2, one cell per project. */}
+            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                {rest.map((project) => (
+                    <li key={project.title}>
+                        <ProjectBlock project={project} />
                     </li>
                 ))}
             </ul>

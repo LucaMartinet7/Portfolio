@@ -24,7 +24,8 @@ export default function About() {
                             </p>
                         </blockquote>
                         <figcaption className="mt-1 pl-[2ch]">
-                            - {about.quote.author}
+                            <span aria-hidden="true">- </span>
+                            {about.quote.author}
                         </figcaption>
                     </figure>
                 </div>

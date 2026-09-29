@@ -59,41 +59,60 @@ function MediaStrip({ entry }: { entry: Entry }) {
     );
 }
 
+// Internships first: they are what recruiters look for. Each group keeps
+// the newest-first order from content.ts.
+const groups = [
+    {
+        title: "Internships",
+        entries: experience.filter((entry) => entry.kind === "Internship"),
+    },
+    {
+        title: "Education",
+        entries: experience.filter((entry) => entry.kind !== "Internship"),
+    },
+];
+const current = experience[0];
+
 export default function Experience() {
     return (
         <Section id="experience" title="Experience">
-            <p className="mb-6 text-mute">
+            <p className="text-mute">
                 Education and internships across Europe.
             </p>
-            <ol className="divide-y divide-hairline border-b border-hairline">
-                {experience.map((entry, index) => (
-                    <li
-                        key={`${entry.place}-${entry.period}`}
-                        className="grid gap-x-6 gap-y-1 py-6 sm:grid-cols-[16ch_1fr]"
-                    >
-                        <p className="text-mute tabular-nums">
-                            {entry.period}
-                            {index === 0 && (
-                                <span className="block text-green">
-                                    [current]
-                                </span>
-                            )}
-                        </p>
-                        <div className="min-w-0">
-                            <h3 className="font-bold">{entry.place}</h3>
-                            <p className="text-mute">
-                                {entry.kind}, {entry.country}
-                            </p>
-                            <p className="mt-3 max-w-[70ch]">
-                                {entry.description}
-                            </p>
-                            {entry.media.length > 0 && (
-                                <MediaStrip entry={entry} />
-                            )}
-                        </div>
-                    </li>
-                ))}
-            </ol>
+            {groups.map((group) => (
+                <div key={group.title} className="mt-10">
+                    <h3 className="font-bold">{group.title}</h3>
+                    <ol className="mt-2 divide-y divide-hairline">
+                        {group.entries.map((entry) => (
+                            <Row
+                                key={`${entry.place}-${entry.period}`}
+                                entry={entry}
+                            />
+                        ))}
+                    </ol>
+                </div>
+            ))}
         </Section>
+    );
+}
+
+function Row({ entry }: { entry: Entry }) {
+    return (
+        <li className="grid gap-x-6 gap-y-1 py-6 sm:grid-cols-[16ch_1fr]">
+            <p className="text-mute tabular-nums">
+                {entry.period}
+                {entry === current && (
+                    <span className="block text-green">[current]</span>
+                )}
+            </p>
+            <div className="min-w-0">
+                <h4 className="font-bold text-ink">{entry.place}</h4>
+                <p className="text-mute">
+                    {entry.kind}, {entry.country}
+                </p>
+                <p className="mt-3 max-w-[70ch]">{entry.description}</p>
+                {entry.media.length > 0 && <MediaStrip entry={entry} />}
+            </div>
+        </li>
     );
 }

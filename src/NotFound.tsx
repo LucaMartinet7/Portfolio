@@ -16,7 +16,7 @@ export default function NotFound() {
                 <p className="text-mute">error 404</p>
                 <h1 className="mt-2 font-bold">Page not found</h1>
                 <p className="mt-4 max-w-[50ch]">
-                    This page doesn't exist or has moved. Everything on the site
+                    This page doesn’t exist or has moved. Everything on the site
                     lives on the homepage.
                 </p>
                 <a href="/" className={`${buttonPrimary} mt-8`}>

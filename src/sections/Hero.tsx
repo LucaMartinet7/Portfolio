@@ -49,17 +49,6 @@ export default function Hero() {
                                 <Arrow />
                             </a>
                         </li>
-                        <li>
-                            <a
-                                href={site.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={hint}
-                            >
-                                GitHub
-                                <Arrow />
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
