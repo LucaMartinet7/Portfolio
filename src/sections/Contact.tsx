@@ -1,81 +1,70 @@
-import { useEffect, useState } from "react";
 import { contact, site } from "@/content";
-import {
-    Section,
-    buttonPrimary,
-    buttonSecondary,
-    textLink,
-} from "@/components/ui";
-import { ArrowUpRight, Check, Copy, EnvelopeSimple } from "@/components/icons";
+import { Arrow, Rows, Section, buttonPrimary, textLink } from "@/components/ui";
+import CopyButton from "@/components/CopyButton";
 
-function CopyEmail() {
-    const [copied, setCopied] = useState(false);
-
-    useEffect(() => {
-        if (!copied) return;
-        const timer = setTimeout(() => setCopied(false), 2000);
-        return () => clearTimeout(timer);
-    }, [copied]);
-
-    const copy = async () => {
-        try {
-            await navigator.clipboard.writeText(site.email);
-            setCopied(true);
-        } catch {
-            // Clipboard access denied: the address stays visible to copy by hand.
-        }
-    };
-
-    return (
-        <button type="button" onClick={copy} className={buttonSecondary}>
-            {copied ? <Check size={18} /> : <Copy size={18} />}
-            <span aria-live="polite">{copied ? "Copied" : "Copy email"}</span>
-        </button>
-    );
-}
+const external = (href: string, label: string) => (
+    <>
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            translate="no"
+            className={textLink}
+        >
+            {label}
+        </a>
+        <Arrow />
+    </>
+);
 
 export default function Contact() {
     return (
         <Section id="contact" title="Contact">
-            <p className="text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
-                {contact.heading}
-            </p>
-            <p className="mt-3 max-w-[50ch] text-lg text-fg-muted">
-                {contact.body}
-            </p>
+            <p className="font-bold text-ink">{contact.heading}</p>
+            <p className="mt-1">{contact.body}</p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href={`mailto:${site.email}`} className={buttonPrimary}>
-                    <EnvelopeSimple size={18} />
-                    <span translate="no">{site.email}</span>
-                </a>
-                <CopyEmail />
+            <div className="mt-8">
+                <Rows
+                    rows={[
+                        {
+                            label: "email",
+                            value: (
+                                <span className="inline-flex flex-wrap items-center gap-x-2">
+                                    <a
+                                        href={`mailto:${site.email}`}
+                                        translate="no"
+                                        className={textLink}
+                                    >
+                                        {site.email}
+                                    </a>
+                                    <CopyButton text={site.email} />
+                                </span>
+                            ),
+                        },
+                        {
+                            label: "github",
+                            value: external(
+                                site.github,
+                                "github.com/LucaMartinet7"
+                            ),
+                        },
+                        {
+                            label: "linkedin",
+                            value: external(
+                                site.linkedin,
+                                "linkedin.com/in/luca-martinet"
+                            ),
+                        },
+                    ]}
+                />
             </div>
 
-            <ul className="mt-8 flex flex-wrap gap-6 text-sm">
-                <li>
-                    <a
-                        href={site.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={textLink}
-                    >
-                        GitHub
-                        <ArrowUpRight size={14} />
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href={site.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={textLink}
-                    >
-                        LinkedIn
-                        <ArrowUpRight size={14} />
-                    </a>
-                </li>
-            </ul>
+            <a
+                href={`mailto:${site.email}`}
+                className={`${buttonPrimary} mt-8`}
+            >
+                Send an email
+            </a>
         </Section>
     );
 }

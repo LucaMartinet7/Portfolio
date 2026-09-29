@@ -8,7 +8,7 @@ import Resume from "@/sections/Resume";
 import Contact from "@/sections/Contact";
 
 const skipLinkClass =
-    "sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-30 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-on-accent";
+    "sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-30 focus:rounded-sm focus:bg-ink focus:px-4 focus:py-2 focus:text-on-ink";
 
 export default function App() {
     return (

@@ -2,83 +2,148 @@
 
 The rules this site is built on. Read this before changing the UI, and keep
 new work consistent with it. Tokens live in `src/index.css`, copy lives in
-`src/content.ts`.
+`src/content.ts`, and all styling is Tailwind utility classes.
+
+This system is adapted from the
+[OpenCode design analysis](https://github.com/VoltAgent/awesome-design-md/tree/main/design-md/opencode.ai)
+in VoltAgent's awesome-design-md (MIT, see [Credits](#credits)). Changes from
+the source: the brand green replaces Apple Blue as the one colour, JetBrains
+Mono replaces the commercial Berkeley Mono, there is a dark theme, and photos
+are allowed because a portfolio is about a person.
 
 ## Direction
 
-A developer portfolio for recruiters and engineers. Clean, calm and
-content-first: typography and spacing do the work, colour is rare, motion is
-limited to direct feedback on interaction.
+The page reads like a man page or a README: one monospaced face, a cream
+canvas, near-black ink, hairline rules between blocks and ASCII bracket
+markers instead of icons. There is exactly one dark surface, the terminal
+card at the top of the page. Everything else is flat.
 
 ## Colour
 
-One neutral family (slightly green-tinted) and one accent, the brand green.
-Every colour comes from a CSS variable, so both themes stay in sync.
+| Token             | Light                | Dark                    | Use                                  |
+| ----------------- | -------------------- | ----------------------- | ------------------------------------ |
+| `canvas`          | `#fdfcfc`            | `#141212`               | Page background (the only one)       |
+| `surface-soft`    | `#f8f7f7`            | `#1b1919`               | Row hover                            |
+| `surface-card`    | `#f1eeee`            | `#242121`               | Command snippet, button hover        |
+| `ink`             | `#201d1d`            | `#f1eeee`               | Headings, labels, primary button     |
+| `ink-deep`        | `#0f0000`            | `#ffffff`               | Primary button hover                 |
+| `body`            | `#424245`            | `#cbc7c7`               | Paragraph text                       |
+| `mute`            | `#5f5c5c`            | `#a4a0a0`               | Dates, captions, secondary text      |
+| `hairline`        | `rgb(15 0 0 / 0.12)` | `rgb(253 252 252/0.12)` | Rules between blocks                 |
+| `hairline-strong` | `#646262`            | `#8a8686`               | Button borders, tab rule, underlines |
+| `green`           | `#385144`            | `#c2d8c4`               | `[+]` markers, `[current]` only      |
 
-| Token          | Light     | Dark      | Use                              |
-| -------------- | --------- | --------- | -------------------------------- |
-| `bg`           | `#f6f7f6` | `#0f1211` | Page background                  |
-| `surface`      | `#fcfdfc` | `#151917` | Cards, raised controls           |
-| `fg`           | `#141815` | `#e9edea` | Headings, primary text           |
-| `fg-muted`     | `#4a544d` | `#b3bcb6` | Body copy                        |
-| `fg-subtle`    | `#5f6a63` | `#97a19a` | Labels, dates, captions          |
-| `line`         | `#dde2de` | `#262c29` | Dividers, card borders           |
-| `line-strong`  | `#c3cbc5` | `#37403b` | Control borders, hover borders   |
-| `accent`       | `#385144` | `#c2d8c4` | Primary buttons, current markers |
-| `accent-hover` | `#2a3e34` | `#d6e6d7` | Primary button hover             |
+Terminal card (same in both themes, slightly darker in dark mode):
+`term #201d1d`, `term-raised #302c2c`, `term-text #fdfcfc`,
+`term-mute #a19f9f`, `term-green #c2d8c4` (wordmark and prompt).
 
-- All text passes WCAG AA (4.5:1) on `bg` and `surface` in both themes.
-- The theme follows the OS by default; the footer switch can force light or
-  dark. The page never mixes themes between sections.
+- Green is the only colour. It marks things; it never fills buttons or
+  backgrounds (except the wordmark on the terminal card).
+- Links are ink with an underline, not coloured.
+- All text passes WCAG AA in both themes (checked with axe on every build of
+  this design).
 
 ## Typography
 
-- **Geist** for everything, **Geist Mono** for dates, labels and tags. Both
-  are self-hosted (no font CDN).
-- Headings: semibold, tight tracking, `text-wrap: balance`.
-- Body: 16-20px, line-height 1.6, max width around 65 characters.
-- Sentence case everywhere. No all-caps labels above headings.
+- **JetBrains Mono** for every role, self-hosted. No sans-serif, no serif,
+  no italics.
+- Hierarchy comes from weight, not size: body and headings are both 16px;
+  headings are bold. Captions and footer text are 14px with line-height 2.
+- The only large "type" is the block-pixel wordmark (`Wordmark.tsx`), drawn
+  as an SVG grid. The page's `h1` is the same name as real text for screen
+  readers and search engines.
+- Arrows are the font's `->` ligature (hidden from screen readers). Keep
+  visible characters inside the font's Latin subset: `→` and `↗` are not in
+  it and would fall back to another font.
 
-## Shape and spacing
+## Layout
 
-- Radius: controls `rounded-lg` (8px), containers `rounded-xl` (12px), tags
-  `rounded-md` (6px). Nothing else.
-- Sections share one frame (`Section` in `src/components/ui.tsx`): heading
-  column on the left from `lg`, content on the right, `py-20` / `lg:py-28`.
-- Container: `max-w-6xl`, `px-5` / `sm:px-8`.
-- Layers: header `z-20`, skip link `z-30`. The menu popover and the media
-  viewer use the browser's top layer, so they need no z-index.
+- Content column `max-w-240` (960px); the terminal card sits in a wider
+  `max-w-275` (1100px) frame.
+- Sections: a bold label, a hairline rule, then content. Vertical rhythm
+  `py-12` / `md:py-16` / `lg:py-24` (48 / 64 / 96px).
+- Label and date columns are `16ch` wide, so rows line up across sections.
+- Lists are rows with `divide-y divide-hairline`, not cards.
+
+## Shape
+
+- Interactive elements (buttons, snippets, thumbnails, prompt row):
+  `rounded-sm` (4px).
+- Containers (sections, the terminal card, the portrait): square.
+- No shadows, gradients, blurs or glows anywhere.
+
+## Components
+
+- **Buttons**: primary is ink fill with canvas text; secondary is canvas with
+  a `hairline-strong` border. Height 36px, `px-5`, `rounded-sm`.
+- **Markers**: `[+]` for list rows, `[*]` for the featured project,
+  `[current]`, `[copy]`, `[menu]`, `[x] close`, `[play]`. The brackets are
+  the icon set.
+- **Rows** (`Rows` in `ui.tsx`): marker and label in a `16ch` column, value
+  beside it.
+- **Command snippet**: tabs (`curl` / `wget`) over a `surface-card` block
+  with a `[copy]` button. The commands are real.
+- **Terminal card**: pixel wordmark, a prompt row (`> `), a comment line
+  (`# `) and a row of real links. Nothing in it is fake UI.
+- **Theme switch**: text buttons, `theme: system light dark`.
 
 ## Interaction
 
-- Hover and focus always increase contrast (darker border, stronger text).
-  Nothing fades out on hover.
+- Hover and focus increase contrast (stronger underline, darker border, row
+  tint). Nothing fades on hover.
+- Every interactive element has a visible `:focus-visible` outline in ink.
 - Press feedback: `active:translate-y-px`.
-- Every interactive element has a visible `:focus-visible` outline.
-- Transitions list their properties (`transition-colors`), never `all`.
-- Motion respects `prefers-reduced-motion`.
+- No scroll animations. Smooth scrolling only with `motion-safe`.
 
 ## Things this site does not do
 
-These read as generic or AI-generated. Avoid them:
-
-- Purple-to-blue gradients, gradient text, grain over gradients, glows.
-- Glassmorphism, blurred blobs, cursor-following effects.
-- Emojis in headings or content. Em or en dashes in visible text (the build
-  fails if one appears; use a hyphen, comma or full stop).
-- A badge or eyebrow label above the headline, or above every section.
-- Colored left-border cards, three identical icon boxes in a row.
-- Sections that fade or slide in on scroll.
-- Serif italics for accent words; Inter, Space Grotesk or Instrument Serif.
-- Generic icon sets used untouched. Icons here are Phosphor, inlined in
-  `src/components/icons.tsx`.
-- Buzzword copy. Say what was built, with what, and what it did.
+- Purple-to-blue gradients, gradient text, grain, glows, glassmorphism.
+- Emojis anywhere. Em or en dashes in visible text (the build fails on
+  them; use a hyphen, comma or full stop).
+- A badge above the headline, or small-caps eyebrow labels over sections.
+- Colored left-border cards, rows of three icon boxes.
+- Sections that fade in on scroll, cursor effects, buttons that fade on
+  hover.
+- Serif accent words, Inter, Space Grotesk, Instrument Serif.
+- Icon libraries. Buzzword copy: say what was built, with what, and what it
+  did.
 
 ## Security constraints that affect the UI
 
-- No inline `style` attributes (blocked by the Content Security Policy, and
-  by lint). Use Tailwind classes or CSS variables.
+- No inline `style` attributes (blocked by the Content Security Policy and
+  by lint) and no custom CSS classes: use Tailwind utilities.
 - No `dangerouslySetInnerHTML` or `innerHTML` (blocked by Trusted Types).
-- No third-party requests from the page: no CDNs, embeds, analytics or web
-  fonts. Everything is served from the site's own origin.
+- No third-party requests from the page: no CDNs, embeds, analytics, web
+  fonts or remote images. Everything is served from the site's own origin.
 - Photos must have their EXIF/GPS metadata stripped before they are added.
+
+## Credits
+
+Adapted from `design-md/opencode.ai/DESIGN.md` in
+[VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+(commit `f6961238`), which is an analysis of the opencode.ai website. It is
+used for its visual style only; this site has no connection to OpenCode.
+
+```
+MIT License
+
+Copyright (c) 2026 VoltAgent
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

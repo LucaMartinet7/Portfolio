@@ -1,91 +1,75 @@
-import { projects, site, type Project } from "@/content";
-import { Section, Tag, textLink } from "@/components/ui";
-import { ArrowUpRight } from "@/components/icons";
+import { projects, site } from "@/content";
+import { Arrow, Marker, Section, textLink } from "@/components/ui";
 
 /**
- * Each card is one link (the title), stretched over the whole card with a
- * pseudo-element, so the card is clickable without nesting interactive
- * elements. A live-site link, when present, sits above that layer.
+ * Projects as list rows. Each row is one link (the title), stretched over the
+ * whole row with a pseudo-element, so the row is clickable without nesting
+ * interactive elements. A live-site link, when present, sits above it.
  */
-function ProjectCard({
-    project,
-    featured = false,
-}: {
-    project: Project;
-    featured?: boolean;
-}) {
-    return (
-        <article
-            className={`group relative flex flex-col rounded-xl border p-6 transition-colors ${
-                featured
-                    ? "border-accent/30 bg-accent/[0.06] hover:border-accent/60 sm:p-8"
-                    : "h-full border-line bg-surface hover:border-line-strong"
-            }`}
-        >
-            <div className="flex items-start justify-between gap-4">
-                <h3
-                    className={`font-semibold tracking-tight text-fg ${featured ? "text-2xl" : "text-lg"}`}
-                >
-                    <a
-                        href={project.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent"
-                    >
-                        {project.title}
-                        <span className="sr-only"> (source on GitHub)</span>
-                    </a>
-                </h3>
-                <ArrowUpRight
-                    size={18}
-                    className="mt-1 shrink-0 text-fg-subtle transition-colors group-hover:text-fg"
-                />
-            </div>
-            <p
-                className={`mt-3 text-fg-muted ${featured ? "max-w-[60ch] text-lg" : ""}`}
-            >
-                {project.description}
-            </p>
-            <ul className="mt-auto flex flex-wrap gap-1.5 pt-6">
-                {project.tags.map((tag) => (
-                    <li key={tag}>
-                        <Tag>{tag}</Tag>
-                    </li>
-                ))}
-            </ul>
-            {project.live && (
-                <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${textLink} relative mt-4 self-start text-sm`}
-                >
-                    Live site
-                    <ArrowUpRight size={14} />
-                </a>
-            )}
-        </article>
-    );
-}
-
 export default function Projects() {
-    const [featured, ...rest] = projects;
-
     return (
-        <Section
-            id="projects"
-            title="Projects"
-            intro="Systems, networking and web tooling."
-        >
-            {featured && <ProjectCard project={featured} featured />}
-            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-                {rest.map((project) => (
-                    <li key={project.title}>
-                        <ProjectCard project={project} />
+        <Section id="projects" title="Projects">
+            <p className="mb-6 text-mute">
+                Systems, networking and web tooling.
+            </p>
+            <ul className="divide-y divide-hairline border-b border-hairline">
+                {projects.map((project, index) => (
+                    <li key={project.title} className="group relative py-5">
+                        <div className="flex items-baseline justify-between gap-4">
+                            <h3 className="font-bold">
+                                <Marker>{index === 0 ? "*" : "+"}</Marker>{" "}
+                                <a
+                                    href={project.source}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-ink"
+                                >
+                                    {project.title}
+                                    <span className="sr-only">
+                                        {" "}
+                                        (source on GitHub)
+                                    </span>
+                                </a>
+                            </h3>
+                            <span
+                                aria-hidden="true"
+                                className="shrink-0 text-sm text-mute transition-colors group-hover:text-ink"
+                            >
+                                source{" ->"}
+                            </span>
+                        </div>
+                        {/* Indented as one block so the 4ch indent is measured
+                            in the body font, not in each child's size. */}
+                        <div className="pl-[4ch]">
+                            <p className="mt-2 max-w-[70ch]">
+                                {project.description}
+                            </p>
+                            <ul
+                                aria-label="Technologies"
+                                className="mt-2 flex flex-wrap gap-x-3 text-sm leading-7 text-mute"
+                            >
+                                {project.tags.map((tag) => (
+                                    <li key={tag} translate="no">
+                                        [{tag}]
+                                    </li>
+                                ))}
+                            </ul>
+                            {project.live && (
+                                <a
+                                    href={project.live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`${textLink} relative mt-2 inline-block text-sm`}
+                                >
+                                    Live site
+                                    <Arrow />
+                                </a>
+                            )}
+                        </div>
                     </li>
                 ))}
             </ul>
-            <p className="mt-8 text-sm text-fg-muted">
+            <p className="mt-6 text-sm leading-7 text-mute">
                 More on{" "}
                 <a
                     href={site.github}
@@ -94,8 +78,8 @@ export default function Projects() {
                     className={textLink}
                 >
                     GitHub
-                    <ArrowUpRight size={14} />
                 </a>
+                <Arrow />
             </p>
         </Section>
     );

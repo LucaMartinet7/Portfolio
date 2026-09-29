@@ -9,7 +9,7 @@ export type ThemePreference = "system" | "light" | "dark";
 
 const STORAGE_KEY = "theme";
 const DARK_QUERY = "(prefers-color-scheme: dark)";
-const THEME_COLOR = { light: "#f6f7f6", dark: "#0f1211" };
+const THEME_COLOR = { light: "#fdfcfc", dark: "#141212" };
 
 const listeners = new Set<() => void>();
 

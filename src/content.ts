@@ -30,6 +30,7 @@ export type SectionId = (typeof sections)[number]["id"];
 
 export const hero = {
     lead: "Software developer and student at Epitech. Systems work, networking and clean interfaces.",
+    status: "open to internships, collaborations and interesting problems",
     portraitAlt: "Portrait of Luca Martinet on a seaside train platform",
 };
 
@@ -40,18 +41,18 @@ export const about = {
         author: "Chris Bumstead",
     },
     facts: [
-        { label: "Studying", value: "Software engineering, Epitech" },
-        { label: "Focus", value: "Systems, networking, web" },
-        { label: "Speaks", value: "French, English, Spanish (A2)" },
+        { label: "studying", value: "Software engineering, Epitech" },
+        { label: "focus", value: "Systems, networking, web" },
+        { label: "speaks", value: "French, English, Spanish (A2)" },
     ],
     skills: [
         {
-            group: "Languages",
+            group: "languages",
             items: ["C", "C++", "Python", "Java", "TypeScript", "Bash"],
         },
-        { group: "Web", items: ["React", "Tailwind CSS"] },
+        { group: "web", items: ["React", "Tailwind CSS"] },
         {
-            group: "Tools and data",
+            group: "tools",
             items: ["Docker", "Git", "Linux", "MySQL", "PostgreSQL"],
         },
     ],

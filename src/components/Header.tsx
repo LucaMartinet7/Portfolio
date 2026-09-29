@@ -1,17 +1,19 @@
 import type { MouseEvent } from "react";
 import { sections, site } from "@/content";
 import { useActiveSection } from "@/lib/useActiveSection";
-import { List } from "./icons";
+import { buttonPrimary } from "./ui";
 
+// The CV has its own button, so the nav lists the other sections.
+const navSections = sections.filter((section) => section.id !== "resume");
 const ids = sections.map((section) => section.id);
 
 const linkClass =
-    "block rounded-md px-3 py-2 text-sm text-fg-muted transition-colors hover:text-fg aria-[current=location]:text-fg";
+    "block px-2 py-1 text-mute transition-colors hover:text-ink aria-[current=location]:text-ink aria-[current=location]:underline aria-[current=location]:decoration-2 aria-[current=location]:underline-offset-8";
 
 export default function Header() {
     const active = useActiveSection(ids);
 
-    const links = sections.map((section) => (
+    const links = navSections.map((section) => (
         <li key={section.id}>
             <a
                 href={`#${section.id}`}
@@ -31,30 +33,36 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-20 border-b border-line bg-bg">
-            <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-                <a
-                    href="#top"
-                    className="font-semibold tracking-tight text-fg"
-                    translate="no"
-                >
+        <header className="sticky top-0 z-20 border-b border-hairline bg-canvas">
+            <div className="mx-auto flex h-14 max-w-240 items-center justify-between gap-4 px-4 sm:px-6">
+                <a href="#top" translate="no" className="font-bold text-ink">
                     {site.name}
                 </a>
 
-                <nav aria-label="Primary" className="hidden md:block">
-                    <ul className="-mr-3 flex items-center gap-1">{links}</ul>
-                </nav>
+                <div className="flex items-center gap-2 md:gap-4">
+                    <nav aria-label="Primary" className="hidden md:block">
+                        <ul className="flex items-center gap-2">{links}</ul>
+                    </nav>
 
-                {/* Native popover: opens, closes on Esc and outside clicks
-                    without any JavaScript. */}
-                <button
-                    type="button"
-                    popoverTarget="mobile-menu"
-                    className="-mr-2 inline-flex size-11 items-center justify-center rounded-lg text-fg-muted transition-colors hover:text-fg md:hidden"
-                >
-                    <List size={22} />
-                    <span className="sr-only">Menu</span>
-                </button>
+                    <a
+                        href={site.cv.href}
+                        download
+                        className={`${buttonPrimary} h-8 px-3 sm:px-4`}
+                    >
+                        <span className="sm:hidden">CV</span>
+                        <span className="hidden sm:inline">Download CV</span>
+                    </a>
+
+                    {/* Native popover: opens and closes (Esc, outside click)
+                        without any JavaScript. */}
+                    <button
+                        type="button"
+                        popoverTarget="mobile-menu"
+                        className="-mr-2 inline-flex h-11 items-center px-2 text-ink md:hidden"
+                    >
+                        [menu]
+                    </button>
+                </div>
             </div>
 
             <nav
@@ -62,7 +70,7 @@ export default function Header() {
                 popover="auto"
                 aria-label="Menu"
                 onClick={closeMenu}
-                className="inset-x-4 top-18 bottom-auto m-0 h-auto w-auto rounded-xl border border-line bg-surface p-2 text-fg shadow-[0_12px_40px_-12px_rgb(20_24_21/0.25)] md:hidden"
+                className="inset-x-0 top-14 bottom-auto m-0 h-auto w-auto border-b border-hairline bg-canvas px-2 py-2 text-ink md:hidden"
             >
                 <ul className="grid">{links}</ul>
             </nav>
