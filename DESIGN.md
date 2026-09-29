@@ -63,7 +63,13 @@ Terminal card (same in both themes, slightly darker in dark mode):
 - Sections: a bold label, a hairline rule, then content. Vertical rhythm
   `py-12` / `md:py-16` / `lg:py-24` (48 / 64 / 96px).
 - Label and date columns are `16ch` wide, so rows line up across sections.
-- Lists are rows with `divide-y divide-hairline`, not cards.
+- Experience: rows with `divide-y divide-hairline`, split into two groups
+  (Internships, then Education) so no list runs past five rows.
+- Projects: the featured project as a full-width block on `surface-card`,
+  the rest in a 2x2 grid of hairline-bordered blocks (one cell per project).
+  Two sections never share a layout.
+- One label per intent: "Download CV" (nav and Resume), "Get in touch"
+  (hero). Contact itself is the email row, with no extra button.
 
 ## Shape
 

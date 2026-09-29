@@ -1,5 +1,5 @@
 import { contact, site } from "@/content";
-import { Arrow, Rows, Section, buttonPrimary, textLink } from "@/components/ui";
+import { Arrow, Rows, Section, textLink } from "@/components/ui";
 import CopyButton from "@/components/CopyButton";
 
 const external = (href: string, label: string) => (
@@ -58,13 +58,6 @@ export default function Contact() {
                     ]}
                 />
             </div>
-
-            <a
-                href={`mailto:${site.email}`}
-                className={`${buttonPrimary} mt-8`}
-            >
-                Send an email
-            </a>
         </Section>
     );
 }

@@ -75,7 +75,7 @@ export default function Resume() {
                 <CommandTabs />
                 <div className="mt-6 flex flex-wrap gap-3">
                     <a href={site.cv.href} download className={buttonPrimary}>
-                        Download PDF
+                        Download CV
                     </a>
                     <a
                         href={site.cv.href}

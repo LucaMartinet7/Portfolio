@@ -35,10 +35,10 @@ export const hero = {
 };
 
 export const about = {
-    bio: "I'm Luca, a software development student at Epitech. I build reliable systems and ship real projects, from low-level C to full-stack web applications.",
+    bio: "I’m Luca, a software development student at Epitech. I build reliable systems and ship real projects, from low-level C to full-stack web applications.",
     quote: {
-        text: "If you're not improving, you're falling behind.",
-        author: "Chris Bumstead",
+        text: "If you’re not improving, you’re falling behind.",
+        author: "Chris Bumstead, Classic Physique Mr. Olympia",
     },
     facts: [
         { label: "studying", value: "Software engineering, Epitech" },
@@ -92,7 +92,7 @@ export const experience: Experience[] = [
         period: "2025 - 2026",
         place: "Cardiff Metropolitan University",
         country: "Wales",
-        kind: "Master's year 1",
+        kind: "Master’s year 1",
         description:
             "Exchange year at Cardiff Metropolitan University. Advanced computer science studies and international collaboration.",
         media: [
@@ -126,9 +126,9 @@ export const experience: Experience[] = [
         period: "2024 - 2025",
         place: "Epitech Berlin",
         country: "Germany",
-        kind: "Bachelor's year 3",
+        kind: "Bachelor’s year 3",
         description:
-            "Large-scale projects, software architecture and deployment. Completed the Bachelor's with capstone projects.",
+            "Large-scale projects, software architecture and deployment. Completed the Bachelor’s with capstone projects.",
         media: [
             photo("berlin", "city", "Berlin"),
             photo("berlin", "campus", "Campus"),
@@ -138,7 +138,7 @@ export const experience: Experience[] = [
         period: "2023 - 2024",
         place: "Epitech Barcelona",
         country: "Spain",
-        kind: "Bachelor's year 2",
+        kind: "Bachelor’s year 2",
         description:
             "Systems programming, networking and advanced algorithms. Distributed systems and architecture.",
         media: [
@@ -161,7 +161,7 @@ export const experience: Experience[] = [
         period: "2022 - 2023",
         place: "Epitech Paris",
         country: "France",
-        kind: "Bachelor's year 1",
+        kind: "Bachelor’s year 1",
         description:
             "Low-level C projects (Minishell, an RPG), computer science fundamentals and a strong foundation in software engineering.",
         media: [],
@@ -216,6 +216,6 @@ export const projects: Project[] = [
 ];
 
 export const contact = {
-    heading: "Let's work together.",
+    heading: "Let’s work together.",
     body: "Open to internships, collaborations and interesting problems.",
 };

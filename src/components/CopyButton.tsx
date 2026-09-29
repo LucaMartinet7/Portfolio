@@ -8,20 +8,22 @@ export default function CopyButton({
     text: string;
     label?: string;
 }) {
-    const [copied, setCopied] = useState(false);
+    const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
 
     useEffect(() => {
-        if (!copied) return;
-        const timer = setTimeout(() => setCopied(false), 2000);
+        if (state === "idle") return;
+        const timer = setTimeout(() => setState("idle"), 2500);
         return () => clearTimeout(timer);
-    }, [copied]);
+    }, [state]);
 
     const copy = async () => {
         try {
             await navigator.clipboard.writeText(text);
-            setCopied(true);
+            setState("copied");
         } catch {
-            // Clipboard access denied: the text stays visible to copy by hand.
+            // Clipboard blocked (permissions, old browser): say so, the text
+            // stays visible to select by hand.
+            setState("failed");
         }
     };
 
@@ -31,7 +33,15 @@ export default function CopyButton({
             onClick={copy}
             className="inline-flex h-8 shrink-0 items-center rounded-sm px-2 text-mute transition-colors hover:bg-surface-card hover:text-ink"
         >
-            <span aria-live="polite">[{copied ? "copied" : label}]</span>
+            <span aria-live="polite">
+                [
+                {state === "copied"
+                    ? "copied"
+                    : state === "failed"
+                      ? "copy failed, select the text"
+                      : label}
+                ]
+            </span>
         </button>
     );
 }

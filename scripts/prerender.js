@@ -56,7 +56,9 @@ function contentSecurityPolicy(html) {
 }
 
 const fonts = (await readdir(join(dist, "assets")))
-    .filter((file) => /^geist-latin-wght-normal-[\w-]+\.woff2$/.test(file))
+    .filter((file) =>
+        /^jetbrains-mono-latin-wght-normal-[\w-]+\.woff2$/.test(file)
+    )
     .map(
         (file) =>
             `<link rel="preload" href="/assets/${file}" as="font" type="font/woff2" crossorigin />`
