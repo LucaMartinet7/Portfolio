@@ -18,10 +18,21 @@ function ProjectBlock({
         <article
             className={`group relative flex h-full flex-col border p-5 transition-colors hover:border-ink sm:p-6 ${
                 featured
-                    ? "border-hairline-strong bg-surface-card"
+                    ? "border-hairline-strong bg-surface-card lg:grid lg:grid-cols-2 lg:content-center lg:gap-x-8"
                     : "border-hairline"
             }`}
         >
+            {project.image && (
+                <img
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    width={project.image.width}
+                    height={project.image.height}
+                    loading="lazy"
+                    decoding="async"
+                    className={`mb-5 aspect-video w-full border border-hairline object-cover ${featured ? "lg:row-span-4 lg:mb-0" : ""}`}
+                />
+            )}
             <div className="flex items-baseline justify-between gap-4">
                 <h3 className="font-bold">
                     <Marker>{featured ? "*" : "+"}</Marker>{" "}
@@ -37,9 +48,10 @@ function ProjectBlock({
                 </h3>
                 <span
                     aria-hidden="true"
-                    className="shrink-0 text-sm text-mute transition-colors group-hover:text-ink"
+                    className="inline-flex shrink-0 items-center text-sm text-mute transition-colors group-hover:text-ink"
                 >
-                    source{" ->"}
+                    Source
+                    <Arrow />
                 </span>
             </div>
             <p className={`mt-3 ${featured ? "max-w-[70ch]" : ""}`}>
@@ -62,7 +74,7 @@ function ProjectBlock({
                     rel="noopener noreferrer"
                     className={`${textLink} relative mt-2 self-start text-sm`}
                 >
-                    Live site
+                    Live Site
                     <Arrow />
                 </a>
             )}
@@ -79,7 +91,8 @@ export default function Projects() {
                 Systems, networking and web tooling.
             </p>
             {featured && <ProjectBlock project={featured} featured />}
-            {/* Mobile: one column. sm and up: 2x2, one cell per project. */}
+            {/* Featured: image above text, side by side from lg. The rest: one
+                column on mobile, 2x2 from sm, one cell per project. */}
             <ul className="mt-4 grid gap-4 sm:grid-cols-2">
                 {rest.map((project) => (
                     <li key={project.title}>

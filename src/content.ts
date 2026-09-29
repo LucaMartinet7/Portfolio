@@ -67,6 +67,9 @@ export type Media = {
     /** 320x320 square preview. */
     thumb: string;
     label: string;
+    /** Intrinsic size of `src`, so the viewer reserves space. */
+    width: number;
+    height: number;
     /**
      * Videos: `src` is the H.264 MP4 (plays everywhere), `webm` a VP9 copy
      * for browsers built without H.264, `poster` the still shown first.
@@ -85,11 +88,20 @@ export type Experience = {
     current?: boolean;
 };
 
-const photo = (dir: string, name: string, label: string): Media => ({
+const photo = (
+    dir: string,
+    name: string,
+    label: string,
+    [width, height]: [number, number]
+): Media => ({
     src: `/images/experience/${dir}/${name}.webp`,
     thumb: `/images/experience/${dir}/${name}-thumb.webp`,
     label,
+    width,
+    height,
 });
+const portrait: [number, number] = [1200, 1600];
+const landscape: [number, number] = [1600, 1200];
 
 /** Newest first. */
 export const experience: Experience[] = [
@@ -121,9 +133,9 @@ export const experience: Experience[] = [
         description:
             "Exchange year at Cardiff Metropolitan University. Advanced computer science studies and international collaboration.",
         media: [
-            photo("cardiff", "campus", "Campus"),
-            photo("cardiff", "city", "City"),
-            photo("cardiff", "room", "Room"),
+            photo("cardiff", "campus", "Campus", portrait),
+            photo("cardiff", "city", "City", portrait),
+            photo("cardiff", "room", "Room", landscape),
         ],
     },
     {
@@ -134,17 +146,19 @@ export const experience: Experience[] = [
         description:
             "Full-stack development intern in Geneva. Refactored Sirocco, a Python incident-analysis platform, integrated OpenAI and Mistral models, and built a real-time TypeScript front end with automated BigQuery validation.",
         media: [
-            photo("cyberpeace", "office", "Office"),
+            photo("cyberpeace", "office", "Office", portrait),
             {
                 src: "/images/experience/cyberpeace/workspace.mp4",
                 thumb: "/images/experience/cyberpeace/workspace-thumb.webp",
                 label: "Workspace",
+                width: 540,
+                height: 960,
                 video: {
                     poster: "/images/experience/cyberpeace/workspace-poster.webp",
                     webm: "/images/experience/cyberpeace/workspace.webm",
                 },
             },
-            photo("cyberpeace", "geneva", "Geneva"),
+            photo("cyberpeace", "geneva", "Geneva", portrait),
         ],
     },
     {
@@ -155,8 +169,8 @@ export const experience: Experience[] = [
         description:
             "Large-scale projects, software architecture and deployment. Completed the Bachelor’s with capstone projects.",
         media: [
-            photo("berlin", "city", "Berlin"),
-            photo("berlin", "campus", "Campus"),
+            photo("berlin", "city", "Berlin", portrait),
+            photo("berlin", "campus", "Campus", [900, 1600]),
         ],
     },
     {
@@ -167,10 +181,10 @@ export const experience: Experience[] = [
         description:
             "Systems programming, networking and advanced algorithms. Distributed systems and architecture.",
         media: [
-            photo("barcelona", "city", "Barcelona"),
-            photo("barcelona", "segria", "Segrià"),
-            photo("barcelona", "streets", "City"),
-            photo("barcelona", "campus", "Campus"),
+            photo("barcelona", "city", "Barcelona", landscape),
+            photo("barcelona", "segria", "Segrià", portrait),
+            photo("barcelona", "streets", "City", portrait),
+            photo("barcelona", "campus", "Campus", [1600, 1203]),
         ],
     },
     {
@@ -199,6 +213,7 @@ export type Project = {
     source: string;
     live?: string;
     tags: string[];
+    image?: { src: string; alt: string; width: number; height: number };
 };
 
 /** The first project is featured. */
@@ -208,6 +223,12 @@ export const projects: Project[] = [
         description:
             "Multiplayer 2D shooter in the spirit of R-Type. Modern C++ with an entity-component-system engine, a UDP networking layer, and separate server, client and engine modules.",
         source: "https://github.com/LucaMartinet7/R-Type",
+        image: {
+            src: "/images/projects/beer-type.webp",
+            alt: "BeeR-Type's hand-drawn game background: a bar with stools and hanging lamps",
+            width: 960,
+            height: 540,
+        },
         tags: ["C++", "Networking", "ECS"],
     },
     {
@@ -236,6 +257,12 @@ export const projects: Project[] = [
         description:
             "This site. React and Tailwind CSS, prerendered to static HTML and served with a strict Content Security Policy.",
         source: "https://github.com/LucaMartinet7/Portfolio",
+        image: {
+            src: "/images/projects/portfolio.webp",
+            alt: "Screenshot of this site's terminal-style hero",
+            width: 960,
+            height: 540,
+        },
         tags: ["React", "TypeScript", "Security"],
     },
 ];

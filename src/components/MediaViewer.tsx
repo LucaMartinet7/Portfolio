@@ -1,5 +1,6 @@
 import { useEffect, useRef, type KeyboardEvent, type MouseEvent } from "react";
 import type { Media } from "@/content";
+import { CaretLeft, CaretRight, X } from "./icons";
 
 /**
  * Full-screen viewer built on the native <dialog> element, which provides the
@@ -47,7 +48,7 @@ export default function MediaViewer({
         matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const control =
-        "inline-flex h-9 items-center rounded-sm bg-term-raised px-3 text-term-text transition-colors hover:bg-term-mute hover:text-term";
+        "inline-flex h-9 items-center gap-2 rounded-sm bg-term-raised px-3 text-term-text transition-colors hover:bg-term-mute hover:text-term";
 
     return (
         <dialog
@@ -67,7 +68,8 @@ export default function MediaViewer({
                     onClick={close}
                     className={`${control} absolute top-4 right-4`}
                 >
-                    [x] close
+                    <X size={16} />
+                    Close
                 </button>
 
                 {item.video ? (
@@ -95,6 +97,8 @@ export default function MediaViewer({
                         key={item.src}
                         src={item.src}
                         alt={`${item.label}, ${title}`}
+                        width={item.width}
+                        height={item.height}
                         className="max-h-[78dvh] max-w-full object-contain"
                     />
                 )}
@@ -104,10 +108,11 @@ export default function MediaViewer({
                         <button
                             type="button"
                             onClick={() => step(-1)}
-                            aria-label="Previous"
+                            aria-label="Previous photo"
                             className={control}
                         >
-                            <span aria-hidden="true">{"<- prev"}</span>
+                            <CaretLeft size={16} />
+                            Prev
                         </button>
                     )}
                     <p className="px-2 text-sm" aria-live="polite">
@@ -123,10 +128,11 @@ export default function MediaViewer({
                         <button
                             type="button"
                             onClick={() => step(1)}
-                            aria-label="Next"
+                            aria-label="Next photo"
                             className={control}
                         >
-                            <span aria-hidden="true">{"next ->"}</span>
+                            Next
+                            <CaretRight size={16} />
                         </button>
                     )}
                 </div>

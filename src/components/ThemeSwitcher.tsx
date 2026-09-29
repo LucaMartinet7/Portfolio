@@ -5,10 +5,15 @@ import {
     useThemePreference,
     type ThemePreference,
 } from "@/lib/theme";
+import { Monitor, Moon, Sun } from "./icons";
 
-const options: ThemePreference[] = ["system", "light", "dark"];
+const options: { value: ThemePreference; label: string; Icon: typeof Sun }[] = [
+    { value: "system", label: "System", Icon: Monitor },
+    { value: "light", label: "Light", Icon: Sun },
+    { value: "dark", label: "Dark", Icon: Moon },
+];
 
-/** Text toggle, e.g. "theme: system light dark". */
+/** Theme toggle: System / Light / Dark, each an icon with its name. */
 export default function ThemeSwitcher() {
     const preference = useThemePreference();
 
@@ -16,18 +21,19 @@ export default function ThemeSwitcher() {
     useEffect(() => applyTheme(preference), [preference]);
 
     return (
-        <div className="flex items-center gap-1">
-            <span id="theme-label">theme:</span>
+        <div className="flex items-center gap-2">
+            <span id="theme-label">Theme</span>
             <div role="group" aria-labelledby="theme-label" className="flex">
-                {options.map((option) => (
+                {options.map(({ value, label, Icon }) => (
                     <button
-                        key={option}
+                        key={value}
                         type="button"
-                        aria-pressed={preference === option}
-                        onClick={() => setThemePreference(option)}
-                        className="h-8 px-2 text-mute transition-colors hover:text-ink aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-2 aria-pressed:underline-offset-4"
+                        aria-pressed={preference === value}
+                        onClick={() => setThemePreference(value)}
+                        className="inline-flex h-8 items-center gap-1.5 rounded-sm px-2 text-mute transition-colors hover:text-ink aria-pressed:bg-surface-card aria-pressed:text-ink"
                     >
-                        {option}
+                        <Icon size={14} />
+                        {label}
                     </button>
                 ))}
             </div>
