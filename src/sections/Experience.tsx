@@ -67,11 +67,11 @@ function MediaStrip({ entry }: { entry: Entry }) {
 const groups = [
     {
         title: "Internships",
-        entries: experience.filter((entry) => entry.kind === "Internship"),
+        entries: experience.filter((entry) => entry.category === "internship"),
     },
     {
         title: "Education",
-        entries: experience.filter((entry) => entry.kind !== "Internship"),
+        entries: experience.filter((entry) => entry.category === "education"),
     },
 ];
 
